@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	  <meta charset="utf-8">
+	  <title>Spring Water</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	
+	<body>
+  		<div th:replace="general :: nav">[Navigation]</div>
+    	<div th:replace="${view} :: content">[Content]</div>
+    	<div th:replace="general :: footer">[Footer]</div>
+	</body>
+
+</html>

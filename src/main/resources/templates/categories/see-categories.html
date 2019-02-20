@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	  <meta charset="utf-8">
+	  <title>Spring Water</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	
+	<body>
+  		<div th:fragment="content">
+  		<ul>
+  			<li th:each="categorie : ${categories}" th:text="${categorie}"></li>
+  		</ul>
+  		</div>
+	</body>
+
+</html>
