@@ -18,10 +18,7 @@ public class SpringwaterApplication {
 	@PostConstruct
 	public void init()
 	{
-		Categorie c = new Categorie();
-		c.setNom("Wine");
-		repository.save(c);
-		
+
 	}
 
 	public static void main(String[] args) {

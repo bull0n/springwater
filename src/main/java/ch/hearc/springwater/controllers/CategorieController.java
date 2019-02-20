@@ -38,6 +38,6 @@ public class CategorieController
 	{
 		repository.save(categorie);
 		
-		return "redirect:/";
+		return "redirect:/categorie";
 	}
 }
