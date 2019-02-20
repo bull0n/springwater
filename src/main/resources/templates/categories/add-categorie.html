@@ -1,0 +1,12 @@
+<form method="post" th:action="@{save}" th:object="${categorie}">
+	<div>
+  		<label for="nom" th:text="#{categorie.nom}">
+  			Name
+  		</label>
+		<input type="text" id="nom" name="nom" th:field="*{nom}">
+	</div>
+	<div>
+	</div>
+	
+	<button type="submit">Save</button>
+</form>

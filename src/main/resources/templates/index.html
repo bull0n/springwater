@@ -5,11 +5,15 @@
 	  <meta charset="utf-8">
 	  <title>Spring Water</title>
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  
+	  <link rel="stylesheet" type="text/css" href="styles/main.css">
+	  
+	  <script src="script/main.js"></script> 
 	</head>
 	
 	<body>
   		<div th:replace="general :: nav">[Navigation]</div>
-    	<div th:replace="${view} :: content">[Content]</div>
+    	<!--<div th:replace="${view} :: content">[Content]</div>-->
     	<div th:replace="general :: footer">[Footer]</div>
 	</body>
 
