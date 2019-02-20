@@ -26,7 +26,7 @@ public class CategorieController
 		return "categories/see-categories";
 	}
 	
-	@GetMapping(value="/add-categorie")
+	@GetMapping(value="/add")
 	public String addCategorieMap(Map<String, Object> model)
 	{
 		model.put("categorie", new Categorie());
