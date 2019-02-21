@@ -1,12 +1,26 @@
-<form method="post" th:action="@{save}" th:object="${categorie}">
-	<div>
-  		<label for="nom" th:text="#{categorie.nom}">
-  			Name
-  		</label>
-		<input type="text" id="nom" name="nom" th:field="*{nom}">
-	</div>
-	<div>
-	</div>
+<!DOCTYPE html>
+<html>
+
+	<head th:replace="general :: header">
+	</head>
 	
-	<button type="submit">Save</button>
-</form>
+	<body>
+  		<div th:replace="general :: nav">[Navigation]</div>
+  		
+   		<form method="post" th:action="@{save}" th:object="${categorie}">
+			<div>
+		  		<label for="nom" th:text="#{categorie.nom}">
+		  			Name
+		  		</label>
+				<input type="text" id="nom" name="nom" th:field="*{nom}">
+			</div>
+			<div>
+			</div>
+			
+			<button type="submit">Save</button>
+		</form>
+    		
+    	<div th:replace="general :: footer">[Footer]</div>
+	</body>
+
+</html>
