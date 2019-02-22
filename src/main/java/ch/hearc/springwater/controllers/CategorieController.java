@@ -30,7 +30,7 @@ public class CategorieController
 	public String addCategorieMap(Map<String, Object> model)
 	{
 		model.put("categorie", new Categorie());
-		return "categories/add-categorie";
+		return "categories/add";
 	}
 	
 	@PostMapping(value="/save")

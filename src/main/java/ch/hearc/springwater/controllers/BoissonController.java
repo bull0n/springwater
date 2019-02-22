@@ -23,14 +23,14 @@ public class BoissonController
 	public String getBoissons(Map<String, Object> model)
 	{		
 		model.put("boissons", repository.findAll());
-		return "see-boissons";
+		return "boisson/see-boissons";
 	}
 	
 	@GetMapping(value="/add-boisson")
 	public String addBoissonMap(Map<String, Object> model)
 	{
 		model.put("boisson", new Boisson());
-		return "add-boisson";
+		return "boisson/add";
 	}
 	
 	@PostMapping(value="/save")
@@ -38,6 +38,6 @@ public class BoissonController
 	{
 		repository.save(boisson);
 		
-		return "redirect:/";
+		return "redirect:/boisson/";
 	}
 }

@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-	  <meta charset="utf-8">
-	  <title>Spring Water</title>
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<head th:replace="fragments/general :: header">
 	</head>
 	
 	<body>
-  		<div th:fragment="content">
-  		<ul>
-  			<li th:each="categorie : ${categories}" th:text="${categorie}"></li>
-  		</ul>
+  		<div th:replace="fragments/general :: nav">[Navigation]</div>
+  		
+  		<div class="container">
+  			<ul>
+	  			<li th:each="categorie : ${categories}" th:text="${categorie}"></li>
+	  		</ul>
   		</div>
+   		
+    		
+    	<div th:replace="fragments/general :: footer">[Footer]</div>
 	</body>
 
 </html>
