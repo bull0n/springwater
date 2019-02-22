@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head th:replace="fragments/general :: header">
+	</head>
+	
+	<body>
+  		<div th:replace="fragments/general :: nav">[Navigation]</div>
+  		
+  		<div class="container">
+  			<div class="row">
+  				<div class="col-9">
+  					 <div th:each="boisson : ${boissons}" th:replace="fragments/single-boisson :: single-boisson(boisson)">
+  					 	[Boisson]
+  					 </div>
+  				</div>
+  				<div class="col-3">
+  				
+  				</div>
+  			</div>
+  			<ul>
+	  			<li th:each="boisson : ${boissons}" th:text="${boisson }"></li>
+	  		</ul>
+  		</div>
+   		
+    		
+    	<div th:replace="fragments/general :: footer">[Footer]</div>
+	</body>
+
+</html>

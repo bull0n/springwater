@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+	<head th:replace="fragments/general :: header">
+	</head>
+	
+	<body>
+  		<div th:replace="fragments/general :: nav">[Navigation]</div>
+  		
+   		<form method="post" th:action="@{save}" th:object="${categorie}">
+			<div>
+		  		<label for="nom" th:text="#{categorie.nom}">
+		  			Name
+		  		</label>
+				<input type="text" id="nom" name="nom" th:field="*{nom}">
+			</div>
+			<div>
+			</div>
+			
+			<button type="submit">Save</button>
+		</form>
+    		
+    	<div th:replace="fragments/general :: footer">[Footer]</div>
+	</body>
+
+</html>
