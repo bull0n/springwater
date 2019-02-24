@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "personne")
+@Table(name="personne")
 public class Boisson
 {
 	private String nom;

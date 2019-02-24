@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ch.hearc.springwater.models.entities.Boisson;
 import ch.hearc.springwater.models.repositories.BoissonsRepository;
 
-
 @Controller
 @RequestMapping(value = "/boisson")
 public class BoissonController
@@ -26,7 +25,7 @@ public class BoissonController
 		return "boisson/see-boissons";
 	}
 	
-	@GetMapping(value="/add-boisson")
+	@GetMapping(value="/add")
 	public String addBoissonMap(Map<String, Object> model)
 	{
 		model.put("boisson", new Boisson());
