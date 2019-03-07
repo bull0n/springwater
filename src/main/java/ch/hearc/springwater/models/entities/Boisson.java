@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -19,6 +20,7 @@ public class Boisson
 	private String linkImage;
 	
 	@ManyToMany
+	@JoinColumn
 	private List<Categorie> categories = new ArrayList<>();
 	
 	@Id
@@ -38,6 +40,11 @@ public class Boisson
 	public String getDescription()
 	{
 		return description;
+	}
+	
+	public List<Categorie> getCategories()
+	{
+		return categories;
 	}
 
 	public void setDescription(String description)
@@ -65,6 +72,11 @@ public class Boisson
 		this.id = id;
 	}
 
+	public void setCategories(List<Categorie> categories)
+	{
+		this.categories = categories;
+	}
+
 	@Override
 	public String toString()
 	{
@@ -77,6 +89,8 @@ public class Boisson
 		builder.append(linkImage);
 		builder.append(", id=");
 		builder.append(id);
+		builder.append(", categories=");
+		builder.append(categories);
 		builder.append("]");
 		return builder.toString();
 	}

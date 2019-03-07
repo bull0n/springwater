@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ch.hearc.springwater.exceptions.ResourceNotFoundException;
 import ch.hearc.springwater.models.entities.Boisson;
 import ch.hearc.springwater.models.repositories.BoissonsRepository;
+import ch.hearc.springwater.models.repositories.CategoriesRepository;
 
 @Controller
 @RequestMapping(value = "/boisson")
@@ -22,6 +23,8 @@ public class BoissonController
 {
 	@Autowired
 	BoissonsRepository repository;
+	@Autowired
+	CategoriesRepository categoriesRepository;
 	
 	@GetMapping(value="/")
 	public String getBoissons(Map<String, Object> model)
@@ -43,6 +46,7 @@ public class BoissonController
 	public String addBoissonMap(Map<String, Object> model)
 	{
 		model.put("boisson", new Boisson());
+		model.put("categories", categoriesRepository.findAll());
 		return "boisson/form";
 	}
 	
