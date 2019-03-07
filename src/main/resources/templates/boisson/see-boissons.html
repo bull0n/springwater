@@ -10,7 +10,7 @@
   		<div class="container">
   			<div class="row">
   				<div class="col-9">
-  					 <div th:each="boisson : ${boissons}" th:replace="fragments/single-boisson :: single-boisson(boisson)">
+  					 <div th:each="boisson : ${boissons}" th:replace="fragments/single-boisson :: single-boisson(${boisson})">
   					 	[Boisson]
   					 </div>
   				</div>
@@ -19,7 +19,7 @@
   				</div>
   			</div>
   			<ul>
-	  			<li th:each="boisson : ${boissons}" th:text="${boisson }"></li>
+	  			<li th:each="boisson : ${boissons}" th:text="${boisson}">[Boisson]</li>
 	  		</ul>
 			<div class="col-lg-6 offset-lg-3 d-flex">
 				<ul class="pagination mx-auto">
