@@ -21,6 +21,13 @@
   			<ul>
 	  			<li th:each="boisson : ${boissons}" th:text="${boisson }"></li>
 	  		</ul>
+			<div class="col-lg-6 offset-lg-3 d-flex">
+				<ul class="pagination mx-auto">
+					<li class="page-item" th:each="pageNumber : ${listPages}"  th:classappend="${pageNumber == pageNum} ? active">
+						<a class="page-link" href="/boisson/page/${pageNumber" th:text="${pageNumber}">[PageNumber]</a>
+					</li>
+				</ul>
+			</div>
   		</div>
    		
     		

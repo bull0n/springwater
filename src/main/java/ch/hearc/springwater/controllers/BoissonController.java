@@ -1,10 +1,15 @@
 package ch.hearc.springwater.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,11 +31,37 @@ public class BoissonController
 	@Autowired
 	CategoriesRepository categoriesRepository;
 	
+	private final int BOISSONS_PAR_PAGE = 10;
+	
 	@GetMapping(value="/")
 	public String getBoissons(Map<String, Object> model)
-	{		
-		model.put("boissons", repository.findAll());
+	{	
+		this.getBoissonsPageable(1, model);
 		return "boisson/see-boissons";
+	}
+	
+	@GetMapping(value="/page/{pageNum}")
+	public String getBoissons(@PathVariable("pageNum") int pageNum, Map<String, Object> model)
+	{	
+		this.getBoissonsPageable(pageNum, model);
+		return "boisson/see-boissons";
+	}
+	
+	private void getBoissonsPageable(int pageNum, Map<String, Object> model)
+	{
+		Pageable pageable = PageRequest.of(pageNum - 1, BOISSONS_PAR_PAGE);
+		Page<Boisson> page = repository.findAll(pageable);
+		
+		List<Integer> listPages = new ArrayList<Integer>();
+		int firstPage = pageNum - 5;
+		for(int i = firstPage > 0 ? firstPage : 1;  i <= (pageNum + 5) && i <= page.getTotalPages(); i++)
+		{
+			listPages.add(i);
+		}
+		
+		model.put("listPages", listPages);
+		model.put("pageNum", pageNum);
+		model.put("boissons", page);
 	}
 	
 	@GetMapping(value="/{id}")
