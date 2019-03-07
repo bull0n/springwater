@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+	<head th:replace="fragments/general :: header">
+	</head>
+	
+	<body>
+  		<div th:replace="fragments/general :: nav">[Navigation]</div>
+  		
+  		<div class="container">
+  			<p th:text="${boisson}">
+  				
+  			</p>
+  		</div>
+    		
+    	<div th:replace="fragments/general :: footer">[Footer]</div>
+	</body>
+
+</html>
