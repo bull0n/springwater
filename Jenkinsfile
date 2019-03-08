@@ -12,11 +12,6 @@ pipeline {
           mysql --user=root --password=1234 CREATE DATABASE springwater CHARACTER SET UTF8mb4 collate utf8mb4_general_ci;"
           '''
         }
-        post {
-          always {
-            junit 'target/surefire-reports/*.xml'
-          }
-        }
       }
       stage('Build') {
         agent {
