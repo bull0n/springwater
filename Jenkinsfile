@@ -9,7 +9,7 @@ pipeline {
         }
         steps {
           sh '''
-          docker exec \'CREATE DATABASE springwater CHARACTER SET UTF8mb4 collate utf8mb4_general_ci;\' -e MYSQL_ROOT_PASSWORD=1234 sh -c 'exec mysql < ./db/dump.sql
+          docker exec CREATE DATABASE springwater CHARACTER SET UTF8mb4 collate utf8mb4_general_ci -e MYSQL_ROOT_PASSWORD=1234 sh -c 'exec mysql < ./db/dump.sql
           '''
         }
         post {
