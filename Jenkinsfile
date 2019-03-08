@@ -6,7 +6,7 @@ node {
      */
     docker.image('mysql/mysql-server').withRun('-e "MYSQL_ROOT_PASSWORD=1234" -p 3306:3306') { c ->
         /* Wait until mysql service is up */
-        sh 'while ! mysqladmin ping -h0.0.0.0 --silent; do sleep 1; done'
+        sh 'sleep 30'
         sh 'mysql --user=root --password=1234 "CREATE DATABASE springwater CHARACTER SET UTF8mb4 collate utf8mb4_general_ci;"'
         sh 'make check'
     }
