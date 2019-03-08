@@ -8,7 +8,6 @@ pipeline {
           args '-e MYSQL_ROOT_PASSWORD=1234 -d'}
         }
         steps {
-          sh 'mvn test -DforkCount=0'
           sh '''
           docker exec 'CREATE DATABASE springwater CHARACTER SET UTF8mb4 collate utf8mb4_bin -e MYSQL_ROOT_PASSWORD=1234' sh -c 'exec mysql < ./db/dump.sql
           '''
