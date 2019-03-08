@@ -8,7 +8,7 @@ pipeline {
           args '-e MYSQL_ROOT_PASSWORD=1234 -d'}
         }
         steps {
-          sh 'mysql -h localhost -P 3306 --protocol=tcp --user=root --password=1234 "CREATE DATABASE springwater CHARACTER SET UTF8mb4 collate utf8mb4_general_ci;"'
+          sh 'mysql --user=root --password=1234 "CREATE DATABASE springwater CHARACTER SET UTF8mb4 collate utf8mb4_general_ci;"'
         }
       }
       stage('Build') {
