@@ -1,3 +1,23 @@
 <article th:fragment="single-boisson(boisson)" class="container">
-    <div th:text="${boisson.nom}">[Boisson]</div>
+   	<h2 th:text="${boisson.nom}">[BoissonNom]</h2>
+   	<div class="row">
+   		<div class="col-md-5">
+   			<img src="#" class="rounded float-left" th:alt="${boisson.nom}">
+   		</div>
+   		<div class="col-md-7">
+   			<h3>Description</h3>
+   			<p th:text="${boisson.description}">
+   				[Description]
+   			</p>
+   			<h5>Type of drink : </h5>
+   			<p th:text="${boisson.categories}">
+   				[categories]
+   			</p>
+   			<div class="text-right">
+   				<a href="#"><i class="fas fa-arrow-up"></i></a>
+   				50
+   				<a href="#"><i class="fas fa-arrow-down"></i></a>
+   			</div>
+   		</div>
+   	</div>
 </article>
