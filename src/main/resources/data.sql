@@ -6,7 +6,8 @@ INSERT INTO categorie (id, nom) VALUES
 	(5, 'Craft beer'),
 	(6, 'White wine'),
 	(7, 'Red wine'),
-	(8, 'Tea');
+	(8, 'Tea'),
+    (9, 'Other alcoolic beverage');
 	
 INSERT INTO boisson (id, nom, description, link_image) VALUES
 	(1, 'Vodka', 'is a clear distilled alcoholic beverage originating from Poland and Russia, composed primarily of water and ethanol, but sometimes with traces of impurities and flavorings. Traditionally, it is made by distilling the liquid from cereal grains or potatoes that have been fermented, though some modern brands, such as Ciroc, CooranBong, and Bombora, use fruits or sugar as the base.', ''),
@@ -18,7 +19,7 @@ INSERT INTO boisson (id, nom, description, link_image) VALUES
 	(7, 'Orange juice', 'Orange juice is a liquid extract of the orange tree fruit, produced by squeezing oranges. It comes in several different varieties, including blood orange, navel oranges, valencia orange, clementine, and tangerine. As well as variations in oranges used, some varieties include differing amounts of juice vesicles, known as "pulp" in American English, and "(juicy) bits" in British English. These vesicles contain the juice of the orange and can be left in or removed during the manufacturing process. How juicy these vesicles are depend upon many factors, such as species, variety, and season. In American English, the beverage name is often abbreviated as "OJ".', ''),
 	(8, 'Iced tea', 'Iced tea is a form of cold tea. Though usually served in a glass with ice, it can refer to any tea that has been chilled or cooled. It may be sweetened with sugar, syrup and/or apple slices. Iced tea is also a popular packaged drink. It can be mixed with flavored syrup, with multiple common flavors including lemon, raspberry, lime, passion fruit, peach, orange, strawberry, and cherry. While most iced teas get their flavor from tea leaves (Camellia sinensis), herbal teas are sometimes served cold and referred to as iced tea. Iced tea is sometimes made by a particularly long steeping of tea leaves at lower temperature. This is known as sun tea.', ''),
 	(9, 'Mojito', 'Mojito is a traditional Cuban highball. Traditionally, a mojito is a cocktail that consists of five ingredients: white rum, sugar (traditionally sugar cane juice), lime juice, soda water, and mint. Its combination of sweetness, citrus, and herbaceous mint flavors is intended to complement the rum, and has made the mojito a popular summer drink.', ''),
-	(10, 'Pineapple Juice', 'Orange juice is a liquid extract of the pienapple tree fruit.', ''),
+	(10, 'Pineapple Juice', 'Pineapple juice is a liquid extract of the pienapple tree fruit.', ''),
 	(11, 'Sake', 'Sake, also spelled saké, also referred to as a Japanese rice wine, is an alcoholic beverage made by fermenting rice that has been polished to remove the bran. Unlike wine, in which alcohol is produced by fermenting sugar that is naturally present in fruit, typically grapes, sake is produced by a brewing process more akin to that of beer, where starch is converted into sugars which ferment into alcohol.', ''),
 	(12, 'Cranberry juice', 'Cranberry juice is the juice of the cranberry. The term "cranberry juice cocktail" refers to products that contain about 28% cranberry juice and the remainder either other fruit juices (typically grape, apple and/or pear) or water with sugar added. There are also low-calorie versions that use non-caloric sweeteners.', ''),
 	(13, 'Coca', 'Coca-Cola, or Coke, is a carbonated soft drink manufactured by The Coca-Cola Company. Originally intended as a patent medicine, it was invented in the late 19th century by John Stith Pemberton and was bought out by businessman Asa Griggs Candler, whose marketing tactics led Coca-Cola to its dominance of the world soft-drink market throughout the 20th century. The drink\'s name refers to two of its original ingredients: coca leaves, and kola nuts (a source of caffeine). The current formula of Coca-Cola remains a trade secret, although a variety of reported recipes and experimental recreations have been published.', ''),
@@ -64,7 +65,7 @@ INSERT INTO boisson_categories (boisson_id, categories_id) VALUES
     (8, 2),
     (9, 2),
     (10, 3),
-    (11, 3),
+    (11, 9),
     (12, 2),
     (13, 3),
     (14, 2),
