@@ -46,12 +46,6 @@ public class Categorie
 	@Override
 	public String toString()
 	{
-		StringBuilder builder = new StringBuilder();
-		builder.append("Categorie [nom=");
-		builder.append(nom);
-		builder.append(", id=");
-		builder.append(id);
-		builder.append("]");
-		return builder.toString();
+		return this.nom;
 	}
 }

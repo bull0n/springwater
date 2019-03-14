@@ -1,0 +1,12 @@
+.tag-label 
+{
+	background-color: DodgerBlue;
+	color: white;
+	border-radius: 2px;
+	margin: 0 3px;
+	padding: 4px 8px;
+}
+.main-content
+{
+	margin-top: 30px;
+}

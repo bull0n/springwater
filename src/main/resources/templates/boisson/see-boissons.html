@@ -7,16 +7,16 @@
 	<body>
   		<div th:replace="fragments/general :: nav">[Navigation]</div>
   		
-  		<div class="container">
+  		<div class="container main-content">
   			<div class="row">
-  				<div class="col-9">
+  				<div class="col-8">
   					 <div th:each="boisson : ${boissons}">
   					 	<div th:include="fragments/single-boisson :: single-boisson(${boisson})">
 	  					 	[Boisson]
   					 	</div>
   					 </div>
   				</div>
-  				<div class="col-3">
+  				<div class="col-3 offset-md-1" th:include="fragments/recherche-avancee :: recherche-avancee(null)">
   				
   				</div>
   			</div>
@@ -28,8 +28,7 @@
 				</ul>
 			</div>
   		</div>
-   		
-    		
+
     	<div th:replace="fragments/general :: footer">[Footer]</div>
 	</body>
 
