@@ -29,7 +29,7 @@
 						<div class="form-group">
 							<label for="categories">Categories</label>
 							 <select multiple class="form-control" id="categories" name="categories" th:field="*{categories}">
-								<option th:each="category : ${categories}" th:value="${category}" th:text="${category.getNom()}">[Category nome]</option>
+								<option th:each="categorie : ${categories}" th:value="${categorie.id}" th:text="${categorie}">[Categorie]</option>
 							</select> 
 						</div>
 						
