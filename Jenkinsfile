@@ -1,14 +1,14 @@
 
-node {
-    checkout scm
-    docker.image('mysql:5').withRun('-e "MYSQL_ROOT_PASSWORD=1234" -p 3306:3306') { c ->
-        docker.image('mysql:5').inside("--link ${c.id}:db") {
-          /* Wait until mysql service is up */
-          sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
-          sh 'mysql --user=root --password=1234 --protocol=tcp "CREATE DATABASE springwater CHARACTER SET UTF8mb4 collate utf8mb4_general_ci;"'
-        }
-    }
-}
+// node {
+//     checkout scm
+//     docker.image('mysql:5').withRun('-e "MYSQL_ROOT_PASSWORD=1234" -p 3306:3306') { c ->
+//         docker.image('mysql:5').inside("--link ${c.id}:db") {
+//           /* Wait until mysql service is up */
+//           sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
+//           sh 'mysql --user=root --password=1234 --protocol=tcp "CREATE DATABASE springwater CHARACTER SET UTF8mb4 collate utf8mb4_general_ci;"'
+//         }
+//     }
+// }
 
 pipeline {
   agent any
