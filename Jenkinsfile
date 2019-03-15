@@ -5,7 +5,7 @@ node {
         docker.image('mysql:5').inside("--link ${c.id}:db") {
           /* Wait until mysql service is up */
           sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
-          sh 'sudo mysql --user=root --password=1234 --protocol=tcp "CREATE DATABASE springwater CHARACTER SET UTF8mb4 collate utf8mb4_general_ci;"'
+          sh 'mysql --user=root --password=1234 --protocol=tcp "CREATE DATABASE springwater CHARACTER SET UTF8mb4 collate utf8mb4_general_ci;"'
         }
     }
 }
