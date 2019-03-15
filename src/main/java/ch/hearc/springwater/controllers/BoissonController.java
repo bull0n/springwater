@@ -29,7 +29,9 @@ public class BoissonController
 	@Autowired
 	CategoriesRepository categoriesRepository;
 	
-	private final int BOISSONS_PAR_PAGE = 10;
+	private static final int BOISSONS_PAR_PAGE = 10;
+	private static final String BOISSONS = "boissons";
+	private static final String BOISSON_FORM = "boisson/form";
 	
 	@GetMapping(value="/")
 	public String getBoissons(Map<String, Object> model)
@@ -50,7 +52,7 @@ public class BoissonController
 		Pageable pageable = PageRequest.of(pageNum - 1, BOISSONS_PAR_PAGE);
 		Page<Boisson> page = repository.findAll(pageable);
 		
-		List<Integer> listPages = new ArrayList<Integer>();
+		List<Integer> listPages = new ArrayList<>();
 		int firstPage = pageNum - 5;
 		for(int i = firstPage > 0 ? firstPage : 1;  i <= (pageNum + 5) && i <= page.getTotalPages(); i++)
 		{
@@ -59,14 +61,14 @@ public class BoissonController
 		
 		model.put("listPages", listPages);
 		model.put("pageNum", pageNum);
-		model.put("boissons", page);
+		model.put(BOISSONS, page);
 	}
 	
 	@GetMapping(value="/{id}")
 	public String getBoisson(@PathVariable("id") long id, Map<String, Object> model)
 	{		
-		Boisson boisson = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
-		model.put("boisson", boisson);
+		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
+		model.put(BOISSONS, boisson);
 		
 		return "boisson/see-detail";
 	}
@@ -74,9 +76,9 @@ public class BoissonController
 	@GetMapping(value="/add")
 	public String addBoissonMap(Map<String, Object> model)
 	{
-		model.put("boisson", new Boisson());
+		model.put(BOISSONS, new Boisson());
 		model.put("categories", categoriesRepository.findAll());
-		return "boisson/form";
+		return BOISSON_FORM;
 	}
 	
 	@PostMapping(value="/save")
@@ -90,10 +92,10 @@ public class BoissonController
 	@GetMapping(value="/edit/{id}")
 	public String edit(@PathVariable("id") long id, Map<String, Object> model)
 	{
-		Boisson boisson = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
-		model.put("boisson", boisson);
+		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
+		model.put(BOISSONS, boisson);
 
-		return "boisson/form";
+		return BOISSON_FORM;
 	}
 	
 	@PutMapping(value="/update")
@@ -101,6 +103,6 @@ public class BoissonController
 	{
 		repository.save(boisson);
 		
-		return "boisson/form";
+		return BOISSON_FORM;
 	}
 }
