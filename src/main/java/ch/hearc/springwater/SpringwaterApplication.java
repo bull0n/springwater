@@ -24,5 +24,4 @@ public class SpringwaterApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringwaterApplication.class, args);
 	}
-
 }
