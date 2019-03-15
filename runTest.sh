@@ -1,5 +1,3 @@
-
-8 lines (4 sloc) 306 Bytes
 #!/bin/bash
 
 Xvfb :99 &
