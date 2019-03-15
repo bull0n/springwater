@@ -1,0 +1,6 @@
+Suite/Test/Step Name,Browser,Description,Start time,End time,Duration,Status
+main,Firefox 65.0,,2019-03-15 09:50:10,2019-03-15 09:50:14,3.863s,FAILED
+,,,,,,
+Test Cases/Add a boisson,Firefox 65.0,,2019-03-15 09:50:10,2019-03-15 09:50:13,3.086s,FAILED
+"openBrowser("""")",Firefox 65.0,,2019-03-15 09:50:10,2019-03-15 09:50:13,2.585s,PASSED
+"navigateToUrl(""http://localhost:8080/boisson/"")",Firefox 65.0,,2019-03-15 09:50:13,2019-03-15 09:50:13,0.263s,FAILED

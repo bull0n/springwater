@@ -1,0 +1,14 @@
+Suite/Test/Step Name,Browser,Description,Start time,End time,Duration,Status
+main,Firefox 65.0,,2019-03-15 09:50:47,2019-03-15 09:50:55,7.656s,PASSED
+,,,,,,
+Test Cases/Add a boisson,Firefox 65.0,,2019-03-15 09:50:48,2019-03-15 09:50:55,7.461s,PASSED
+"openBrowser("""")",Firefox 65.0,,2019-03-15 09:50:48,2019-03-15 09:50:50,2.585s,PASSED
+"navigateToUrl(""http://localhost:8080/boisson/"")",Firefox 65.0,,2019-03-15 09:50:50,2019-03-15 09:50:53,3.041s,PASSED
+"click(findTestObject(""Object Repository/Page_/a_Ajouter une boisson""))",Firefox 65.0,,2019-03-15 09:50:53,2019-03-15 09:50:54,0.192s,PASSED
+"setText(findTestObject(""Object Repository/Page_/input_Nom_nom""), ""Salut"")",Firefox 65.0,,2019-03-15 09:50:54,2019-03-15 09:50:54,0.072s,PASSED
+"setText(findTestObject(""Object Repository/Page_/textarea_Description_description""), ""Comment"")",Firefox 65.0,,2019-03-15 09:50:54,2019-03-15 09:50:54,0.055s,PASSED
+"selectOptionByValue(findTestObject(""Object Repository/Page_/select_Russian drinkHard spiritSoft drinkPirate drinkCraft beerWhite wineRed wineTea""), ""3"", true)",Firefox 65.0,,2019-03-15 09:50:54,2019-03-15 09:50:54,0.428s,PASSED
+"setText(findTestObject(""Object Repository/Page_/input_Nom_nom""), ""Sprite"")",Firefox 65.0,,2019-03-15 09:50:54,2019-03-15 09:50:54,0.043s,PASSED
+"setText(findTestObject(""Object Repository/Page_/textarea_Description_description""), """")",Firefox 65.0,,2019-03-15 09:50:54,2019-03-15 09:50:54,0.046s,PASSED
+"click(findTestObject(""Object Repository/Page_/button_Save""))",Firefox 65.0,,2019-03-15 09:50:54,2019-03-15 09:50:55,0.198s,PASSED
+closeBrowser(),Firefox 65.0,,2019-03-15 09:50:55,2019-03-15 09:50:55,0.560s,PASSED

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="main" time="7" tests="1" failures="0" errors="0">
+   <testsuite name="main" tests="1" failures="0" errors="0" time="7" timestamp="2019-03-15 09:50:47" hostname="lucas - lucas-notepad" id="Test Suites/main">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="/mnt/5E0FE31A6B4E2826/J2EE/Spring/springwater/TestsKatalon/springwater/Reports/main/20190315_095046"/>
+         <property name="logFiles" value="/mnt/5E0FE31A6B4E2826/J2EE/Spring/springwater/TestsKatalon/springwater/Reports/main/20190315_095046/execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="lucas - lucas-notepad"/>
+         <property name="os" value="Linux 64bit"/>
+         <property name="katalonVersion" value="6.0.6.4"/>
+         <property name="browser" value="Firefox 65.0"/>
+         <property name="hostAddress" value="127.0.1.1"/>
+         <property name="sessionId" value="7081190e-7f8b-4392-a56f-506d9ddd8342"/>
+         <property name="seleniumVersion" value="3.7.1"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=NO_PROXY, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0}"/>
+         <property name="platform" value="Linux"/>
+      </properties>
+      <testcase name="Test Cases/Add a boisson" classname="Test Cases/Add a boisson" status="PASSED">
+         <system-out><![CDATA[2019-03-15 09:50:48 - [TEST_CASE][PASSED] - Test Cases/Add a boisson: Test Cases/Add a boisson
+
+2019-03-15 09:50:48 - [TEST_STEP][PASSED] - openBrowser(""): Browser is opened with url: ''
+
+2019-03-15 09:50:48 - [MESSAGE][INFO] - Starting 'Firefox' driver
+
+2019-03-15 09:50:48 - [MESSAGE][INFO] - Action delay is set to 0 seconds
+
+2019-03-15 09:50:50 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2019-03-15 09:50:50 - [TEST_STEP][PASSED] - navigateToUrl("http://localhost:8080/boisson/"): Navigate to 'http://localhost:8080/boisson/' successfully
+
+2019-03-15 09:50:53 - [MESSAGE][PASSED] - Navigate to 'http://localhost:8080/boisson/' successfully
+
+2019-03-15 09:50:53 - [TEST_STEP][PASSED] - click(findTestObject("Object Repository/Page_/a_Ajouter une boisson")): Object: 'Object Repository/Page_/a_Ajouter une boisson' is clicked on
+
+2019-03-15 09:50:54 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_/a_Ajouter une boisson' is clicked on
+
+2019-03-15 09:50:54 - [TEST_STEP][PASSED] - setText(findTestObject("Object Repository/Page_/input_Nom_nom"), "Salut"): Text 'Salut' is set on object 'Object Repository/Page_/input_Nom_nom'
+
+2019-03-15 09:50:54 - [MESSAGE][PASSED] - Text 'Salut' is set on object 'Object Repository/Page_/input_Nom_nom'
+
+2019-03-15 09:50:54 - [TEST_STEP][PASSED] - setText(findTestObject("Object Repository/Page_/textarea_Description_description"), "Comment"): Text 'Comment' is set on object 'Object Repository/Page_/textarea_Description_description'
+
+2019-03-15 09:50:54 - [MESSAGE][PASSED] - Text 'Comment' is set on object 'Object Repository/Page_/textarea_Description_description'
+
+2019-03-15 09:50:54 - [TEST_STEP][PASSED] - selectOptionByValue(findTestObject("Object Repository/Page_/select_Russian drinkHard spiritSoft drinkPirate drinkCraft beerWhite wineRed wineTea"), "3", true): All options with value '3' are selected in object 'Object Repository/Page_/select_Russian drinkHard spiritSoft drinkPirate drinkCraft beerWhite wineRed wineTea'  using regular expression
+
+2019-03-15 09:50:54 - [MESSAGE][PASSED] - All options with value '3' are selected in object 'Object Repository/Page_/select_Russian drinkHard spiritSoft drinkPirate drinkCraft beerWhite wineRed wineTea'  using regular expression
+
+2019-03-15 09:50:54 - [TEST_STEP][PASSED] - setText(findTestObject("Object Repository/Page_/input_Nom_nom"), "Sprite"): Text 'Sprite' is set on object 'Object Repository/Page_/input_Nom_nom'
+
+2019-03-15 09:50:54 - [MESSAGE][PASSED] - Text 'Sprite' is set on object 'Object Repository/Page_/input_Nom_nom'
+
+2019-03-15 09:50:54 - [TEST_STEP][PASSED] - setText(findTestObject("Object Repository/Page_/textarea_Description_description"), ""): Text '' is set on object 'Object Repository/Page_/textarea_Description_description'
+
+2019-03-15 09:50:54 - [MESSAGE][PASSED] - Text '' is set on object 'Object Repository/Page_/textarea_Description_description'
+
+2019-03-15 09:50:54 - [TEST_STEP][PASSED] - click(findTestObject("Object Repository/Page_/button_Save")): Object: 'Object Repository/Page_/button_Save' is clicked on
+
+2019-03-15 09:50:55 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_/button_Save' is clicked on
+
+2019-03-15 09:50:55 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2019-03-15 09:50:55 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2019-03-15 09:50:47 - [TEST_SUITE][PASSED] - main: Test Cases/Add a boisson]]></system-out>
+      <system-err><![CDATA[]]></system-err>
+   </testsuite>
+</testsuites>

@@ -36,24 +36,24 @@ pipeline {
           sh '(mvn sonar:sonar -Dsonar.projectKey=bull0n_springwater -Dsonar.organization=bull0n-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=0916c4e7bc3cf93e96f97c679a7cde097309b43d)'
         }
       }
-      // stage('IntegrationTest'){
-      //   agent{
-      //     docker{
-      //       image 'lucienmoor/katalon-for-jenkins:latest'
-      //       args '-p 8888:8080'
-      //     }
-      //   }
-      //   steps {
-      //     unstash "app"
-      //     sh 'java -jar ./target/SpringTestDemo-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
-      //     sh 'sleep 30'
-      //     sh 'chmod +x ./runTest.sh'
-      //     sh './runTest.sh'
-      //
-      //     cleanWs()
-      //   }
-      //
-      // }
+      stage('IntegrationTest'){
+        agent{
+          docker{
+            image 'lucienmoor/katalon-for-jenkins:latest'
+            args '-p 8888:8080'
+          }
+        }
+        steps {
+          unstash "app"
+          sh 'java -jar ./target/springwater-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
+          sh 'sleep 30'
+          sh 'chmod +x ./runTest.sh'
+          sh './runTest.sh'
+
+          cleanWs()
+        }
+
+      }
     }
     post {
       always {
