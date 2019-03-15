@@ -1,8 +1,8 @@
 
 node {
     checkout scm
-    docker.image('mysql/mysql-server').withRun('-e "MYSQL_ROOT_PASSWORD=1234" -p 3306:3306') { c ->
-        sh 'while ! mysqladmin ping -h0.0.0.0 --silent; do sleep 1; done'
+    docker.image('mysql:5').withRun('-e "MYSQL_ROOT_PASSWORD=1234" -p 3306:3306') { c ->
+        sh 'sleep 30'
         sh 'mysql --user=root --password=1234 "CREATE DATABASE springwater CHARACTER SET UTF8mb4 collate utf8mb4_general_ci;"'
         sh 'make check'
     }
