@@ -1,4 +1,4 @@
-package security;
+package ch.hearc.springwater.security;
 
 import org.springframework.data.repository.CrudRepository;
 

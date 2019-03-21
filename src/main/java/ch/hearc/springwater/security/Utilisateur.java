@@ -1,4 +1,4 @@
-package security;
+package ch.hearc.springwater.security;
 
 import java.util.Set;
 
@@ -10,9 +10,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user")
-public class Utilisateur
-{
+@Table(name = "user")
+public class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -20,37 +19,36 @@ public class Utilisateur
 	private String motDePasse;
 	@ManyToMany
 	private Set<Role> roles;
-	
-	public Long getId()
-	{
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(Long id)
-	{
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNomUtilisateur()
-	{
+
+	public String getNomUtilisateur() {
 		return nomUtilisateur;
 	}
-	public void setNomUtilisateur(String nomUtilisateur)
-	{
+
+	public void setNomUtilisateur(String nomUtilisateur) {
 		this.nomUtilisateur = nomUtilisateur;
 	}
-	public String getMotDePasse()
-	{
+
+	public String getMotDePasse() {
 		return motDePasse;
 	}
-	public void setMotDePasse(String motDePasse)
-	{
+
+	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
-	public Set<Role> getRoles()
-	{
+
+	public Set<Role> getRoles() {
 		return roles;
 	}
-	public void setRoles(Set<Role> roles)
-	{
+
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 }

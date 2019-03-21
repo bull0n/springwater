@@ -11,41 +11,35 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="categorie")
-public class Categorie
-{
+@Table(name = "categorie")
+public class Categorie {
 	private String nom;
-	
+
 	@ManyToMany
 	private List<Boisson> boissons = new ArrayList<>();
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	public String getNom()
-	{
+	public String getNom() {
 		return nom;
 	}
 
-	public void setNom(String nom)
-	{
+	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
-	public Long getId()
-	{
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id)
-	{
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return this.nom;
 	}
 }
