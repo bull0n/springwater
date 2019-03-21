@@ -1,13 +1,19 @@
 package ch.hearc.springwater.security;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import ch.hearc.springwater.models.entities.Vote;
 
 @Entity
 @Table(name = "user")
@@ -17,9 +23,15 @@ public class Utilisateur {
 	private Long id;
 	private String nomUtilisateur;
 	private String motDePasse;
+	
 	@ManyToMany
 	private Set<Role> roles;
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "vost")
+    private Set<Vote> votes = new HashSet<>();
+    
 	public Long getId() {
 		return id;
 	}

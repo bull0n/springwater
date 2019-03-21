@@ -2,6 +2,7 @@ package ch.hearc.springwater.models.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.ToIntFunction;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,9 +27,17 @@ public class Boisson
 	@JoinColumn
 	private List<Categorie> categories = new ArrayList<>();
 	
+	@ManyToMany
+	@JoinColumn
+	private List<Vote> votes = new ArrayList<>();
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	public int getScore() {
+		return votes.parallelStream().mapToInt(v->v.isPositif()?1:-1).reduce(0, Integer::sum);
+	}
 
 	public String getNom()
 	{
