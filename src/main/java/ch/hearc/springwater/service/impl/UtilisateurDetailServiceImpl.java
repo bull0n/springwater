@@ -10,13 +10,16 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ch.hearc.springwater.security.Role;
 import ch.hearc.springwater.security.Utilisateur;
 import ch.hearc.springwater.security.UtilisateurRepository;
 
+@Service
 public class UtilisateurDetailServiceImpl implements UserDetailsService {
+	
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
 
