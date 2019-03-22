@@ -4,7 +4,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import ch.hearc.springwater.models.entities.Boisson;
 
-public interface BoissonsRepository  extends PagingAndSortingRepository<Boisson, Long>
-{
+public interface BoissonsRepository extends PagingAndSortingRepository<Boisson, Long> {
 
 }

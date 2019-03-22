@@ -1,4 +1,4 @@
-package security;
+package ch.hearc.springwater.security;
 
 import java.util.Set;
 
@@ -9,39 +9,36 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Role
-{
+public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nom;
-	
+
 	@ManyToMany(mappedBy = "roles")
 	private Set<Utilisateur> users;
-	
-	
-	public Long getId()
-	{
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(Long id)
-	{
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNom()
-	{
+
+	public String getNom() {
 		return nom;
 	}
-	public void setNom(String nom)
-	{
+
+	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public Set<Utilisateur> getUsers()
-	{
+
+	public Set<Utilisateur> getUsers() {
 		return users;
 	}
-	public void setUsers(Set<Utilisateur> users)
-	{
+
+	public void setUsers(Set<Utilisateur> users) {
 		this.users = users;
 	}
 }

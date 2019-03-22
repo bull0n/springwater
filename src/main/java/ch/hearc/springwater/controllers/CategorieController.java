@@ -13,30 +13,26 @@ import ch.hearc.springwater.models.repositories.CategoriesRepository;
 
 @Controller
 @RequestMapping(value = "/categorie")
-public class CategorieController
-{
+public class CategorieController {
 	@Autowired
 	CategoriesRepository repository;
-	
-	@GetMapping(value="/")
-	public String getCategories(Map<String, Object> model)
-	{		
+
+	@GetMapping(value = "/")
+	public String getCategories(Map<String, Object> model) {
 		model.put("categories", repository.findAll());
 		return "categories/see-categories";
 	}
-	
-	@GetMapping(value="/add")
-	public String addCategorieMap(Map<String, Object> model)
-	{
+
+	@GetMapping(value = "/add")
+	public String addCategorieMap(Map<String, Object> model) {
 		model.put("categorie", new Categorie());
 		return "categories/add";
 	}
-	
-	@PostMapping(value="/save")
-	public String save(Categorie categorie)
-	{
+
+	@PostMapping(value = "/save")
+	public String save(Categorie categorie) {
 		repository.save(categorie);
-		
+
 		return "redirect:/categorie/";
 	}
 }

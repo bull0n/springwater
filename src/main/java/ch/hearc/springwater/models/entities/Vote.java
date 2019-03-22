@@ -4,16 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import ch.hearc.springwater.security.Utilisateur;
+
 @Entity
-@Table(name = "categorie")
-public class Categorie {
-	private String nom;
+@Table(name = "vote")
+public class Vote {
 
 	@ManyToMany
 	private List<Boisson> boissons = new ArrayList<>();
@@ -22,13 +28,11 @@ public class Categorie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	public String getNom() {
-		return nom;
-	}
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Utilisateur user;
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+	private boolean positif;
 
 	public Long getId() {
 		return id;
@@ -38,8 +42,12 @@ public class Categorie {
 		this.id = id;
 	}
 
-	@Override
-	public String toString() {
-		return this.nom;
+	public boolean isPositif() {
+		return positif;
 	}
+
+	public void setPositif(boolean positif) {
+		this.positif = positif;
+	}
+
 }
