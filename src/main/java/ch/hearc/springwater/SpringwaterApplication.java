@@ -54,7 +54,8 @@ public class SpringwaterApplication {
 		Utilisateur admin = new Utilisateur();
 		admin.setNomUtilisateur("admin");
 		admin.setMotDePasse(bCryptPasswordEncoder.encode("password"));
-
+		admin.setVotes(new HashSet<>());
+		
 		Set<Role> roles = new HashSet<>();
 		roles.add(roleAdmin);
 		admin.setRoles(roles);
@@ -64,7 +65,8 @@ public class SpringwaterApplication {
 		Utilisateur user = new Utilisateur();
 		user.setNomUtilisateur("user");
 		user.setMotDePasse(bCryptPasswordEncoder.encode("password"));
-
+		user.setVotes(new HashSet<>());
+		
 		Set<Role> rolesUser = new HashSet<>();
 		rolesUser.add(roleUser);
 		user.setRoles(rolesUser);

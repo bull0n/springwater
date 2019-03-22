@@ -23,17 +23,23 @@ public class Utilisateur {
 	private Long id;
 	private String nomUtilisateur;
 	private String motDePasse;
-	
+
 	@ManyToMany
 	private Set<Role> roles;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "vost")
-    private Set<Vote> votes = new HashSet<>();
-    
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	private Set<Vote> votes = new HashSet<>();
+
 	public Long getId() {
 		return id;
+	}
+
+	public Set<Vote> getVotes() {
+		return votes;
+	}
+
+	public void setVotes(Set<Vote> votes) {
+		this.votes = votes;
 	}
 
 	public void setId(Long id) {
