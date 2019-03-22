@@ -30,7 +30,7 @@ public class BoissonController
 	CategoriesRepository categoriesRepository;
 	
 	private static final int BOISSONS_PAR_PAGE = 10;
-	private static final String BOISSONS = "boissons";
+	private static final String BOISSON = "boisson";
 	private static final String BOISSON_FORM = "boisson/form";
 	
 	@GetMapping(value="/")
@@ -61,14 +61,14 @@ public class BoissonController
 		
 		model.put("listPages", listPages);
 		model.put("pageNum", pageNum);
-		model.put(BOISSONS, page);
+		model.put("boissons", page);
 	}
 	
 	@GetMapping(value="/{id}")
 	public String getBoisson(@PathVariable("id") long id, Map<String, Object> model)
 	{		
 		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
-		model.put(BOISSONS, boisson);
+		model.put(BOISSON, boisson);
 		
 		return "boisson/see-detail";
 	}
@@ -76,7 +76,7 @@ public class BoissonController
 	@GetMapping(value="/add")
 	public String addBoissonMap(Map<String, Object> model)
 	{
-		model.put(BOISSONS, new Boisson());
+		model.put(BOISSON, new Boisson());
 		model.put("categories", categoriesRepository.findAll());
 		return BOISSON_FORM;
 	}
@@ -93,7 +93,7 @@ public class BoissonController
 	public String edit(@PathVariable("id") long id, Map<String, Object> model)
 	{
 		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
-		model.put(BOISSONS, boisson);
+		model.put(BOISSON, boisson);
 
 		return BOISSON_FORM;
 	}
