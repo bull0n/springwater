@@ -44,8 +44,6 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         
-        <!--
-		spring security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
