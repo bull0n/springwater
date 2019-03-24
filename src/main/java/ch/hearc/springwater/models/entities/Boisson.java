@@ -2,7 +2,6 @@ package ch.hearc.springwater.models.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.ToIntFunction;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
