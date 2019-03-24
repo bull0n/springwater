@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head th:replace="fragments/general :: header">
+	</head>
+	
+	<body>
+  		<div th:replace="fragments/general :: nav">[Navigation]</div>
+  		
+  		<div class="container">
+  			<div class="row">
+  				<div class="col-12">
+  					<h1>S'enregistrer</h1>  		
+			   		<form method="post" th:action="@{register}" th:object="${utilisateur}">
+						<div class="form-group">
+					  		<label for="nom" th:text="#{user.nomUtilisateur}">Nom</label>
+							<input class="form-control" type="text" id="nomUtilisateur" name="nomUtilisateur" th:field="*{nomUtilisateur}">
+						</div>
+						
+						<div class="form-group">
+					  		<label for="motDePasse" th:text="#{user.password}">Mot de passe</label>
+							<input class="form-control" type="password" id="motDePasse" name="motDePasse" th:field="*{motDePasse}">
+						</div>
+						
+						<div class="form-group">
+					  		<label for="motDePasse" th:text="#{user.passwordConfirmation}">Mot de passe</label>
+							<input class="form-control" type="password" id="motDePasseConfirmation" name="motDePasseConfirmation" th:field="*{motDePasseConfirmation}">
+						</div>
+						
+						<button type="submit" class="btn btn-primary">Sauvegarder</button>
+					</form>
+  				</div>
+  			</div>
+  		</div>
+    		
+    	<div th:replace="fragments/general :: footer">[Footer]</div>
+	</body>
+
+</html>
