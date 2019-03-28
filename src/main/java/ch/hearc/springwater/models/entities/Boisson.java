@@ -27,9 +27,6 @@ import ch.hearc.springwater.models.repositories.VoteRepository;
 public class Boisson
 {
 	private String nom;
-
-	@Autowired
-	public VoteRepository voteRepository;
 	
 	@Column(length=1024)
 	private String description;
@@ -45,10 +42,6 @@ public class Boisson
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	public int getScore() {
-		return voteRepository.getBoissonScore(this.id);
-	}
 
 	public String getNom()
 	{
