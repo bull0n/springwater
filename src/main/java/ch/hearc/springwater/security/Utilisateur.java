@@ -25,7 +25,7 @@ public class Utilisateur {
 	private Long id;
 	
 	@NotNull
-	//@Column(unique = true)
+	@Column(unique = true, length = 50)
 	private String nomUtilisateur;
 	@NotNull
 	private String motDePasse;
