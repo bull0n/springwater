@@ -39,7 +39,7 @@ public class Vote {
 	@JoinColumn
 	private Boisson boisson;
 
-	private boolean positif;
+	private int score;
 
 	public Long getId() {
 		return id;
@@ -49,12 +49,11 @@ public class Vote {
 		this.id = id;
 	}
 
-	public boolean isPositif() {
-		return positif;
+	public int getScore() {
+		return score;
 	}
 
-	public void setPositif(boolean positif) {
-		this.positif = positif;
+	public void setScore(int score) {
+		this.score = score;
 	}
-
 }

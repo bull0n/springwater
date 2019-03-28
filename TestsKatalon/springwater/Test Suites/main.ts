@@ -14,6 +14,6 @@
       <guid>0451a120-8c25-4872-b55e-3098fb0cad42</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Add a boisson</testCaseId>
+      <testCaseId>Test Cases/Google</testCaseId>
    </testCaseLink>
 </TestSuiteEntity>

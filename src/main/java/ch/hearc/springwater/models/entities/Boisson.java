@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.ToIntFunction;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,12 +17,20 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ch.hearc.springwater.models.repositories.CategoriesRepository;
+import ch.hearc.springwater.models.repositories.VoteRepository;
+
 @Entity
 @Table(name="boisson")
 public class Boisson
 {
 	private String nom;
 
+	@Autowired
+	public VoteRepository voteRepository;
+	
 	@Column(length=1024)
 	private String description;
 	private String linkImage;
@@ -40,7 +47,7 @@ public class Boisson
 	private Long id;
 	
 	public int getScore() {
-		return votes.parallelStream().mapToInt(v->v.isPositif()?1:-1).reduce(0, Integer::sum);
+		return voteRepository.getBoissonScore(this.id);
 	}
 
 	public String getNom()
