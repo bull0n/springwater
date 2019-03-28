@@ -31,8 +31,13 @@ public class Vote {
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "user_id")
+	@JoinColumn
 	private Utilisateur user;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn
+	private Boisson boisson;
 
 	private boolean positif;
 

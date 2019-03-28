@@ -27,7 +27,7 @@ public class Utilisateur {
 	@ManyToMany
 	private Set<Role> roles;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Vote> votes = new HashSet<>();
 
 	public Long getId() {
