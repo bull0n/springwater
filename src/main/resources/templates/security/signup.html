@@ -15,11 +15,13 @@
 						<div class="form-group">
 					  		<label for="nom" th:text="#{user.nomUtilisateur}">Nom</label>
 							<input class="form-control" type="text" id="nomUtilisateur" name="nomUtilisateur" th:field="*{nomUtilisateur}">
+							<div th:if="${#fields.hasErrors('nomUtilisateur')}" th:errors="*{nomUtilisateur}">Errors</div>
 						</div>
 						
 						<div class="form-group">
 					  		<label for="motDePasse" th:text="#{user.password}">Mot de passe</label>
 							<input class="form-control" type="password" id="motDePasse" name="motDePasse" th:field="*{motDePasse}">
+							<div th:if="${#fields.hasErrors('motDePasse')}" th:errors="*{motDePasse}">Errors</div>
 						</div>
 						
 						<div class="form-group">
