@@ -17,9 +17,9 @@ WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://www.he-arc.ch/')
 
-WebUI.click(findTestObject('Object Repository/Page_Haute-Ecole Arc/div_Formations et RaD'))
+WebUI.click(findTestObject('Page_Haute-Ecole Arc/div_Formations et RaD'))
 
-WebUI.click(findTestObject('Object Repository/Page_Haute-Ecole Arc/div_Bachelors'))
+WebUI.click(findTestObject('Page_Haute-Ecole Arc/div_Bachelors'))
 
 WebUI.closeBrowser()
 

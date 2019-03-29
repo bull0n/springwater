@@ -4,13 +4,16 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,10 +21,8 @@ import ch.hearc.springwater.config.SecurityConfig;
 import ch.hearc.springwater.security.Role;
 import ch.hearc.springwater.security.RoleRepository;
 import ch.hearc.springwater.security.Utilisateur;
-import ch.hearc.springwater.security.UtilisateurDto;
 import ch.hearc.springwater.security.UtilisateurRepository;
 import ch.hearc.springwater.security.exceptions.MotDePasseConfirmationException;
-import ch.hearc.springwater.security.exceptions.MotDePasseException;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -48,15 +49,20 @@ public class UserController
 	}
 
 	@PostMapping(value = "/register")
-	public String save(UtilisateurDto userDto, Map<String, Object> model)
+	public String save(@ModelAttribute @Valid Utilisateur user, BindingResult bindingResult,
+			Map<String, Object> model)
 	{
-		Utilisateur user;
-
+		if(bindingResult.hasErrors())
+		{
+			System.out.println("BINDING RESULT ERROR");
+			return "security/signup";
+		}
+		
 		try
 		{
-			user = validateUser(userDto);
+			user = this.validateMdp(user);
 		}
-		catch (MotDePasseConfirmationException | MotDePasseException e)
+		catch (MotDePasseConfirmationException e)
 		{
 			model.put("erreurs", e.getMessage());
 			this.putNewUser(model);
@@ -70,15 +76,15 @@ public class UserController
 		rolesUser.add(roleUser);
 		user.setRoles(rolesUser);
 
-		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(user.getNomUtilisateur(),
-				userDto.getMotDePasse());
+		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+				user.getNomUtilisateur(), user.getMotDePasse());
 		try
 		{
 			securityConfig.authenticationManagerBean().authenticate(authToken);
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			return "security/signup";
 		}
 
 		if(authToken.isAuthenticated())
@@ -89,31 +95,23 @@ public class UserController
 		return "redirect:/boisson/";
 	}
 
-	private Utilisateur validateUser(UtilisateurDto userDto) throws MotDePasseConfirmationException, MotDePasseException
+	private Utilisateur validateMdp(Utilisateur user) throws MotDePasseConfirmationException
 	{
-		Utilisateur user = new Utilisateur();
-
-		if(!userDto.getMotDePasse().equals(userDto.getMotDePasseConfirmation()))
+		if(!user.getMotDePasse().equals(user.getMotDePasseConfirmation()))
 		{
 			throw new MotDePasseConfirmationException(MDP_PAS_IDENTIQUE);
 		}
 
-		if(userDto.getMotDePasse().length() < 8)
-		{
-			throw new MotDePasseException(MDP_TROP_COURT);
-		}
-
-		user.setNomUtilisateur(userDto.getNomUtilisateur());
-		user.setMotDePasse(bCryptPasswordEncoder.encode(userDto.getMotDePasse()));
+		user.setNomUtilisateur(user.getNomUtilisateur());
+		user.setMotDePasse(bCryptPasswordEncoder.encode(user.getMotDePasse()));
 
 		return user;
 	}
 
 	private void putNewUser(Map<String, Object> model)
 	{
-		model.put("utilisateur", new UtilisateurDto());
+		model.put("utilisateur", new Utilisateur());
 	}
 
-	private final String MDP_TROP_COURT = "Le mot de passe est trop court";
 	private final String MDP_PAS_IDENTIQUE = "Le mot de passe ne correspond pas";
 }

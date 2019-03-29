@@ -13,22 +13,32 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import ch.hearc.springwater.models.entities.Vote;
 
 @Entity
 @Table(name = "user")
-public class Utilisateur {
+public class Utilisateur
+{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
+	@NotEmpty
 	@Column(unique = true, length = 50)
 	private String nomUtilisateur;
+	
 	@NotNull
+	@NotEmpty
+	@Size(min = 8)
 	private String motDePasse;
+	@Transient
+	private String motDePasseConfirmation;
 
 	@ManyToMany
 	private Set<Role> roles;
@@ -36,7 +46,8 @@ public class Utilisateur {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Vote> votes = new ArrayList<>();
 
-	public Long getId() {
+	public Long getId()
+	{
 		return id;
 	}
 
@@ -48,31 +59,48 @@ public class Utilisateur {
 		this.votes = votes;
 	}
 
-	public void setId(Long id) {
+	public void setId(Long id)
+	{
 		this.id = id;
 	}
 
-	public String getNomUtilisateur() {
+	public String getNomUtilisateur()
+	{
 		return nomUtilisateur;
 	}
 
-	public void setNomUtilisateur(String nomUtilisateur) {
+	public void setNomUtilisateur(String nomUtilisateur)
+	{
 		this.nomUtilisateur = nomUtilisateur;
 	}
 
-	public String getMotDePasse() {
+	public String getMotDePasse()
+	{
 		return motDePasse;
 	}
 
-	public void setMotDePasse(String motDePasse) {
+	public void setMotDePasse(String motDePasse)
+	{
 		this.motDePasse = motDePasse;
 	}
 
-	public Set<Role> getRoles() {
+	public Set<Role> getRoles()
+	{
 		return roles;
 	}
 
-	public void setRoles(Set<Role> roles) {
+	public void setRoles(Set<Role> roles)
+	{
 		this.roles = roles;
+	}
+
+	public String getMotDePasseConfirmation()
+	{
+		return motDePasseConfirmation;
+	}
+
+	public void setMotDePasseConfirmation(String motDePasseConfirmation)
+	{
+		this.motDePasseConfirmation = motDePasseConfirmation;
 	}
 }
