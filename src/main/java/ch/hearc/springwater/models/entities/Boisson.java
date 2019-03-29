@@ -1,23 +1,33 @@
 package ch.hearc.springwater.models.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ch.hearc.springwater.models.repositories.CategoriesRepository;
+import ch.hearc.springwater.models.repositories.VoteRepository;
 
 @Entity
 @Table(name="boisson")
 public class Boisson
 {
 	private String nom;
-
+	
 	@Column(length=1024)
 	private String description;
 	private String linkImage;
@@ -25,18 +35,13 @@ public class Boisson
 	@ManyToMany
 	@JoinColumn
 	private List<Categorie> categories = new ArrayList<>();
-	
-	@ManyToMany
-	@JoinColumn
-	private List<Vote> votes = new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Vote> votes = new HashSet<>();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	public int getScore() {
-		return votes.parallelStream().mapToInt(v->v.isPositif()?1:-1).reduce(0, Integer::sum);
-	}
 
 	public String getNom()
 	{

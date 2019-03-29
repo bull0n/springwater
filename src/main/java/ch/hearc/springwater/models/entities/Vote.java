@@ -31,10 +31,15 @@ public class Vote {
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "user_id")
+	@JoinColumn
 	private Utilisateur user;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn
+	private Boisson boisson;
 
-	private boolean positif;
+	private int score;
 
 	public Long getId() {
 		return id;
@@ -44,12 +49,11 @@ public class Vote {
 		this.id = id;
 	}
 
-	public boolean isPositif() {
-		return positif;
+	public int getScore() {
+		return score;
 	}
 
-	public void setPositif(boolean positif) {
-		this.positif = positif;
+	public void setScore(int score) {
+		this.score = score;
 	}
-
 }
