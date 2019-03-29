@@ -2,7 +2,7 @@ package ch.hearc.springwater.security;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ public class UtilisateurRepositoryTest {
 		Utilisateur user = new Utilisateur();
 		user.setNomUtilisateur(NOM);
 		user.setMotDePasse(bCryptPasswordEncoder.encode("password"));
-		user.setVotes(new HashSet<>());
+		user.setVotes(new ArrayList<>());
 
 		Utilisateur userSearched = userRepo.findByNomUtilisateur(NOM);
 

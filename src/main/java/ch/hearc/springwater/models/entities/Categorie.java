@@ -1,7 +1,7 @@
 package ch.hearc.springwater.models.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,9 +15,9 @@ import javax.persistence.Table;
 public class Categorie {
 	private String nom;
 
-	@ManyToMany
-	private List<Boisson> boissons = new ArrayList<>();
-
+	@ManyToMany(mappedBy = "categories")
+	Set<Boisson> boisson = new HashSet<>();
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

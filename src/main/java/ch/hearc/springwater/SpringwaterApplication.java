@@ -1,5 +1,6 @@
 package ch.hearc.springwater;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -54,7 +55,7 @@ public class SpringwaterApplication {
 		Utilisateur admin = new Utilisateur();
 		admin.setNomUtilisateur("admin");
 		admin.setMotDePasse(bCryptPasswordEncoder.encode("password"));
-		admin.setVotes(new HashSet<>());
+		admin.setVotes(new ArrayList<>());
 		
 		Set<Role> roles = new HashSet<>();
 		roles.add(roleAdmin);
@@ -65,7 +66,7 @@ public class SpringwaterApplication {
 		Utilisateur user = new Utilisateur();
 		user.setNomUtilisateur("user");
 		user.setMotDePasse(bCryptPasswordEncoder.encode("password"));
-		user.setVotes(new HashSet<>());
+		user.setVotes(new ArrayList<>());
 		
 		Set<Role> rolesUser = new HashSet<>();
 		rolesUser.add(roleUser);

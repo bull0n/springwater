@@ -1,12 +1,12 @@
 package ch.hearc.springwater.security;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +23,7 @@ public class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	@Column(unique = true, length = 50)
 	private String nomUtilisateur;
@@ -33,18 +33,18 @@ public class Utilisateur {
 	@ManyToMany
 	private Set<Role> roles;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Vote> votes = new HashSet<>();
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Vote> votes = new ArrayList<>();
 
 	public Long getId() {
 		return id;
 	}
 
-	public Set<Vote> getVotes() {
+	public List<Vote> getVotes() {
 		return votes;
 	}
 
-	public void setVotes(Set<Vote> votes) {
+	public void setVotes(List<Vote> votes) {
 		this.votes = votes;
 	}
 

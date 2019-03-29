@@ -52,7 +52,7 @@ INSERT INTO boisson (id, nom, description, link_image) VALUES
 	(40, 'Mint tea', 'Mint tea is a herbal tea made by infusing mint leaves in hot water. Mint tea made with peppermint leaves is called peppermint tea, and mint tea made with spearmint is called spearmint tea. There also exist teas that infuse peppermint and spearmint leaves. In Korea, traditional mint tea called bakha-cha (박하차) is made with East Asian wild mint leaves.', ''),
 	(41, 'Hibiscus tea', 'Hibiscus tea is a herbal tea made as an infusion from crimson or deep magenta-colored calyces (sepals) of the roselle (Hibiscus sabdariffa) flower. It is consumed both hot and cold. It has a tart, cranberry-like flavor. The drink is sometimes called roselle (a name for the flower) or rosella (Australia); sorrel in Jamaica, Belize, Barbados, Guyana, Dominica, and Trinidad and Tobago; red sorrel in the wider Caribbean; and Agua/Rosa de Jamaica or simply Jamaica in the United States, México, and Central America. It is also known as zobo or bissap in west African countries like Nigeria.', '');
   
-INSERT INTO boisson_categories (boisson_id, categories_id) VALUES
+INSERT INTO boisson_categorie (boisson_id, categorie_id) VALUES
 	(1, 1),
     (1, 2),
     (2, 2),
@@ -96,3 +96,12 @@ INSERT INTO boisson_categories (boisson_id, categories_id) VALUES
     (39, 8),
     (40, 8),
     (41, 8);
+
+INSERT INTO `vote`(`score`, `boisson_id`, `user_id`) VALUES
+	(1,1,1),
+	(1,1,2),
+	(-1,2,1),
+	(-1,2,2),
+	(1,3,1),
+	(-1,3,2);
+

@@ -13,31 +13,23 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import ch.hearc.springwater.security.Utilisateur;
 
 @Entity
 @Table(name = "vote")
 public class Vote {
 
-	@ManyToMany
-	private List<Boisson> boissons = new ArrayList<>();
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn
-	private Utilisateur user;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn
+	@JoinColumn(name = "boisson_id")
 	private Boisson boisson;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_id")
+	private Utilisateur user;
 
 	private int score;
 
