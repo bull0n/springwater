@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>Add a boisson</name>
+   <name>HE-ARc-Test</name>
    <tag></tag>
    <comment></comment>
-   <testCaseGuid>1e0e29cf-2bef-4fb4-a855-d19de53c6884</testCaseGuid>
+   <testCaseGuid>ee50b73f-ef77-46d7-8ec6-cef15e58ff99</testCaseGuid>
 </TestCaseEntity>
