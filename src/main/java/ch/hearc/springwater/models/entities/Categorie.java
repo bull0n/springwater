@@ -17,7 +17,7 @@ public class Categorie {
 
 	@ManyToMany(mappedBy = "categories")
 	Set<Boisson> boisson = new HashSet<>();
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

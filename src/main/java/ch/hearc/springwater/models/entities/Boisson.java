@@ -33,23 +33,9 @@ public class Boisson {
 	private MultipartFile file;
 	private String fileURL;
 
-//	@ManyToMany
-//	@JoinTable(
-//	  name = "course_like", 
-//	  joinColumns = @JoinColumn(name = "student_id"), 
-//	  inverseJoinColumns = @JoinColumn(name = "course_id"))
-//	Set<Course> likedCourses;
-//	
 	@ManyToMany
-	@JoinTable(
-	  name = "boisson_categorie", 
-	  joinColumns = @JoinColumn(name = "boisson_id"), 
-	  inverseJoinColumns = @JoinColumn(name = "categorie_id"))
+	@JoinTable(name = "boisson_categorie", joinColumns = @JoinColumn(name = "boisson_id"), inverseJoinColumns = @JoinColumn(name = "categorie_id"))
 	Set<Categorie> categories;
-//	
-//	@ManyToMany(mappedBy="boissons")
-//	@JoinColumn
-//	private List<Categorie> categories = new ArrayList<>();
 
 	@OneToMany(mappedBy = "boisson", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Vote> votes = new ArrayList<>();
@@ -59,9 +45,7 @@ public class Boisson {
 	private Long id;
 
 	public int getScore() {
-		System.out.println(votes.size());
 		int score = votes.parallelStream().mapToInt(v -> v.getScore()).reduce(0, Integer::sum);
-		System.out.println(this.id + " - " + score);
 		return score;
 	}
 
