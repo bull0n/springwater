@@ -19,6 +19,7 @@ import ch.hearc.springwater.exceptions.ResourceNotFoundException;
 import ch.hearc.springwater.models.entities.Boisson;
 import ch.hearc.springwater.models.repositories.BoissonsRepository;
 import ch.hearc.springwater.models.repositories.CategoriesRepository;
+import ch.hearc.springwater.service.impl.FileService;
 
 @Controller
 @RequestMapping(value = "/boisson")
@@ -28,10 +29,19 @@ public class BoissonController
 	BoissonsRepository repository;
 	@Autowired
 	CategoriesRepository categoriesRepository;
+	@Autowired
+    private FileService fileStorageService;
 	
 	private static final int BOISSONS_PAR_PAGE = 10;
 	private static final String BOISSON = "boisson";
 	private static final String BOISSON_FORM = "boisson/form";
+	
+//	private final StorageService storageService;
+//
+//    @Autowired
+//    public FileUploadController(StorageService storageService) {
+//        this.storageService = storageService;
+//    }
 	
 	@GetMapping(value="/")
 	public String getBoissons(Map<String, Object> model)

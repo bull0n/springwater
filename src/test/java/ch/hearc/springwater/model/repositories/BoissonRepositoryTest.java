@@ -30,7 +30,7 @@ public class BoissonRepositoryTest {
 		Boisson boisson = new Boisson();
 		boisson.setNom("SpringWater");
 		boisson.setDescription("Best drink ever");
-		boisson.setLinkImage("none");
+		boisson.setFileURL("");
 		
 		entityManager.persist(boisson);
 		entityManager.flush();

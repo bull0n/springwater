@@ -9,7 +9,7 @@ INSERT INTO categorie (id, nom) VALUES
 	(8, 'Tea'),
     (9, 'Other alcoolic beverage');
 	
-INSERT INTO boisson (id, nom, description, link_image) VALUES
+INSERT INTO boisson (id, nom, description, fileurl) VALUES
 	(1, 'Vodka', 'is a clear distilled alcoholic beverage originating from Poland and Russia, composed primarily of water and ethanol, but sometimes with traces of impurities and flavorings. Traditionally, it is made by distilling the liquid from cereal grains or potatoes that have been fermented, though some modern brands, such as Ciroc, CooranBong, and Bombora, use fruits or sugar as the base.', ''),
 	(2, 'Amaretto', 'Amaretto (Italian for "a little bitter") is a sweet Italian liqueur that originated in Saronno, Italy. While originally flavoured from bitter almonds, various modern commercial brands are prepared from a base of apricot stones, peach stones, or almonds, all of which are natural sources of the benzaldehyde that provides the principal almond-like flavour of the liqueur.', ''),
 	(3, 'Rum', 'Rum is a distilled alcoholic drink made from sugarcane byproducts, such as molasses, or directly from sugarcane juice, by a process of fermentation and distillation. The distillate, a clear liquid, is then usually aged in oak barrels.', ''),

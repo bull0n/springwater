@@ -30,13 +30,10 @@ public class UserController
 {
 	@Autowired
 	UtilisateurRepository userRepo;
-
 	@Autowired
 	RoleRepository roleRepo;
-
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-
 	@Autowired
 	SecurityConfig securityConfig;
 

@@ -15,15 +15,23 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "boisson")
 public class Boisson {
+	@NotNull
+	@NotEmpty
 	private String nom;
-
 	@Column(length = 1024)
 	private String description;
-	private String linkImage;
+	@Transient
+	private MultipartFile file;
+	private String fileURL;
 
 //	@ManyToMany
 //	@JoinTable(
@@ -77,12 +85,24 @@ public class Boisson {
 		this.description = description;
 	}
 
-	public String getLinkImage() {
-		return linkImage;
+	public MultipartFile getFile()
+	{
+		return file;
 	}
 
-	public void setLinkImage(String linkImage) {
-		this.linkImage = linkImage;
+	public void setFile(MultipartFile file)
+	{
+		this.file = file;
+	}
+
+	public String getFileURL()
+	{
+		return fileURL;
+	}
+
+	public void setFileURL(String fileURL)
+	{
+		this.fileURL = fileURL;
 	}
 
 	public Long getId() {
@@ -98,19 +118,24 @@ public class Boisson {
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		StringBuilder builder = new StringBuilder();
 		builder.append("Boisson [nom=");
 		builder.append(nom);
 		builder.append(", description=");
 		builder.append(description);
-		builder.append(", linkImage=");
-		builder.append(linkImage);
-		builder.append(", id=");
-		builder.append(id);
+		builder.append(", file=");
+		builder.append(file);
+		builder.append(", fileURL=");
+		builder.append(fileURL);
 		builder.append(", categories=");
 		builder.append(categories);
+		builder.append(", votes=");
+		builder.append(votes);
+		builder.append(", id=");
+		builder.append(id);
 		builder.append("]");
 		return builder.toString();
-	}
+	}	
 }

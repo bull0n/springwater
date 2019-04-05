@@ -9,9 +9,11 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import ch.hearc.springwater.config.FileConfig;
 import ch.hearc.springwater.models.repositories.CategoriesRepository;
 import ch.hearc.springwater.security.Role;
 import ch.hearc.springwater.security.RoleRepository;
@@ -19,6 +21,9 @@ import ch.hearc.springwater.security.Utilisateur;
 import ch.hearc.springwater.security.UtilisateurRepository;
 
 @SpringBootApplication
+@EnableConfigurationProperties({
+    FileConfig.class
+})
 public class SpringwaterApplication {
 
 	@Autowired
