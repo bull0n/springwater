@@ -26,6 +26,21 @@ header-includes: |
 
 \newpage
 
+# Tests unitaires
+
+- Tests des controlleurs
+
+# Tests d'intégration
+
+
+
+# Tests de performance
+
+- Requêtes / S
+- Consommation CPU / Mémoire
+
+# Test d'acceptation
+
 
 
 \newpage

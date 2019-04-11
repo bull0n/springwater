@@ -2,7 +2,7 @@
    	<h2 th:text="${boisson.nom}">[BoissonNom]</h2>
    	<div class="row">
    		<div class="col-md-5">
-   			<img src="#" class="rounded float-left" th:alt="${boisson.nom}">
+   			<img th:src="${boisson.fileURL}" class="rounded float-left" th:alt="${boisson.nom}">
    		</div>
    		<div class="col-md-7">
    			<h3>Description</h3>
