@@ -21,9 +21,7 @@ import ch.hearc.springwater.security.Utilisateur;
 import ch.hearc.springwater.security.UtilisateurRepository;
 
 @SpringBootApplication
-@EnableConfigurationProperties({
-    FileConfig.class
-})
+@EnableConfigurationProperties({ FileConfig.class })
 public class SpringwaterApplication {
 
 	@Autowired
@@ -61,7 +59,7 @@ public class SpringwaterApplication {
 		admin.setNomUtilisateur("admin");
 		admin.setMotDePasse(bCryptPasswordEncoder.encode("password"));
 		admin.setVotes(new ArrayList<>());
-		
+
 		Set<Role> roles = new HashSet<>();
 		roles.add(roleAdmin);
 		admin.setRoles(roles);
@@ -72,7 +70,7 @@ public class SpringwaterApplication {
 		user.setNomUtilisateur("user");
 		user.setMotDePasse(bCryptPasswordEncoder.encode("password"));
 		user.setVotes(new ArrayList<>());
-		
+
 		Set<Role> rolesUser = new HashSet<>();
 		rolesUser.add(roleUser);
 		user.setRoles(rolesUser);
