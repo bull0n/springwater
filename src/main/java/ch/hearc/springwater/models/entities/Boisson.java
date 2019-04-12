@@ -21,6 +21,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import ch.hearc.springwater.security.Utilisateur;
+
 @Entity
 @Table(name = "boisson")
 public class Boisson {
@@ -36,6 +38,10 @@ public class Boisson {
 	@ManyToMany
 	@JoinTable(name = "boisson_categorie", joinColumns = @JoinColumn(name = "boisson_id"), inverseJoinColumns = @JoinColumn(name = "categorie_id"))
 	Set<Categorie> categories;
+	
+	@ManyToMany
+	@JoinTable(name = "user_favorite_boisson", joinColumns = @JoinColumn(name = "boisson_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	Set<Utilisateur> userFavoriteBoisson;
 
 	@OneToMany(mappedBy = "boisson", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Vote> votes = new ArrayList<>();
@@ -43,6 +49,11 @@ public class Boisson {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	public boolean isFavorite()
+	{
+		return true;
+	}
 
 	public int getScore() {
 		int score = votes.parallelStream().mapToInt(v -> v.getScore()).reduce(0, Integer::sum);

@@ -10,3 +10,14 @@
 {
 	margin-top: 30px;
 }
+
+.favorite-link
+{
+	color: #fff01e;
+	margin-right: 10px;
+}
+
+.favorite-link:hover
+{
+	color: #e0d216;
+}
