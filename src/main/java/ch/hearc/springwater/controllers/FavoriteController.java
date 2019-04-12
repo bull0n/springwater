@@ -16,12 +16,14 @@ public class FavoriteController
 	@PostMapping(value = "/add")
 	public boolean addFavoriteBoisson(Boisson boisson, Map<String, Object> model)
 	{
+		System.out.println(boisson);
 		return true;
 	}
 	
 	@DeleteMapping(value = "/remove")
 	public boolean removeFavoriteBoisson(Boisson boisson, Map<String, Object> model)
 	{
+		System.out.println(boisson);
 		return true;
 	}
 }
