@@ -21,6 +21,7 @@ import ch.hearc.springwater.models.entities.Boisson;
 import ch.hearc.springwater.models.repositories.BoissonsRepository;
 import ch.hearc.springwater.models.repositories.CategoriesRepository;
 import ch.hearc.springwater.service.impl.FileService;
+import ch.hearc.springwater.service.impl.UtilisateurDetailServiceImpl;
 
 @Controller
 @RequestMapping(value = "/boisson")
@@ -32,6 +33,8 @@ public class BoissonController
 	CategoriesRepository categoriesRepository;
 	@Autowired
 	private FileService fileStorageService;
+	@Autowired
+	private UtilisateurDetailServiceImpl utilisateurService;
 
 	private static final int BOISSONS_PAR_PAGE = 10;
 	private static final String BOISSON = "boisson";
@@ -41,6 +44,7 @@ public class BoissonController
 	public String getBoissons(Map<String, Object> model)
 	{
 		this.getBoissonsPageable(1, model);
+		model.put("user", utilisateurService.loadCurrentUser());
 		return "boisson/see-boissons";
 	}
 
@@ -48,6 +52,7 @@ public class BoissonController
 	public String getBoissons(@PathVariable("pageNum") int pageNum, Map<String, Object> model)
 	{
 		this.getBoissonsPageable(pageNum, model);
+		model.put("user", utilisateurService.loadCurrentUser());
 		return "boisson/see-boissons";
 	}
 
