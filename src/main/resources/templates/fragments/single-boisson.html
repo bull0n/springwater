@@ -2,7 +2,7 @@
    	<h2 th:text="${boisson.nom}">[BoissonNom]</h2>
    	<div class="row">
    		<div class="col-md-5">
-   			<img src="#" class="rounded float-left" th:alt="${boisson.nom}">
+   			<img th:src="${boisson.fileURL}" class="rounded float-left" th:alt="${boisson.nom}">
    		</div>
    		<div class="col-md-7">
    			<h3>Description</h3>
@@ -14,6 +14,8 @@
    				<span th:each="categorie : ${boisson.categories}" class="tag-label" th:text="${categorie}">[Categorie]</span>
    			</div>
    			<div class="text-right">
+   				<a class="favorite-link" th:if="${boisson.isFavorite()}" href="#" th:data-id-boisson="${boisson.id}" th:data-action="remove"><i class="fas fa-star"></i></a>
+    			<a class="favorite-link" th:unless="${boisson.isFavorite()}" href="#" th:data-id-boisson="${boisson.id}" th:data-action="add"><i class="far fa-star"></i></a>
    				<a href="#"><i class="fas fa-arrow-up"></i></a>
    				<span th:text="${boisson.getScore()}"> </span>
    				<a href="#"><i class="fas fa-arrow-down"></i></a>

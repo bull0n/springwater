@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ch.hearc.springwater.exceptions.ResourceNotFoundException;
 import ch.hearc.springwater.models.entities.Boisson;
 import ch.hearc.springwater.models.repositories.BoissonsRepository;
 import ch.hearc.springwater.models.repositories.CategoriesRepository;
+import ch.hearc.springwater.service.impl.FileService;
 
 @Controller
 @RequestMapping(value = "/boisson")
@@ -29,6 +31,9 @@ public class BoissonController {
 
 	@Autowired
 	CategoriesRepository categoriesRepository;
+
+	@Autowired
+	private FileService fileStorageService;
 
 	private static final int BOISSONS_PAR_PAGE = 10;
 	private static final String BOISSON = "boisson";
@@ -62,7 +67,8 @@ public class BoissonController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public String getBoisson(@PathVariable("id") long id, Map<String, Object> model) {
+	public String getBoisson(@PathVariable("id") long id, Map<String, Object> model)
+	{
 		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
 		model.put(BOISSON, boisson);
 
@@ -77,8 +83,22 @@ public class BoissonController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(Boisson boisson) {
+	public String save(Boisson boisson)
+	{
+		try
+		{
+			boisson.setFileURL(fileStorageService.storeFile(boisson.getFile()));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/")
+				.path(boisson.getFileURL()).toUriString();
+		boisson.setFileURL(fileDownloadUri);
 		repository.save(boisson);
+
 
 		return "redirect:/boisson/";
 	}

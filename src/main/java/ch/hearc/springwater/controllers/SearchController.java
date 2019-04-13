@@ -21,11 +21,8 @@ public class SearchController {
 
 	@GetMapping(value = "/")
 	public String search(@RequestParam(value = "search", required = false) String q, Map<String, Object> model) {
-		System.out.println("Search");
-		System.out.println("Search terme: " + q);
 		List<Boisson> searchResults = repository.findBoissonSimple(q);
 		model.put("boissons", searchResults);
-		System.out.println(searchResults);
 		return "boisson/see-boissons";
 	}
 }

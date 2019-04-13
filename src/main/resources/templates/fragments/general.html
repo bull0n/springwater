@@ -22,10 +22,12 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
+<script th:src="@{/script/main.js}"></script>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
 	crossorigin="anonymous">
+
 </head>
 <body>
 	<nav th:fragment="nav"
@@ -38,21 +40,21 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
+				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><a class="nav-link"
 						th:href="@{/boisson/}">Boissons <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/boisson/add}">Ajouter une boisson</a></li>
 				</ul>
+				<form action="#" th:action="@{/search/}" th:object="${search}"
+					class="form-inline my-2 my-lg-0">
+					<label for="search">Search:</label> <input name="search"
+						id="search" class="form-control mr-sm-2" type="search"
+						placeholder="Search" aria-label="Search"></input>
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</form>
 			</div>
-			<div th:replace="fragments/authentication :: authentication"></div>
-			<form action="#" th:action="@{/}" th:object="${search}" class="form-inline my-2 my-lg-0">
-				<label for="search">Search:</label>
-				<input name="search" id="search" class="form-control mr-sm-2" type="search"
-					placeholder="Search" aria-label="Search"></input>
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
 		</div>
 	</nav>
 	<footer th:fragment="footer" class="container">

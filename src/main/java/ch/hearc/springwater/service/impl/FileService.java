@@ -48,6 +48,8 @@ public class FileService
 			{
 				System.out.println("error-file");
 			}
+			
+			// TODO Change filename
 
 			Path targetLocation = this.fileStorageLocation.resolve(fileName);
 			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
