@@ -119,4 +119,25 @@ public class Utilisateur
 	{
 		this.motDePasseConfirmation = motDePasseConfirmation;
 	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		if(o instanceof Utilisateur)
+		{
+			Utilisateur toCompare = (Utilisateur)o;
+			
+			return toCompare.id == this.id;
+		}	
+		else
+		{
+			return false;
+		}
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return this.id.hashCode();
+	}
 }

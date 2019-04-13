@@ -50,9 +50,9 @@ public class Boisson {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	public boolean isFavorite()
+	public boolean isFavorite(Utilisateur user)
 	{
-		return true;
+		return this.userFavoriteBoisson.contains(user);
 	}
 
 	public int getScore() {

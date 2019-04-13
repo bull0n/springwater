@@ -1,8 +1,15 @@
 $(document).ready(function() {
-	$(".favorite-link").click(function(e) {
-		console.log(e.currentTarget);
+	prepareFavoriteButton();
+});
 
-		let action = $(e.currentTarget).attr("data-action");
+const ADD_BUTTON_TEMPLATE = "<i class=\"far fa-star\"></i>";
+const REMOVE_BUTTON_TEMPLATE = "<i class=\"fas fa-star\"></i>";
+
+function prepareFavoriteButton()
+{
+	$(".favorite-link").click(function(e) {
+		let target = $(e.currentTarget);
+		let action = target.attr("data-action");
 		let url = "";
 		let method = "";
 
@@ -15,12 +22,12 @@ $(document).ready(function() {
 		}
 		
 		let data = {
-			id : $(e.currentTarget).attr("data-id-action")
+			boissonId : target.attr("data-id-boisson")
 		}
+		
+		url += "/" + data.boissonId;
 
 		let token = $("meta[name='_csrf']").attr("content");
-		
-		console.log(header);
 
 		fetch(url, {
 			method: method,
@@ -31,7 +38,25 @@ $(document).ready(function() {
 	        body: JSON.stringify(data)
 		 })
 		 .then(function(response) {
-			 console.log(response.json());
+			 if(response.status == 200)
+			 {
+				if(action == "remove")
+				{
+					target.html(ADD_BUTTON_TEMPLATE);
+					target.attr("data-action", "add");
+					console.log("hello");
+				}
+				else
+				{
+					console.log("hello2");
+					target.html(REMOVE_BUTTON_TEMPLATE);
+					target.attr("data-action", "remove");
+				}
+			 }
+			 else
+			 {
+				 console.log("error");
+			 }
 		 })
 		 .catch(function(error) {
 			 console.log(error)
@@ -39,4 +64,4 @@ $(document).ready(function() {
 
 		return false;
 	});
-});
+}
