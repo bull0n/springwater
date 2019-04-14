@@ -8,8 +8,12 @@
   		<div th:replace="fragments/general :: nav">[Navigation]</div>
   		
   		<div class="container">
-  			<p th:text="${boisson}">
-  				
+  			<h1 th:text="${boisson.nom}">[Nom]</h1>
+			<div>
+				<img th:src="@{boisson.fileURL}" th:alt="${boisson.nom}" />
+  			</div>
+  			<p th:text="${boisson.description}">
+  				[Description]
   			</p>
   		</div>
     		
