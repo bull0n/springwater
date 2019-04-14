@@ -10,8 +10,8 @@ import ch.hearc.springwater.models.entities.Boisson;
 
 public interface BoissonsRepository extends PagingAndSortingRepository<Boisson, Long> {
 
-	@Query(value = "(select * FROM Boisson b WHERE b.nom LIKE %:searched% ORDER BY b.nom ) UNION DISTINCT "
-			+ "(select * FROM Boisson b WHERE b.description LIKE %:searched% ORDER BY b.nom )", nativeQuery = true)
+	@Query(value = "(select * FROM boisson b WHERE b.nom LIKE %:searched% ORDER BY b.nom ) UNION DISTINCT "
+			+ "(select * FROM boisson b WHERE b.description LIKE %:searched% ORDER BY b.nom )", nativeQuery = true)
 	List<Boisson> findBoisson(@Param("searched") String searched);
 
 }
