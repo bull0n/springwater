@@ -25,7 +25,8 @@ import ch.hearc.springwater.service.impl.UtilisateurDetailServiceImpl;
 
 @Controller
 @RequestMapping(value = "/boisson")
-public class BoissonController {
+public class BoissonController
+{
 
 	@Autowired
 	BoissonsRepository repository;
@@ -40,10 +41,10 @@ public class BoissonController {
 
 	private static final int BOISSONS_PAR_PAGE = 10;
 	private static final String BOISSON = "boisson";
-	private static final String BOISSON_FORM = "boisson/form";
 
 	@GetMapping(value = "/")
-	public String getBoissons(Map<String, Object> model) {
+	public String getBoissons(Map<String, Object> model)
+	{
 		this.getBoissonsPageable(1, model);
 		model.put("user", utilisateurService.loadCurrentUser());
 		model.put("categories", categoriesRepository.findAll());
@@ -51,20 +52,23 @@ public class BoissonController {
 	}
 
 	@GetMapping(value = "/page/{pageNum}")
-	public String getBoissons(@PathVariable("pageNum") int pageNum, Map<String, Object> model) {
+	public String getBoissons(@PathVariable("pageNum") int pageNum, Map<String, Object> model)
+	{
 		this.getBoissonsPageable(pageNum, model);
 		model.put("user", utilisateurService.loadCurrentUser());
 		model.put("categories", categoriesRepository.findAll());
 		return "boisson/see-boissons";
 	}
 
-	private void getBoissonsPageable(int pageNum, Map<String, Object> model) {
+	private void getBoissonsPageable(int pageNum, Map<String, Object> model)
+	{
 		Pageable pageable = PageRequest.of(pageNum - 1, BOISSONS_PAR_PAGE);
 		Page<Boisson> page = repository.findAll(pageable);
 
 		List<Integer> listPages = new ArrayList<>();
 		int firstPage = pageNum - 5;
-		for (int i = firstPage > 0 ? firstPage : 1; i <= (pageNum + 5) && i <= page.getTotalPages(); i++) {
+		for (int i = firstPage > 0 ? firstPage : 1; i <= (pageNum + 5) && i <= page.getTotalPages(); i++)
+		{
 			listPages.add(i);
 		}
 
@@ -83,10 +87,11 @@ public class BoissonController {
 	}
 
 	@GetMapping(value = "/add")
-	public String addBoissonMap(Map<String, Object> model) {
+	public String addBoissonMap(Map<String, Object> model)
+	{
 		model.put(BOISSON, new Boisson());
 		model.put("categories", categoriesRepository.findAll());
-		return BOISSON_FORM;
+		return "boisson/boisson-add";
 	}
 
 	@PostMapping(value = "/save")
@@ -106,22 +111,25 @@ public class BoissonController {
 		boisson.setFileURL(fileDownloadUri);
 		repository.save(boisson);
 
-
 		return "redirect:/boisson/";
 	}
 
 	@GetMapping(value = "/edit/{id}")
-	public String edit(@PathVariable("id") long id, Map<String, Object> model) {
+	public String edit(@PathVariable("id") long id, Map<String, Object> model)
+	{
 		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
 		model.put(BOISSON, boisson);
+		model.put("categories", categoriesRepository.findAll());
 
-		return BOISSON_FORM;
+		return "boisson/boisson-edit";
 	}
 
 	@PutMapping(value = "/update")
-	public String update(Boisson boisson) {
+	public String update(Boisson boisson)
+	{
+		System.out.println(boisson.getDescription());
 		repository.save(boisson);
 
-		return BOISSON_FORM;
+		return "redirect:/boisson/";
 	}
 }
