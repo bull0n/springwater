@@ -47,10 +47,10 @@
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/boisson/add}">Ajouter une boisson</a></li>
 				</ul>
-				<form action="#" th:action="@{/search/}" th:object="${search}"
+				<form action="#" th:action="@{/recherche/rapide}" th:object="${search}"
 					class="form-inline my-2 my-lg-0">
-					<label for="search">Search:</label> <input name="search"
-						id="search" class="form-control mr-sm-2" type="search"
+					<label for="boisson">Search:</label> <input name="boisson"
+						id="boisson" class="form-control mr-sm-2" type="search"
 						placeholder="Search" aria-label="Search"></input>
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 				</form>

@@ -16,7 +16,7 @@
   					 	</div>
   					 </div>
   				</div>
-  				<div class="col-3 offset-md-1" th:include="fragments/recherche-avancee :: recherche-avancee(null)">
+  				<div class="col-3 offset-md-1" th:include="fragments/recherche-avancee :: recherche-avancee(${categories})">
   				
   				</div>
   			</div>
@@ -28,7 +28,6 @@
 				</ul>
 			</div>
   		</div>
-
     	<div th:replace="fragments/general :: footer">[Footer]</div>
 	</body>
 

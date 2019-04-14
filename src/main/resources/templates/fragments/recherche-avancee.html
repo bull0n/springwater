@@ -1,20 +1,23 @@
 <div th:fragment="recherche-avancee(categories)">
 	<h3>Recherche avancée</h3>
-	<form method="POST" action="#">
+	<form action="#" th:action="@{/recherche/avancee}" th:object="${search}">
 		<div class="form-group">
-			<label for="boisson-nom">Nom de la boisson</label>
-			<input class="form-control" placeholder="Nom" type="text" name="boisson-nom" id="boisson-nom">
+			<label for="boisson">Terme recherché</label>
+			<input class="form-control" placeholder="..." type="text" name="boisson" id="boisson">
 		</div>
 		<div class="form-group">
-			<label for="categories">Catégorie</label>
-			<select multiple class="form-control" id="categories" name="categories">
-				<option th:each="categorie : ${categories}" th:text="${categorie}">[Category nome]</option>
+			<label for="categories">Filter by catégorie</label>
+			<select multiple class="form-control" id="categories" name="categoriesId">
+				<option value="-1">No catégorie</option>
+				<option th:each="categorie : ${categories}" th:value="${categorie.id}" th:text="${categorie.nom}">[Category nome]</option>
 			</select> 
 		</div>
 		<div class="form-group">
 			<label for="order">Order</label>
-			<select class="form-control" id="order" name="order">
-			
+			<select class="form-control" id="order" name="order" >
+				<option value="0" selected>Best results</option>
+				<option value="1">Name ascending</option>
+				<option value="2">Name descending</option>
 			</select>
 		</div>
 		<button type="submit" class="btn btn-primary">Rechercher</button>

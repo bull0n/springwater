@@ -46,6 +46,7 @@ public class BoissonController {
 	public String getBoissons(Map<String, Object> model) {
 		this.getBoissonsPageable(1, model);
 		model.put("user", utilisateurService.loadCurrentUser());
+		model.put("categories", categoriesRepository.findAll());
 		return "boisson/see-boissons";
 	}
 
@@ -53,6 +54,7 @@ public class BoissonController {
 	public String getBoissons(@PathVariable("pageNum") int pageNum, Map<String, Object> model) {
 		this.getBoissonsPageable(pageNum, model);
 		model.put("user", utilisateurService.loadCurrentUser());
+		model.put("categories", categoriesRepository.findAll());
 		return "boisson/see-boissons";
 	}
 
