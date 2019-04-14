@@ -28,7 +28,7 @@ public class SearchController {
 	CategoriesRepository categoriesRepository;
 
 	@GetMapping(value = "/rapide")
-	public String rechercheRapide(@RequestParam(value = "search", required = false) String q,
+	public String rechercheRapide(@RequestParam(value = "boisson", required = false) String q,
 			Map<String, Object> model) {
 		List<Boisson> searchResults = repository.findBoisson(q);
 		model.put("boissons", searchResults);
@@ -37,7 +37,7 @@ public class SearchController {
 	}
 
 	@GetMapping(value = "/avancee")
-	public String rechercheAvancee(@RequestParam(value = "search", required = false) String q,
+	public String rechercheAvancee(@RequestParam(value = "boisson", required = false) String q,
 			@RequestParam(value = "categoriesId", required = false) List<String> categories,
 			@RequestParam(value = "order", required = false) String orderString, Map<String, Object> model) {
 
