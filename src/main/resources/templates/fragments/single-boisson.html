@@ -18,9 +18,11 @@
 	   				<a class="favorite-link" th:if="${boisson.isFavorite(user)}" href="#" th:data-id-boisson="${boisson.id}" th:data-action="remove"><i class="fas fa-star"></i></a>
 	    			<a class="favorite-link" th:unless="${boisson.isFavorite(user)}" href="#" th:data-id-boisson="${boisson.id}" th:data-action="add"><i class="far fa-star"></i></a>
   				</span>
-   				<a href="#"><i class="fas fa-arrow-up"></i></a>
-   				<span th:text="${boisson.getScore()}"> </span>
-   				<a href="#"><i class="fas fa-arrow-down"></i></a>
+				<div class="text-right" sec:authorize="isAuthenticated()">
+					<a class="up-vote" href="#" th:data-id-boisson="${boisson.id}"><i class="fas fa-arrow-up"></i></a>
+					<span th:text="${boisson.getScore()}"> </span>
+					<a class="down-vote" href="#" th:data-id-boisson="${boisson.id}"><i class="fas fa-arrow-down"></i></a>
+				</div>
    			</div>
    		</div>
    	</div>
