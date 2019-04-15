@@ -44,24 +44,26 @@ public class VoteController {
 	VoteRepository voteRepository;
 
 	@PostMapping(value = "/upvote/{id}")
-	public ResponseEntity<String> UpVote(@PathVariable Long id, Model model) {
-		this.vote(id, model, SCORE_UP);
-		return new ResponseEntity<>("", HttpStatus.OK);
+	public ResponseEntity<Integer> UpVote(@PathVariable Long id, Model model) {
+		int score = this.vote(id, model, SCORE_UP);
+
+		return new ResponseEntity<>(score, HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/downvote/{id}")
-	public ResponseEntity<String> DownVote(@PathVariable Long id, Model model) {
-		this.vote(id, model, SCORE_DOWN);
-		return new ResponseEntity<>("", HttpStatus.OK);
+	public ResponseEntity<Integer> DownVote(@PathVariable Long id, Model model) {
+		int score = this.vote(id, model, SCORE_DOWN);
+
+		return new ResponseEntity<>(score, HttpStatus.OK);
 	}
 
-	public void vote(Long id, Model model, int score) {
+	public Integer vote(Long id, Model model, int score) {
 		Authentication authentification = SecurityContextHolder.getContext().getAuthentication();
+		Boisson boisson = boissonRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
 
 		if (authentification.isAuthenticated()) {
 			String nom = authentification.getName();
 			Utilisateur utilisateurCourant = utilisateurRepository.findByNomUtilisateur(nom);
-			Boisson boisson = boissonRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
 
 			List<Vote> listeVotes = utilisateurCourant.getVotes();
 			Vote vote = this.getVoteFromList(id, listeVotes);
@@ -81,6 +83,8 @@ public class VoteController {
 				voteRepository.save(vote);
 			}
 		}
+		
+		return boisson.getScore();
 	}
 
 	public Vote getVoteFromList(Long id, List<Vote> listeVotes) {

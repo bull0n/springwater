@@ -5,11 +5,8 @@ const UPVOTE_BASE_URL = "/vote/upvote";
 const DOWNVOTE_BASE_URL = "/vote/downvote";
 
 $(document).ready(function() {
-	console.log("Document is ready")
 	prepareVote(UPVOTE_CLASS_NAME, UPVOTE_BASE_URL);
-	console.log("upvote is ready")
 	prepareVote(DOWNVOTE_CLASS_NAME, DOWNVOTE_BASE_URL);
-	console.log("downvote is ready")
 });
 
 function prepareVote(className, baseUrl)
@@ -22,27 +19,39 @@ function prepareVote(className, baseUrl)
 		let token = $("meta[name='_csrf']").attr("content");
 		console.log("Clicked on " + className);
 		
-		executeVoteAction(url, method, data, token);
+		executeVoteAction(url, method, data, token, className);
 	});
 }
 
-function executeVoteAction(url, method, data, token)
+function executeVoteAction(url, method, data, token, className)
 {
 	fetch(url, {
 		method: method,
 		headers: {
-           "Content-Type": "application/json"
-        },
-        //body: JSON.stringify(data)
+           "Content-Type": "application/json",
+           'X-CSRF-TOKEN': token,
+        }
 	 })
 	 .then(function(response) {
 		 if(response.status == 200)
 		 {
-			 console.log("New score set !");
+			 // Should get the score from the controller
+			 let value = parseInt($("#boisson-score-" + data["id"]).text());
+			 
+			 if(className == UPVOTE_CLASS_NAME)
+			 {
+				 value += 1;
+			 }
+			 else
+			 {
+				 value -= 1;
+			 }
+			 
+			 $("#boisson-score-" + data["id"]).text(value);
 		 }
 		 else
 		 {
-			 console.log("Error: there's a problem when applying the vote.");
+			 console.log("Error: " + response.status);
 		 }
 	 })
 	 .catch(function(error) {
