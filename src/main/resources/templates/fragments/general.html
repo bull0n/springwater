@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="header">
 <meta charset="UTF-8" />
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 
 <link th:href="@{/styles/main.css}" rel="stylesheet">
 <link rel="stylesheet"
@@ -47,8 +49,8 @@
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/boisson/add}">Ajouter une boisson</a></li>
 				</ul>
-				<form action="#" th:action="@{/recherche/rapide}" th:object="${search}"
-					class="form-inline my-2 my-lg-0">
+				<form action="#" th:action="@{/recherche/rapide}"
+					th:object="${search}" class="form-inline my-2 my-lg-0">
 					<label for="boisson">Search:</label> <input name="boisson"
 						id="boisson" class="form-control mr-sm-2" type="search"
 						placeholder="Search" aria-label="Search"></input>
