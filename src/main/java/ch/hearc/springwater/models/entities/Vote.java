@@ -44,4 +44,20 @@ public class Vote {
 	public void setScore(int score) {
 		this.score = score;
 	}
+	
+	public Utilisateur getUser() {
+		return this.user;
+	}
+
+	public void setUser(Utilisateur user) {
+		this.user = user;
+	}
+
+	public Boisson getBoisson() {
+		return this.boisson;
+	}
+
+	public void setBoisson(Boisson boisson) {
+		this.boisson = boisson;
+	}
 }
