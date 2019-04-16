@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -93,7 +95,8 @@ public class BoissonController
 		model.put("categories", categoriesRepository.findAll());
 		return "boisson/boisson-add";
 	}
-
+	
+	@Secured("ROLE_USER")
 	@PostMapping(value = "/save")
 	public String save(Boisson boisson)
 	{
@@ -123,7 +126,8 @@ public class BoissonController
 
 		return "boisson/boisson-edit";
 	}
-
+	
+	@Secured("ROLE_USER")
 	@PutMapping(value = "/update")
 	public String update(Boisson boisson)
 	{

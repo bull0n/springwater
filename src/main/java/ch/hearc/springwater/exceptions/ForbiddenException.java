@@ -1,4 +1,4 @@
-package ch.hearc.springwater.security.exceptions;
+package ch.hearc.springwater.exceptions;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;

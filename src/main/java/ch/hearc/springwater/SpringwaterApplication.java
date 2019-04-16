@@ -62,6 +62,7 @@ public class SpringwaterApplication {
 
 		Set<Role> roles = new HashSet<>();
 		roles.add(roleAdmin);
+		roles.add(roleUser);
 		admin.setRoles(roles);
 
 		userRepo.save(admin);
