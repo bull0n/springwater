@@ -37,7 +37,26 @@ function executeVoteAction(url, method, data, token, className)
 		 {
 			 let promise = response.json();
 			 promise.then(function(result){
-			 	$("#boisson-score-" + data["id"]).text(result["score"]);
+				let totalScore = result["total_score"];				
+			 	$("#boisson-score-" + data["id"]).text(totalScore);
+			 	
+			 	if("score" in result){
+			 		let score = result["score"];
+			 		let upVoteBtn = $("#up-vote-" + data["id"]);
+			 		let downVoteBtn = $("#down-vote-" + data["id"]);
+			 		
+			 		upVoteBtn.css('color', 'blue');
+			 		downVoteBtn.css('color', 'blue');
+			 		
+			 		if(score == 1)
+			 			{
+			 			upVoteBtn.css('color', 'green');
+			 			}
+			 		else if(score == -1)
+			 			{
+			 			downVoteBtn.css('color', 'red');
+			 			}
+			 	}
 			 });
 		 }
 		 else
