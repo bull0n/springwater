@@ -7,11 +7,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<form method="post" th:action="@{/boisson/update}"
-					enctype="multipart/form-data" th:object="${boisson}">
+				<form method="post" th:action="@{/categorie/update}"
+					enctype="multipart/form-data" th:object="${categorie}">
 					<input type="hidden" name="_method" value="PUT" /> <input
-						type="hidden" name="id" id="id" th:value="${boisson.id}" />
-					<div th:replace="fragments/boisson-form :: boisson-form">[Navigation]</div>
+						type="hidden" name="id" id="id" th:value="${categorie.id}" />
+					<div th:replace="fragments/categorie-form :: categorie-form">[Navigation]</div>
 				</form>
 			</div>
 		</div>

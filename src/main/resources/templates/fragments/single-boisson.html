@@ -23,6 +23,7 @@
 					<span th:id="boisson-score- + ${boisson.getId()}" th:text="${boisson.getScore()}"> </span>
 					<a class="down-vote" href="#" th:data-id-boisson="${boisson.id}"><i class="fas fa-arrow-down"></i></a>
 				</div>
+				<a class="btn btn-link" th:href="@{~/boisson/{id}(id=${boisson.id})}">Détails</a>
    			</div>
    		</div>
    	</div>

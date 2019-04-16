@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html>
-
-	<head th:replace="fragments/general :: header">
-	</head>
-	
-	<body>
-  		<div th:replace="fragments/general :: nav">[Navigation]</div>
-  		
-  		<div class="container">
-  			<ul>
-	  			<li th:each="categorie : ${categories}" th:text="${categorie}"></li>
-	  		</ul>
-  		</div>
-   		
-    		
-    	<div th:replace="fragments/general :: footer">[Footer]</div>
-	</body>
-
+<head th:replace="fragments/general :: header">
+</head>
+<body>
+	<div th:replace="fragments/general :: nav">[Navigation]</div>
+	<div class="container">
+	<a class="btn btn-primary"
+						th:href="@{~/categorie/add/}">Ajouter une catégorie</a>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Catégorie</th>
+					<th>Nombre de boissons</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="categorie : ${categories}">
+					<td th:text="${categorie.getNom()}">[Categorie nom]</td>
+					<td th:text="${categorie.getNbBoisson()}">[Nb boissons liées]</td>
+					<td><a class="btn btn-primary"
+						th:href="@{~/categorie/edit/{id}(id=${categorie.id})}"><i class="far fa-edit"></i> Modifier</a>
+	                    <form class="d-inline" th:action="@{~/categorie/remove/{id}(id=${categorie.id})}" method="post">
+	                        <button type="submit" class="btn btn-danger" onClick="return confirm('This action is non-reversible !\nPlease confirme you want to remove this categorie.')"><i class="far fa-trash-alt"></i> Remove</button>
+	                    </form>
+                    </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:replace="fragments/general :: footer">[Footer]</div>
+</body>
 </html>

@@ -16,11 +16,15 @@ public class Categorie {
 	private String nom;
 
 	@ManyToMany(mappedBy = "categories")
-	Set<Boisson> boisson = new HashSet<>();
+	Set<Boisson> boissons = new HashSet<>();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	public int getNbBoisson() {
+		return boissons.size();
+	}
 
 	public String getNom() {
 		return nom;
