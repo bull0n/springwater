@@ -3,6 +3,7 @@ package ch.hearc.springwater.controllers;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ public class FavoriteController
 	@Autowired 
 	private UtilisateurRepository utilisateurRepository;
 	
+	@Secured("ROLE_USER")
 	@PostMapping(value = "/add/{boissonId}")
 	public boolean addFavoriteBoisson(@PathVariable("boissonId") Boisson boisson, Map<String, Object> model)
 	{
@@ -42,6 +44,7 @@ public class FavoriteController
 		}
 	}
 	
+	@Secured("ROLE_USER")
 	@DeleteMapping(value = "/remove/{boissonId}")
 	public boolean removeFavoriteBoisson(@PathVariable("boissonId") Boisson boisson, Map<String, Object> model)
 	{
