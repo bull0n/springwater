@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ch.hearc.springwater.config.SecurityConfig;
+import ch.hearc.springwater.exceptions.MotDePasseConfirmationException;
 import ch.hearc.springwater.security.Role;
 import ch.hearc.springwater.security.RoleRepository;
 import ch.hearc.springwater.security.Utilisateur;
 import ch.hearc.springwater.security.UtilisateurRepository;
-import ch.hearc.springwater.security.exceptions.MotDePasseConfirmationException;
 
 @Controller
 @RequestMapping(value = "/user")

@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.hearc.springwater.exceptions.ForbiddenException;
 import ch.hearc.springwater.models.entities.Boisson;
 import ch.hearc.springwater.security.Utilisateur;
 import ch.hearc.springwater.security.UtilisateurRepository;
-import ch.hearc.springwater.security.exceptions.ForbiddenException;
 import ch.hearc.springwater.service.impl.UtilisateurDetailServiceImpl;
 
 @RestController

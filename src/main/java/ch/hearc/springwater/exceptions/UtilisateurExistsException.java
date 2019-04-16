@@ -1,4 +1,4 @@
-package ch.hearc.springwater.security.exceptions;
+package ch.hearc.springwater.exceptions;
 
 public class UtilisateurExistsException extends Exception
 {
