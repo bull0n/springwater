@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -46,6 +47,9 @@ public class Boisson {
 
 	@OneToMany(mappedBy = "boisson", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Vote> votes = new ArrayList<>();
+	
+	@ManyToOne
+	private Utilisateur owner;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,6 +79,11 @@ public class Boisson {
 	public Set<Categorie> getCategories() {
 		return categories;
 	}
+	
+	public Utilisateur getOwner() {
+		return owner;
+	}
+
 
 	public void setDescription(String description) {
 		this.description = description;
@@ -94,6 +103,11 @@ public class Boisson {
 
 	public void setFileURL(String fileURL) {
 		this.fileURL = fileURL;
+	}
+	
+	public void setOwner(Utilisateur owner)
+	{
+		this.owner = owner;
 	}
 
 	public Long getId() {

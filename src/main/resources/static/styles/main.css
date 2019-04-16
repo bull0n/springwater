@@ -21,3 +21,13 @@
 {
 	color: #e0d216;
 }
+
+.form-inline
+{
+	display: inline !important;
+}
+
+.img-boisson
+{
+	max-width: 100%;
+}

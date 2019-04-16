@@ -53,6 +53,20 @@ public class Utilisateur
 	@ManyToMany
 	@JoinTable(name = "user_favorite_boisson", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "boisson_id"))
 	private Set<Boisson> boissonsFavorite = new HashSet<>();
+	
+	@OneToMany
+	@JoinColumn(name="owner_id")
+	private Set<Boisson> boissons = new HashSet<>();
+
+	public Set<Boisson> getBoissons()
+	{
+		return boissons;
+	}
+
+	public void setBoissons(Set<Boisson> boissons)
+	{
+		this.boissons = boissons;
+	}
 
 	public Long getId()
 	{

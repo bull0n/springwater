@@ -1,6 +1,6 @@
 package ch.hearc.springwater.controllers;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,22 +37,19 @@ public class VoteController {
 	VoteRepository voteRepository;
 
 	@PostMapping(value = "/upvote/{id}")
-	public Map<String, String> UpVote(@PathVariable Long id, Model model) {
-		Integer score = this.vote(id, model, SCORE_UP);
-
-		return Collections.singletonMap("score", score.toString());
+	public Map<String, Integer> UpVote(@PathVariable Long id, Model model) {
+		return this.vote(id, model, SCORE_UP);
 	}
 
 	@PostMapping(value = "/downvote/{id}")
-	public Map<String, String> DownVote(@PathVariable Long id, Model model) {
-		Integer score = this.vote(id, model, SCORE_DOWN);
-
-		return Collections.singletonMap("score", score.toString());
+	public Map<String, Integer> DownVote(@PathVariable Long id, Model model) {
+		return this.vote(id, model, SCORE_DOWN);
 	}
 
-	public Integer vote(Long id, Model model, int score) {
+	public Map<String, Integer> vote(Long id, Model model, int score) {
 		Authentication authentification = SecurityContextHolder.getContext().getAuthentication();
 		Boisson boisson = boissonRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+		Map<String, Integer> map = new HashMap<>();
 
 		if (authentification.isAuthenticated()) {
 			String nom = authentification.getName();
@@ -68,13 +65,19 @@ public class VoteController {
 				nouveauVote.setUser(utilisateurCourant);
 				listeVotes.add(nouveauVote);
 				utilisateurRepository.save(utilisateurCourant);
+
+				map.put("score", score);
 			} else if (vote.getScore() != score) {
 				vote.setScore(score);
 				voteRepository.save(vote);
+
+				map.put("score", score);
 			}
 		}
 
-		return boisson.getScore();
+		map.put("total_score", boisson.getScore());
+
+		return map;
 	}
 
 	public Vote getVoteFromList(Long id, List<Vote> listeVotes) {
