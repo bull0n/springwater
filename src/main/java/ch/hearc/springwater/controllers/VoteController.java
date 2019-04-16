@@ -44,17 +44,17 @@ public class VoteController {
 	VoteRepository voteRepository;
 
 	@PostMapping(value = "/upvote/{id}")
-	public ResponseEntity<Integer> UpVote(@PathVariable Long id, Model model) {
-		int score = this.vote(id, model, SCORE_UP);
+	public Map<String, String> UpVote(@PathVariable Long id, Model model) {
+		Integer score = this.vote(id, model, SCORE_UP);
 
-		return new ResponseEntity<>(score, HttpStatus.OK);
+		return Collections.singletonMap("score", score.toString());
 	}
 
 	@PostMapping(value = "/downvote/{id}")
-	public ResponseEntity<Integer> DownVote(@PathVariable Long id, Model model) {
-		int score = this.vote(id, model, SCORE_DOWN);
+	public Map<String, String> DownVote(@PathVariable Long id, Model model) {
+		Integer score = this.vote(id, model, SCORE_DOWN);
 
-		return new ResponseEntity<>(score, HttpStatus.OK);
+		return Collections.singletonMap("score", score.toString());
 	}
 
 	public Integer vote(Long id, Model model, int score) {
