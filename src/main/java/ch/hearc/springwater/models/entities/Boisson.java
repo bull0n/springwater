@@ -7,12 +7,14 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -35,23 +37,25 @@ public class Boisson {
 	private MultipartFile file;
 	private String fileURL;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "boisson_categorie", joinColumns = @JoinColumn(name = "boisson_id"), inverseJoinColumns = @JoinColumn(name = "categorie_id"))
 	Set<Categorie> categories;
-	
-	@ManyToMany
+
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_favorite_boisson", joinColumns = @JoinColumn(name = "boisson_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	Set<Utilisateur> userFavoriteBoisson;
 
 	@OneToMany(mappedBy = "boisson", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Vote> votes = new ArrayList<>();
+	
+	@ManyToOne
+	private Utilisateur owner;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	public boolean isFavorite(Utilisateur user)
-	{
+
+	public boolean isFavorite(Utilisateur user) {
 		return this.userFavoriteBoisson.contains(user);
 	}
 
@@ -75,29 +79,35 @@ public class Boisson {
 	public Set<Categorie> getCategories() {
 		return categories;
 	}
+	
+	public Utilisateur getOwner() {
+		return owner;
+	}
+
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public MultipartFile getFile()
-	{
+	public MultipartFile getFile() {
 		return file;
 	}
 
-	public void setFile(MultipartFile file)
-	{
+	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
 
-	public String getFileURL()
-	{
+	public String getFileURL() {
 		return fileURL;
 	}
 
-	public void setFileURL(String fileURL)
-	{
+	public void setFileURL(String fileURL) {
 		this.fileURL = fileURL;
+	}
+	
+	public void setOwner(Utilisateur owner)
+	{
+		this.owner = owner;
 	}
 
 	public Long getId() {
@@ -113,8 +123,7 @@ public class Boisson {
 	}
 
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Boisson [nom=");
 		builder.append(nom);
@@ -132,5 +141,5 @@ public class Boisson {
 		builder.append(id);
 		builder.append("]");
 		return builder.toString();
-	}	
+	}
 }

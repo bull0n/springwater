@@ -21,6 +21,8 @@ import ch.hearc.springwater.models.repositories.CategoriesRepository;
 @RequestMapping(value = "/recherche")
 public class SearchController {
 
+	private static final int NO_CATEGORIE = -1;
+
 	@Autowired
 	BoissonsRepository repository;
 
@@ -54,7 +56,7 @@ public class SearchController {
 				.collect(Collectors.toList());
 
 		List<Boisson> searchResults = repository.findBoisson(q);
-		
+
 		Comparator<Boisson> nameASC = (b1, b2) -> b1.getNom().compareTo(b2.getNom());
 		Comparator<Boisson> nameDSC = (b1, b2) -> b2.getNom().compareTo(b1.getNom());
 
@@ -75,7 +77,7 @@ public class SearchController {
 				.anyMatch(c -> listCategoriesId.contains(c.getId())) || b.getCategories().size() == 0;
 
 		Predicate<Boisson> filterCategorie;
-		if (listCategoriesId.contains(-1)) {
+		if (listCategoriesId.contains(NO_CATEGORIE)) {
 			filterCategorie = filterCategorieOrNothing;
 		} else {
 			filterCategorie = filterCategorieOnly;
