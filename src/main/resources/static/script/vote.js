@@ -35,19 +35,10 @@ function executeVoteAction(url, method, data, token, className)
 	 .then(function(response) {
 		 if(response.status == 200)
 		 {
-			 // Should get the score from the controller
-			 let value = parseInt($("#boisson-score-" + data["id"]).text());
-			 
-			 if(className == UPVOTE_CLASS_NAME)
-			 {
-				 value += 1;
-			 }
-			 else
-			 {
-				 value -= 1;
-			 }
-			 
-			 $("#boisson-score-" + data["id"]).text(value);
+			 let promise = response.json();
+			 promise.then(function(result){
+			 	$("#boisson-score-" + data["id"]).text(result["score"]);
+			 });
 		 }
 		 else
 		 {
