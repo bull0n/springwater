@@ -1,6 +1,7 @@
 package ch.hearc.springwater.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,8 +21,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ch.hearc.springwater.exceptions.ResourceNotFoundException;
 import ch.hearc.springwater.models.entities.Boisson;
+import ch.hearc.springwater.models.entities.Vote;
 import ch.hearc.springwater.models.repositories.BoissonsRepository;
 import ch.hearc.springwater.models.repositories.CategoriesRepository;
+import ch.hearc.springwater.security.Utilisateur;
 import ch.hearc.springwater.service.impl.FileService;
 import ch.hearc.springwater.service.impl.UtilisateurDetailServiceImpl;
 
@@ -48,6 +51,7 @@ public class BoissonController
 	public String getBoissons(Map<String, Object> model)
 	{
 		this.getBoissonsPageable(1, model);
+		this.getColors(model);
 		model.put("user", utilisateurService.loadCurrentUser());
 		model.put("categories", categoriesRepository.findAll());
 		return "boisson/see-boissons";
@@ -57,11 +61,41 @@ public class BoissonController
 	public String getBoissons(@PathVariable("pageNum") int pageNum, Map<String, Object> model)
 	{
 		this.getBoissonsPageable(pageNum, model);
+		this.getColors(model);
 		model.put("user", utilisateurService.loadCurrentUser());
 		model.put("categories", categoriesRepository.findAll());
 		return "boisson/see-boissons";
 	}
+	
+	private void getColors(Map<String, Object> model)
+	{
+		List<String> upVoteList = new ArrayList<>();
+		List<String> downVoteList = new ArrayList<>();
+		Utilisateur utilisateur = utilisateurService.loadCurrentUser();
+		
+		if(utilisateur != null)
+		{
+			List<Vote> listeVotes = utilisateur.getVotes();
+			
+			for(Vote vote : listeVotes)
+			{
+				int score = vote.getScore();
+				
+				if(score == 1)
+				{
+					upVoteList.add(vote.getBoisson().getId() + "");
+				}
+				else
+				{
+					downVoteList.add(vote.getBoisson().getId() + "");
+				}
+			}
 
+			model.put("upVoteList", upVoteList);
+			model.put("downVoteList", downVoteList);
+		}
+	}
+	
 	private void getBoissonsPageable(int pageNum, Map<String, Object> model)
 	{
 		Pageable pageable = PageRequest.of(pageNum - 1, BOISSONS_PAR_PAGE);
