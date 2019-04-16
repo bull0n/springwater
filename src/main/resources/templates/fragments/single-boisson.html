@@ -1,11 +1,24 @@
 <article th:fragment="single-boisson(boisson, user)" class="container">
-   	<h2 th:text="${boisson.nom}">[BoissonNom]</h2>
+	<div class="container p-0">
+		<div class="row">
+			<h2 class="col-md-10" th:text="${boisson.nom}">[BoissonNom]</h2>
+			<div class="col-md-2">
+				
+				<span  th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')') || (boisson.owner != null && boisson.owner.equals(user)) }">
+					<a th:href="@{/boisson/edit/} + ${boisson.id}"><i class="fas fa-edit"></i></a>
+					<form method="POST" th:action="@{/boisson/delete/} + ${boisson.id}" class="form-inline">
+						<input type="hidden" name="_method" value="DELETE" />
+						<button class="btn btn-link" type="submit" th:href="@{/boisson/}"><i class="fas fa-trash-alt"></i></button>
+					</form>
+				</span>
+			</div>
+		</div>
+ 	</div>
    	<div class="row">
    		<div class="col-md-5">
-   			<img th:src="${boisson.fileURL}" class="rounded float-left" th:alt="${boisson.nom}">
+   			<img th:src="${boisson.fileURL}" class="rounded float-left img-boisson" th:alt="${boisson.nom}">
    		</div>
    		<div class="col-md-7">
-   			<h3>Description</h3>
    			<p th:text="${boisson.description}">
    				[Description]
    			</p>

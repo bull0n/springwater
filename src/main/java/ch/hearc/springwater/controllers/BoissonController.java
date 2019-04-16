@@ -9,8 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -109,12 +109,14 @@ public class BoissonController
 			e.printStackTrace();
 		}
 
+		
+		boisson.setOwner(utilisateurService.loadCurrentUser());
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/")
 				.path(boisson.getFileURL()).toUriString();
 		boisson.setFileURL(fileDownloadUri);
 		repository.save(boisson);
 
-		return "redirect:/boisson/";
+		return REDIRECT_BOISSON;
 	}
 
 	@GetMapping(value = "/edit/{id}")
@@ -127,6 +129,15 @@ public class BoissonController
 		return "boisson/boisson-edit";
 	}
 	
+	@DeleteMapping(value = "/edit/{id}")
+	public String delete(@PathVariable("id") long id, Map<String, Object> model)
+	{
+		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
+		repository.delete(boisson);
+
+		return REDIRECT_BOISSON;
+	}
+	
 	@Secured("ROLE_USER")
 	@PutMapping(value = "/update")
 	public String update(Boisson boisson)
@@ -134,6 +145,8 @@ public class BoissonController
 		System.out.println(boisson.getDescription());
 		repository.save(boisson);
 
-		return "redirect:/boisson/";
+		return REDIRECT_BOISSON;
 	}
+	
+	private final String REDIRECT_BOISSON = "redirect:/boisson/";
 }
