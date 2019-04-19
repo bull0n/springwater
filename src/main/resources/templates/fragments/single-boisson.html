@@ -32,11 +32,11 @@
 	    			<a class="favorite-link" th:unless="${boisson.isFavorite(user)}" href="#" th:data-id-boisson="${boisson.id}" th:data-action="add"><i class="far fa-star"></i></a>
   				</span>
 				<div class="text-right">
-					<a th:if="${upVoteList.contains(boisson.getId() + '')}" th:id="up-vote- + ${boisson.getId()}" class="up-vote" href="#" th:data-id-boisson="${boisson.id}" th:style="'color: green;'"><i class="fas fa-arrow-up"></i></a>
-					<a th:unless="${upVoteList.contains(boisson.getId() + '')}" th:id="up-vote- + ${boisson.getId()}" class="up-vote" href="#" th:data-id-boisson="${boisson.id}" th:style="'color: blue;'"><i class="fas fa-arrow-up"></i></a>
+					<a th:if="${upVoteList?.contains(boisson.getId() + '')}" th:id="up-vote- + ${boisson.getId()}" class="up-vote" href="#" th:data-id-boisson="${boisson.id}" th:style="'color: green;'"><i class="fas fa-arrow-up"></i></a>
+					<a th:unless="${upVoteList?.contains(boisson.getId() + '')}" th:id="up-vote- + ${boisson.getId()}" class="up-vote" href="#" th:data-id-boisson="${boisson.id}" th:style="'color: blue;'"><i class="fas fa-arrow-up"></i></a>
 					<span th:id="boisson-score- + ${boisson.getId()}" th:text="${boisson.getScore()}"> </span>
-					<a th:if="${downVoteList.contains(boisson.id + '')}" th:id="down-vote- + ${boisson.getId()}" class="down-vote" href="#" th:data-id-boisson="${boisson.id}" th:style="'color: red;'"><i class="fas fa-arrow-down"></i></a>
-					<a th:unless="${downVoteList.contains(boisson.id + '')}" th:id="down-vote- + ${boisson.getId()}" class="down-vote" href="#" th:data-id-boisson="${boisson.id}" th:style="'color: blue;'"><i class="fas fa-arrow-down"></i></a>
+					<a th:if="${downVoteList?.contains(boisson.id + '')}" th:id="down-vote- + ${boisson.getId()}" class="down-vote" href="#" th:data-id-boisson="${boisson.id}" th:style="'color: red;'"><i class="fas fa-arrow-down"></i></a>
+					<a th:unless="${downVoteList?.contains(boisson.id + '')}" th:id="down-vote- + ${boisson.getId()}" class="down-vote" href="#" th:data-id-boisson="${boisson.id}" th:style="'color: blue;'"><i class="fas fa-arrow-down"></i></a>
 				</div>
 				<a class="btn btn-link" th:href="@{~/boisson/{id}(id=${boisson.id})}">Détails</a>
    			</div>
