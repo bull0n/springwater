@@ -19,42 +19,36 @@ import ch.hearc.springwater.security.Utilisateur;
 import ch.hearc.springwater.security.UtilisateurRepository;
 
 @Service
-public class UtilisateurDetailServiceImpl implements UserDetailsService
-{
+public class UtilisateurDetailServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
 
 	@Override
 	@Transactional(readOnly = true)
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
-	{
+	public UserDetails loadUserByUsername(String username) {
 		Utilisateur utilisateur = utilisateurRepository.findByNomUtilisateur(username);
-		if(utilisateur == null)
-		{
+		if (utilisateur == null) {
 			throw new UsernameNotFoundException(username);
 		}
 
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
-		for (Role role : utilisateur.getRoles())
-		{
+		for (Role role : utilisateur.getRoles()) {
 			grantedAuthorities.add(new SimpleGrantedAuthority(role.getNom()));
 		}
 
 		return new User(utilisateur.getNomUtilisateur(), utilisateur.getMotDePasse(), grantedAuthorities);
 	}
 
-	public Utilisateur loadCurrentUser()
-	{
+	public Utilisateur loadCurrentUser() {
 		Object userLoggedIn = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
-		if(userLoggedIn instanceof String)
-		{
+
+		if (userLoggedIn instanceof String) {
 			return null;
 		}
-		
-		String usernom = ((User)userLoggedIn).getUsername();
+
+		String usernom = ((User) userLoggedIn).getUsername();
 		return utilisateurRepository.findByNomUtilisateur(usernom);
 	}
 }

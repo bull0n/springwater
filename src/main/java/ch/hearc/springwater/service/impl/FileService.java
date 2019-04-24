@@ -15,71 +15,56 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import ch.hearc.springwater.config.FileConfig;
+import ch.hearc.springwater.exceptions.FileException;
 
 //https://www.callicoder.com/spring-boot-file-upload-download-rest-api-example/
 @Service
-public class FileService
-{
+public class FileService {
 
 	private final Path fileStorageLocation;
 
+	private static final String NOT_FOUND = "File not found ";
 	@Autowired
-	public FileService(FileConfig config) throws Exception
-	{
+	public FileService(FileConfig config) throws Exception {
 		this.fileStorageLocation = Paths.get(config.getUploadDir()).toAbsolutePath().normalize();
 
-		try
-		{
+		try {
 			Files.createDirectories(this.fileStorageLocation);
-		}
-		catch (Exception ex)
-		{
-			throw new Exception("couldn't create directory", ex);
+		} catch (Exception ex) {
+			throw new FileException("couldn't create directory");
 		}
 	}
 
-	public String storeFile(MultipartFile file) throws Exception
-	{
+	public String storeFile(MultipartFile file) throws Exception {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
-		try
-		{
-			if(fileName.contains(".."))
-			{
-				System.out.println("error-file");
+		try {
+			if (fileName.contains("..")) {
+//				System.out.println("error-file");
 			}
-			
-			// TODO Change filename
+
+			// TODO Lucas Change filename
 
 			Path targetLocation = this.fileStorageLocation.resolve(fileName);
 			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
 			return fileName;
-		}
-		catch (IOException ex)
-		{
-			throw new Exception("File not found " + fileName, ex);
+		} catch (IOException ex) {
+			throw new FileException(NOT_FOUND + fileName);
 		}
 	}
 
-	public Resource loadFileAsResource(String fileName) throws Exception
-	{
-		try
-		{
+	public Resource loadFileAsResource(String fileName) throws Exception {
+		try {
 			Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
 			Resource resource = new UrlResource(filePath.toUri());
-			if(resource.exists())
-			{
+			if (resource.exists()) {
 				return resource;
+			} else {
+				throw new FileException(NOT_FOUND + fileName);
 			}
-			else
-			{
-				throw new Exception("File not found " + fileName);
-			}
-		}
-		catch (MalformedURLException ex)
-		{
-			throw new Exception("File not found " + fileName, ex);
+		} catch (MalformedURLException ex) {
+			throw new FileException(NOT_FOUND + fileName);
 		}
 	}
 }

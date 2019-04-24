@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ch.hearc.springwater.exceptions.ResourceNotFoundException;
-import ch.hearc.springwater.models.entities.Boisson;
 import ch.hearc.springwater.models.entities.Categorie;
 import ch.hearc.springwater.models.repositories.CategoriesRepository;
 
@@ -22,9 +21,9 @@ public class CategorieController {
 	@Autowired
 	CategoriesRepository repository;
 
-	private final static String CATEGORIE = "categorie";
-	private final static String REDIRECT_CATEGORIE = "redirect:/categorie/";
-	
+	private static final String CATEGORIE = "categorie";
+	private static final String REDIRECT_CATEGORIE = "redirect:/categorie/";
+
 	@GetMapping(value = "/")
 	public String getCategories(Map<String, Object> model) {
 		model.put("categories", repository.findAll());
@@ -49,11 +48,11 @@ public class CategorieController {
 
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/remove/{id}")
-    public String deleteBuyer(@PathVariable Long id){
+	public String deleteBuyer(@PathVariable Long id) {
 		repository.deleteById(id);
 
-        return REDIRECT_CATEGORIE;
-    }
+		return REDIRECT_CATEGORIE;
+	}
 
 	@Secured("ROLE_ADMIN")
 	@PostMapping(value = "/save")
@@ -62,7 +61,7 @@ public class CategorieController {
 
 		return REDIRECT_CATEGORIE;
 	}
-	
+
 	@Secured("ROLE_ADMIN")
 	@PutMapping(value = "/update")
 	public String update(Categorie categorie) {

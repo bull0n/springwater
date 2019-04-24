@@ -52,7 +52,7 @@ public class SearchController {
 		} catch (NumberFormatException e) {
 			order = 0;
 		}
-		List<Long> listCategoriesId = categories.parallelStream().mapToLong(c -> Long.parseLong(c)).boxed()
+		List<Long> listCategoriesId = categories.parallelStream().mapToLong(Long::parseLong).boxed()
 				.collect(Collectors.toList());
 
 		List<Boisson> searchResults = repository.findBoisson(q);
@@ -69,15 +69,17 @@ public class SearchController {
 		case 2: // Name DSC
 			searchResults.sort(nameDSC);
 			break;
+		default:
+			break;
 		}
 
 		Predicate<Boisson> filterCategorieOnly = b -> b.getCategories().stream()
 				.anyMatch(c -> listCategoriesId.contains(c.getId()));
 		Predicate<Boisson> filterCategorieOrNothing = b -> b.getCategories().stream()
-				.anyMatch(c -> listCategoriesId.contains(c.getId())) || b.getCategories().size() == 0;
+				.anyMatch(c -> listCategoriesId.contains(c.getId())) || b.getCategories().isEmpty();
 
 		Predicate<Boisson> filterCategorie;
-		
+
 		if (listCategoriesId.contains(NO_CATEGORIE)) {
 			filterCategorie = filterCategorieOrNothing;
 		} else {
@@ -89,11 +91,10 @@ public class SearchController {
 		model.put("research", q);
 		model.put("order", Integer.parseInt(orderString));
 		model.put("categoriesId", listCategoriesId);
-		
+
 		model.put("boissons", searchResults);
 		model.put("categories", categoriesRepository.findAll());
-		
-		
+
 		return "boisson/see-boissons";
 	}
 

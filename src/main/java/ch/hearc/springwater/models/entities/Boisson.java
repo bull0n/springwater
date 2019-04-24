@@ -60,8 +60,7 @@ public class Boisson {
 	}
 
 	public int getScore() {
-		int score = votes.parallelStream().mapToInt(v -> v.getScore()).reduce(0, Integer::sum);
-		return score;
+		return votes.parallelStream().mapToInt(Vote::getScore).reduce(0, Integer::sum);
 	}
 
 	public String getNom() {

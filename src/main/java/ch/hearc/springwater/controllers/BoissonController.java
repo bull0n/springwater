@@ -1,7 +1,6 @@
 package ch.hearc.springwater.controllers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,13 +43,15 @@ public class BoissonController {
 
 	private static final int BOISSONS_PAR_PAGE = 10;
 	private static final String BOISSON = "boisson";
+	private static final String CATEGORIES = "categories";
+	private static final String REDIRECT_BOISSON = "redirect:/boisson/";
 
 	@GetMapping(value = "/")
 	public String getBoissons(Map<String, Object> model) {
 		this.getBoissonsPageable(1, model);
 		this.getColors(model);
 		model.put("user", utilisateurService.loadCurrentUser());
-		model.put("categories", categoriesRepository.findAll());
+		model.put(CATEGORIES, categoriesRepository.findAll());
 		return "boisson/see-boissons";
 	}
 
@@ -60,7 +60,7 @@ public class BoissonController {
 		this.getBoissonsPageable(pageNum, model);
 		this.getColors(model);
 		model.put("user", utilisateurService.loadCurrentUser());
-		model.put("categories", categoriesRepository.findAll());
+		model.put(CATEGORIES, categoriesRepository.findAll());
 		return "boisson/see-boissons";
 	}
 	
@@ -119,7 +119,7 @@ public class BoissonController {
 	@GetMapping(value = "/add")
 	public String addBoissonMap(Map<String, Object> model) {
 		model.put(BOISSON, new Boisson());
-		model.put("categories", categoriesRepository.findAll());
+		model.put(CATEGORIES, categoriesRepository.findAll());
 		return "boisson/boisson-add";
 	}
 
@@ -129,9 +129,8 @@ public class BoissonController {
 		try {
 			boisson.setFileURL(fileStorageService.storeFile(boisson.getFile()));
 		} catch (Exception e) {
-			e.printStackTrace();
+			//TODO: Lucas
 		}
-
 		
 		boisson.setOwner(utilisateurService.loadCurrentUser());
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/")
@@ -146,7 +145,7 @@ public class BoissonController {
 	public String edit(@PathVariable("id") long id, Map<String, Object> model) {
 		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
 		model.put(BOISSON, boisson);
-		model.put("categories", categoriesRepository.findAll());
+		model.put(CATEGORIES, categoriesRepository.findAll());
 
 		return "boisson/boisson-edit";
 	}
@@ -154,11 +153,9 @@ public class BoissonController {
 	@Secured("ROLE_USER")
 	@PutMapping(value = "/update")
 	public String update(Boisson boisson) {
-		System.out.println(boisson.getDescription());
 		repository.save(boisson);
 
 		return REDIRECT_BOISSON;
 	}
 	
-	private final String REDIRECT_BOISSON = "redirect:/boisson/";
 }

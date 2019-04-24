@@ -24,8 +24,8 @@ import ch.hearc.springwater.security.UtilisateurRepository;
 @RestController
 @RequestMapping(value = "/vote")
 public class VoteController {
-	private int SCORE_UP = 1;
-	private int SCORE_DOWN = -1;
+	private static final int SCORE_UP = 1;
+	private static final int SCORE_DOWN = -1;
 
 	@Autowired
 	UtilisateurRepository utilisateurRepository;
@@ -37,16 +37,16 @@ public class VoteController {
 	VoteRepository voteRepository;
 
 	@PostMapping(value = "/upvote/{id}")
-	public Map<String, Integer> UpVote(@PathVariable Long id, Model model) {
-		return this.vote(id, model, SCORE_UP);
+	public Map<String, Integer> upVote(@PathVariable Long id, Model model) {
+		return this.vote(id, SCORE_UP);
 	}
 
 	@PostMapping(value = "/downvote/{id}")
-	public Map<String, Integer> DownVote(@PathVariable Long id, Model model) {
-		return this.vote(id, model, SCORE_DOWN);
+	public Map<String, Integer> downVote(@PathVariable Long id, Model model) {
+		return this.vote(id, SCORE_DOWN);
 	}
 
-	public Map<String, Integer> vote(Long id, Model model, int score) {
+	public Map<String, Integer> vote(Long id, int score) {
 		Authentication authentification = SecurityContextHolder.getContext().getAuthentication();
 		Boisson boisson = boissonRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
 		Map<String, Integer> map = new HashMap<>();
@@ -82,7 +82,7 @@ public class VoteController {
 
 	public Vote getVoteFromList(Long id, List<Vote> listeVotes) {
 		for (Vote vote : listeVotes) {
-			if (vote.getBoisson().getId() == id) {
+			if (vote.getBoisson().getId().equals(id)) {
 				return vote;
 			}
 		}

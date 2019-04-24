@@ -36,13 +36,16 @@ public class UserController
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired
 	SecurityConfig securityConfig;
-
+	
+	private static final String SIGNUP = "security/signup";
+	private static final String MDP_PAS_IDENTIQUE = "Le mot de passe ne correspond pas";
+	
 	@GetMapping(value = "/signup")
 	public String getCategories(Map<String, Object> model)
 	{
 		this.putNewUser(model);
 
-		return "security/signup";
+		return SIGNUP;
 	}
 
 	@PostMapping(value = "/register")
@@ -51,8 +54,7 @@ public class UserController
 	{
 		if(bindingResult.hasErrors())
 		{
-			System.out.println("BINDING RESULT ERROR");
-			return "security/signup";
+			return SIGNUP;
 		}
 		
 		try
@@ -63,7 +65,7 @@ public class UserController
 		{
 			model.put("erreurs", e.getMessage());
 			this.putNewUser(model);
-			return "security/signup";
+			return SIGNUP;
 		}
 
 		userRepo.save(user);
@@ -81,7 +83,7 @@ public class UserController
 		}
 		catch (Exception e)
 		{
-			return "security/signup";
+			return SIGNUP;
 		}
 
 		if(authToken.isAuthenticated())
@@ -109,6 +111,4 @@ public class UserController
 	{
 		model.put("utilisateur", new Utilisateur());
 	}
-
-	private final String MDP_PAS_IDENTIQUE = "Le mot de passe ne correspond pas";
 }

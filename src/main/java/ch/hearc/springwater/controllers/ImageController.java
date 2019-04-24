@@ -43,7 +43,7 @@ public class ImageController
 		}
 		catch (IOException ex)
 		{
-			System.out.println("Could not determine file type.");
+			//TODO: Lucas
 		}
 
 		if(contentType == null)

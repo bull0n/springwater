@@ -122,9 +122,9 @@ public class BoissonRepositoryTest {
 		assertTrue(setCategories.equals(boissonRecherche.get().getCategories()));
 	}
 	
-	@Test
-	public void givenBoisson_whenPersistBoisson_theBoissonHasRightVotes() {
-		//TODO: 
-	}
+//	@Test
+//	public void givenBoisson_whenPersistBoisson_theBoissonHasRightVotes() {
+//		//TODO: 
+//	}
 	
 }
