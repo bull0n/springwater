@@ -22,6 +22,7 @@ import ch.hearc.springwater.models.repositories.CategoriesRepository;
 public class SearchController {
 
 	private static final long NO_CATEGORIE = -1L;
+	private static final String All_SEARCH = "%";
 
 	@Autowired
 	BoissonsRepository repository;
@@ -45,7 +46,7 @@ public class SearchController {
 
 		// Validate input
 		categories = categories == null ? new ArrayList<>() : categories;
-		q = q == null || q.isEmpty() ? "%" : q;
+		q = q == null || q.isEmpty() ? All_SEARCH : q;
 		int order = 0;
 		try {
 			order = orderString == null ? 0 : Integer.parseInt(orderString);
@@ -88,7 +89,7 @@ public class SearchController {
 
 		searchResults = searchResults.stream().filter(filterCategorie).collect(Collectors.toList());
 
-		model.put("research", q);
+		model.put("research", q.equals(All_SEARCH)?"":q);
 		model.put("order", Integer.parseInt(orderString));
 		model.put("categoriesId", listCategoriesId);
 
