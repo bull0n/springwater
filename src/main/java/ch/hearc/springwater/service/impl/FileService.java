@@ -25,7 +25,7 @@ public class FileService {
 
 	private static final String NOT_FOUND = "File not found ";
 	@Autowired
-	public FileService(FileConfig config) throws Exception {
+	public FileService(FileConfig config) throws FileException {
 		this.fileStorageLocation = Paths.get(config.getUploadDir()).toAbsolutePath().normalize();
 
 		try {
@@ -35,16 +35,15 @@ public class FileService {
 		}
 	}
 
-	public String storeFile(MultipartFile file) throws Exception {
+	public String storeFile(MultipartFile file) throws FileException {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
 		try {
 			if (fileName.contains("..")) {
-//				System.out.println("error-file");
+				throw new FileException(NOT_FOUND + fileName);
 			}
 
 			// TODO Lucas Change filename
-
 			Path targetLocation = this.fileStorageLocation.resolve(fileName);
 			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
@@ -54,7 +53,7 @@ public class FileService {
 		}
 	}
 
-	public Resource loadFileAsResource(String fileName) throws Exception {
+	public Resource loadFileAsResource(String fileName) throws FileException {
 		try {
 			Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
 			Resource resource = new UrlResource(filePath.toUri());
