@@ -45,24 +45,24 @@ La fonctionnalité principale de notre application web est la visualisation des 
 
 **Elément secondaire** : Authentification
 
-L'application se voulant communautair, l'authentification est aussi un aspect crucial au bon fonctionnement. 
+L'application se voulant communautair, l'authentification est aussi un aspect crucial au bon fonctionnement.
 
 **Couverture de tests** : 50%
 
-Les testes devront couvrir minium 50% du code de toutes l'applications.
+Les testes devront couvrir minium 50% du code de toutes l'application.
 
 ## Périmètre de test
 
-Pour ce projet, nous avons décidé de réalisé quatre types de testes. 
- 
-- testes unitaire avec Spring
+Pour ce projet, nous avons décidé de réalisé quatre types de testes.
+
+- testes unitaires avec Spring
 - des testes d'intégration pour les repository
-- des testes d'intégration avec Katalon 
-- test de performance avec Octoperf (JMeter) 
+- des testes d'intégration avec Katalon
+- test de performance avec Octoperf (JMeter)
 
 # Producédure de test
 
-## Equiqe
+## Equipe
 
 - Bulloni Lucas
 - Fleury Malik
@@ -70,7 +70,7 @@ Pour ce projet, nous avons décidé de réalisé quatre types de testes.
 
 ## Exécution des tests
 
-La partie ci-dessous va présenter la procédure d'exécution des différents tests. Quand, avec quel outil et comment le résultat va être analysé. Mise à part les testes de performances, les testes sont exécuter dans une Pileline Jenkins qui doit être lancé manuellement. Les githooks n'ont pas pu être implémenté par manque de temps et n'étaient pas réellement crucial aux tests de l'application.
+La partie ci-dessous va présenter la procédure d'exécution des différents tests. Quand, avec quels outils et comment le résultat va être analysé. Mise à part les testes de performance, les testes sont exécutés dans une Pileline Jenkins qui doit être lancé manuellement. Les githooks n'ont pas pu être implémentés par manque de temps et n'étaient pas réellement crucial aux tests de l'application.
 
 ### Tests unitaire et intégration de repository
 
