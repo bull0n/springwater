@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import ch.hearc.springwater.exceptions.FileException;
 import ch.hearc.springwater.exceptions.ResourceNotFoundException;
 import ch.hearc.springwater.models.entities.Boisson;
 import ch.hearc.springwater.models.entities.Vote;
@@ -125,20 +126,21 @@ public class BoissonController {
 
 	@Secured("ROLE_USER")
 	@PostMapping(value = "/save")
-	public String save(Boisson boisson) {
-		try {
-			boisson.setFileURL(fileStorageService.storeFile(boisson.getFile()));
-		} catch (Exception e) {
-			//TODO: Lucas
-		}
-		
+	public String save(Boisson boisson) throws FileException {
+		this.saveImageBoisson(boisson);
+		repository.save(boisson);
+
+		return REDIRECT_BOISSON;
+	}
+	
+	private void saveImageBoisson(Boisson boisson) throws FileException
+	{
+		boisson.setFileURL(fileStorageService.storeFile(boisson.getFile()));
+				
 		boisson.setOwner(utilisateurService.loadCurrentUser());
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/")
 				.path(boisson.getFileURL()).toUriString();
 		boisson.setFileURL(fileDownloadUri);
-		repository.save(boisson);
-
-		return REDIRECT_BOISSON;
 	}
 
 	@GetMapping(value = "/edit/{id}")
@@ -152,7 +154,8 @@ public class BoissonController {
 
 	@Secured("ROLE_USER")
 	@PutMapping(value = "/update")
-	public String update(Boisson boisson) {
+	public String update(Boisson boisson) throws FileException {
+		saveImageBoisson(boisson);
 		repository.save(boisson);
 
 		return REDIRECT_BOISSON;
