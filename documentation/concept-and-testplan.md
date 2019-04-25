@@ -37,6 +37,7 @@ header-includes: |
 1. Stockage d'image
 1. Votes et favoris utilisables
 
+
 ## Objectifs de tests
 
 **Elément Secondaire** : Visualisation des boissons
@@ -94,7 +95,24 @@ Les tests de performances ne sont pas intégrés à la pipeline Jenkins. Il faut
 
 # Test d'acceptation
 
+# Tableau de stratégie de tests
 
+A: risque élevé
+B: risque moyennement élevé
+C: risque faible
+
+| Caractéristique | Classe de risque | Test de validation | Tests unitaires | Tests de charges |
+| :-------------- | :--------------- | :----------------- | :-------------- | :--------------- |
+| Fonctionnalités |                  |                    |                 |                  |
+| - Gestion des boissons | C         |                    |                 |                  |
+| - Images | A                       |                    |                 |                  |
+| - Notation des boissons | B        |                    |                 |                  |
+| - Authentification | C             |                    |                 |                  |
+| - Création de compte | C           |                    |                 |                  |
+| Ergonomie |                        |                    |                 |                  |
+| - Interface simple | C             |                    |                 |                  |
+| Efficience |                       |                    |                 |                  |
+| - Temps de réponse max de 2s | B   |                    |                 |                  |
 
 \newpage
 
