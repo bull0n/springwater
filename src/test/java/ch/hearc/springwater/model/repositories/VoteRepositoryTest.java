@@ -64,14 +64,9 @@ public class VoteRepositoryTest {
 		vote.setScore(SCORE);
 		vote.setBoisson(boisson);
 		vote.setUser(utilisateur);
-		entityManager.persist(vote);
-		
-		Iterable<Vote> votes = voteRepository.findAll();
+		Vote persistedVote = entityManager.persist(vote);
 
-		for(Vote currentVote : votes)
-		{
-			assertTrue(currentVote.getBoisson().getNom().equals(boisson.getNom()));
-		}
+		assertTrue(persistedVote.getBoisson().getNom().equals(boisson.getNom()));
 	}
 	
 	@Test
@@ -91,14 +86,9 @@ public class VoteRepositoryTest {
 		vote.setScore(SCORE);
 		vote.setBoisson(boisson);
 		vote.setUser(utilisateur);
-		entityManager.persist(vote);
+		Vote persistedVote = entityManager.persist(vote);
 		
-		Iterable<Vote> votes = voteRepository.findAll();
-
-		for(Vote currentVote : votes)
-		{
-			assertTrue(currentVote.getScore() == SCORE);
-		}
+		assertTrue(persistedVote.getScore() == SCORE);
 	}
 	
 	@Test
@@ -118,14 +108,9 @@ public class VoteRepositoryTest {
 		vote.setScore(SCORE);
 		vote.setBoisson(boisson);
 		vote.setUser(utilisateur);
-		entityManager.persist(vote);
+		Vote persistedVote = entityManager.persist(vote);
 		
-		Iterable<Vote> votes = voteRepository.findAll();
-
-		for(Vote currentVote : votes)
-		{
-			assertTrue(currentVote.getUser().getNomUtilisateur().equals(utilisateur.getNomUtilisateur()));
-		}
+		assertTrue(persistedVote.getUser().getNomUtilisateur().equals(utilisateur.getNomUtilisateur()));
 	}
 	
 }
