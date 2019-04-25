@@ -26,8 +26,7 @@ import ch.hearc.springwater.models.entities.Vote;
 
 @Entity
 @Table(name = "user")
-public class Utilisateur
-{
+public class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -36,7 +35,7 @@ public class Utilisateur
 	@NotEmpty
 	@Column(unique = true, length = 50)
 	private String nomUtilisateur;
-	
+
 	@NotNull
 	@NotEmpty
 	@Size(min = 8)
@@ -49,27 +48,24 @@ public class Utilisateur
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Vote> votes = new ArrayList<>();
-	
+
 	@ManyToMany
 	@JoinTable(name = "user_favorite_boisson", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "boisson_id"))
 	private Set<Boisson> boissonsFavorite = new HashSet<>();
-	
+
 	@OneToMany
-	@JoinColumn(name="owner_id")
+	@JoinColumn(name = "owner_id")
 	private Set<Boisson> boissons = new HashSet<>();
 
-	public Set<Boisson> getBoissons()
-	{
+	public Set<Boisson> getBoissons() {
 		return boissons;
 	}
 
-	public void setBoissons(Set<Boisson> boissons)
-	{
+	public void setBoissons(Set<Boisson> boissons) {
 		this.boissons = boissons;
 	}
 
-	public Long getId()
-	{
+	public Long getId() {
 		return id;
 	}
 
@@ -80,7 +76,7 @@ public class Utilisateur
 	public void setVotes(List<Vote> votes) {
 		this.votes = votes;
 	}
-	
+
 	public Set<Boisson> getBoissonsFavorite() {
 		return this.boissonsFavorite;
 	}
@@ -89,69 +85,59 @@ public class Utilisateur
 		this.boissonsFavorite = boissons;
 	}
 
-	public void setId(Long id)
-	{
+	public boolean isFavorite(Boisson boisson) {
+		return this.boissonsFavorite.contains(boisson);
+	}
+
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getNomUtilisateur()
-	{
+	public String getNomUtilisateur() {
 		return nomUtilisateur;
 	}
 
-	public void setNomUtilisateur(String nomUtilisateur)
-	{
+	public void setNomUtilisateur(String nomUtilisateur) {
 		this.nomUtilisateur = nomUtilisateur;
 	}
 
-	public String getMotDePasse()
-	{
+	public String getMotDePasse() {
 		return motDePasse;
 	}
 
-	public void setMotDePasse(String motDePasse)
-	{
+	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
 
-	public Set<Role> getRoles()
-	{
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Role> roles)
-	{
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 
-	public String getMotDePasseConfirmation()
-	{
+	public String getMotDePasseConfirmation() {
 		return motDePasseConfirmation;
 	}
 
-	public void setMotDePasseConfirmation(String motDePasseConfirmation)
-	{
+	public void setMotDePasseConfirmation(String motDePasseConfirmation) {
 		this.motDePasseConfirmation = motDePasseConfirmation;
 	}
-	
+
 	@Override
-	public boolean equals(Object o)
-	{
-		if(o instanceof Utilisateur)
-		{
-			Utilisateur toCompare = (Utilisateur)o;
-			
+	public boolean equals(Object o) {
+		if (o instanceof Utilisateur) {
+			Utilisateur toCompare = (Utilisateur) o;
+
 			return toCompare.id == this.id;
-		}	
-		else
-		{
+		} else {
 			return false;
 		}
 	}
-	
+
 	@Override
-	public int hashCode()
-	{
+	public int hashCode() {
 		return this.id.hashCode();
 	}
 }

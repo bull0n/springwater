@@ -21,6 +21,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Formula;
 import org.springframework.web.multipart.MultipartFile;
 
 import ch.hearc.springwater.security.Utilisateur;
@@ -33,21 +34,18 @@ public class Boisson {
 	private String nom;
 	@Column(length = 1024)
 	private String description;
+	
 	@Transient
 	private MultipartFile file;
 	private String fileURL;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "boisson_categorie", joinColumns = @JoinColumn(name = "boisson_id"), inverseJoinColumns = @JoinColumn(name = "categorie_id"))
-	Set<Categorie> categories;
+	private Set<Categorie> categories;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_favorite_boisson", joinColumns = @JoinColumn(name = "boisson_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-	Set<Utilisateur> userFavoriteBoisson;
+	@Formula("(SELECT COALESCE(SUM(v.score),0) FROM vote v WHERE v.boisson_id = id)")
+	private int score;
 
-	@OneToMany(mappedBy = "boisson", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Vote> votes = new ArrayList<>();
-	
 	@ManyToOne
 	private Utilisateur owner;
 
@@ -55,12 +53,8 @@ public class Boisson {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	public boolean isFavorite(Utilisateur user) {
-		return this.userFavoriteBoisson.contains(user);
-	}
-
 	public int getScore() {
-		return votes.parallelStream().mapToInt(Vote::getScore).reduce(0, Integer::sum);
+		return score;
 	}
 
 	public String getNom() {
@@ -82,7 +76,6 @@ public class Boisson {
 	public Utilisateur getOwner() {
 		return owner;
 	}
-
 
 	public void setDescription(String description) {
 		this.description = description;
@@ -134,8 +127,6 @@ public class Boisson {
 		builder.append(fileURL);
 		builder.append(", categories=");
 		builder.append(categories);
-		builder.append(", votes=");
-		builder.append(votes);
 		builder.append(", id=");
 		builder.append(id);
 		builder.append("]");

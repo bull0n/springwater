@@ -65,27 +65,72 @@ public class BoissonController {
 		model.put(CATEGORIES, categoriesRepository.findAll());
 		return "boisson/see-boissons";
 	}
-	
-	private void getColors(Map<String, Object> model)
-	{
+
+	@GetMapping(value = "/{id}")
+	public String getBoisson(@PathVariable("id") long id, Map<String, Object> model) {
+		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
+		model.put(BOISSON, boisson);
+
+		return "boisson/see-detail";
+	}
+
+	@Secured("ROLE_USER")
+	@GetMapping(value = "/add")
+	public String addBoissonMap(Map<String, Object> model) {
+		model.put(BOISSON, new Boisson());
+		model.put(CATEGORIES, categoriesRepository.findAll());
+		return "boisson/boisson-add";
+	}
+
+	@Secured("ROLE_USER")
+	@PostMapping(value = "/save")
+	public String save(Boisson boisson) throws FileException {
+		this.saveImageBoisson(boisson);
+		repository.save(boisson);
+
+		return REDIRECT_BOISSON;
+	}
+
+	@GetMapping(value = "/edit/{id}")
+	public String edit(@PathVariable("id") long id, Map<String, Object> model) {
+		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
+		model.put(BOISSON, boisson);
+		model.put(CATEGORIES, categoriesRepository.findAll());
+
+		return "boisson/boisson-edit";
+	}
+
+	@Secured("ROLE_ADMIN")
+	@DeleteMapping(value = "/delete/{id}")
+	public String delete(@PathVariable("id") long id, Map<String, Object> model) {
+		repository.deleteById(id);
+		// TODO: Delete image file
+		return REDIRECT_BOISSON;
+	}
+
+	@Secured("ROLE_USER")
+	@PutMapping(value = "/update")
+	public String update(Boisson boisson) throws FileException {
+		saveImageBoisson(boisson);
+		repository.save(boisson);
+
+		return REDIRECT_BOISSON;
+	}
+
+	private void getColors(Map<String, Object> model) {
 		List<String> upVoteList = new ArrayList<>();
 		List<String> downVoteList = new ArrayList<>();
 		Utilisateur utilisateur = utilisateurService.loadCurrentUser();
-		
-		if(utilisateur != null)
-		{
+
+		if (utilisateur != null) {
 			List<Vote> listeVotes = utilisateur.getVotes();
-			
-			for(Vote vote : listeVotes)
-			{
+
+			for (Vote vote : listeVotes) {
 				int score = vote.getScore();
-				
-				if(score == 1)
-				{
+
+				if (score == 1) {
 					upVoteList.add(vote.getBoisson().getId() + "");
-				}
-				else
-				{
+				} else {
 					downVoteList.add(vote.getBoisson().getId() + "");
 				}
 			}
@@ -110,64 +155,12 @@ public class BoissonController {
 		model.put("boissons", page);
 	}
 
-	@GetMapping(value = "/{id}")
-	public String getBoisson(@PathVariable("id") long id, Map<String, Object> model) {
-		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
-		model.put(BOISSON, boisson);
-
-		return "boisson/see-detail";
-	}
-
-	@GetMapping(value = "/add")
-	public String addBoissonMap(Map<String, Object> model) {
-		model.put(BOISSON, new Boisson());
-		model.put(CATEGORIES, categoriesRepository.findAll());
-		return "boisson/boisson-add";
-	}
-
-	@Secured("ROLE_USER")
-	@PostMapping(value = "/save")
-	public String save(Boisson boisson) throws FileException {
-		this.saveImageBoisson(boisson);
-		repository.save(boisson);
-
-		return REDIRECT_BOISSON;
-	}
-	
-	private void saveImageBoisson(Boisson boisson) throws FileException
-	{
+	private void saveImageBoisson(Boisson boisson) throws FileException {
 		boisson.setFileURL(fileStorageService.storeFile(boisson.getFile()));
-				
+
 		boisson.setOwner(utilisateurService.loadCurrentUser());
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/")
 				.path(boisson.getFileURL()).toUriString();
 		boisson.setFileURL(fileDownloadUri);
 	}
-
-	@GetMapping(value = "/edit/{id}")
-	public String edit(@PathVariable("id") long id, Map<String, Object> model) {
-		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
-		model.put(BOISSON, boisson);
-		model.put(CATEGORIES, categoriesRepository.findAll());
-
-		return "boisson/boisson-edit";
-	}
-
-	@Secured("ROLE_ADMIN")
-	@DeleteMapping(value = "/delete/{id}")
-	public String delete(@PathVariable("id") long id, Map<String, Object> model) {
-		repository.deleteById(id);
-		//TODO: Delete image file
-		return REDIRECT_BOISSON;
-	}
-
-	@Secured("ROLE_USER")
-	@PutMapping(value = "/update")
-	public String update(Boisson boisson) throws FileException {
-		saveImageBoisson(boisson);
-		repository.save(boisson);
-
-		return REDIRECT_BOISSON;
-	}
-	
 }

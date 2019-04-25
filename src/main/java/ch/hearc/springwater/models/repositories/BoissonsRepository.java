@@ -12,6 +12,6 @@ public interface BoissonsRepository extends PagingAndSortingRepository<Boisson, 
 
 	@Query(value = "(select * FROM boisson b WHERE b.nom LIKE %:searched% ORDER BY b.nom ) UNION DISTINCT "
 			+ "(select * FROM boisson b WHERE b.description LIKE %:searched% ORDER BY b.nom )", nativeQuery = true)
-	List<Boisson> findBoisson(@Param("searched") String searched);
-
+	public List<Boisson> findBoisson(@Param("searched") String searched);
+	
 }
