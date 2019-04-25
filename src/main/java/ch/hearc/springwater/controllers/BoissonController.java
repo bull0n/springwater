@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -150,6 +151,14 @@ public class BoissonController {
 		model.put(CATEGORIES, categoriesRepository.findAll());
 
 		return "boisson/boisson-edit";
+	}
+
+	@Secured("ROLE_ADMIN")
+	@DeleteMapping(value = "/delete/{id}")
+	public String delete(@PathVariable("id") long id, Map<String, Object> model) {
+		repository.deleteById(id);
+		//TODO: Delete image file
+		return REDIRECT_BOISSON;
 	}
 
 	@Secured("ROLE_USER")
