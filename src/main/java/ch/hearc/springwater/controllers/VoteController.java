@@ -74,9 +74,9 @@ public class VoteController {
 				map.put("score", score);
 			}
 		}
-
-		map.put("total_score", boisson.getScore());
-
+		
+		//Do not use boisson.getScore() because the value is wrong and is returned from the cache
+		map.put("total_score", voteRepository.getScore(boisson.getId()));
 		return map;
 	}
 
