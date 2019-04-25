@@ -10,7 +10,7 @@
   		<div class="container">
   			<h1 th:text="${boisson.nom}">[Nom]</h1>
 			<div>
-				<img th:src="@{boisson.fileURL}" th:alt="${boisson.nom}" />
+				<img th:src="${boisson.fileURL}" class="rounded img-boisson" th:alt="${boisson.nom}" />
   			</div>
   			<p th:text="${boisson.description}">
   				[Description]
