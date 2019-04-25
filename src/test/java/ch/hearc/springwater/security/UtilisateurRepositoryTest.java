@@ -109,6 +109,6 @@ public class UtilisateurRepositoryTest {
 
 	@Test
 	public void givenUser_whenPersistUser_thenUserHasTheRightVotes() {
-		// Todo
+		// TODO
 	}
 }

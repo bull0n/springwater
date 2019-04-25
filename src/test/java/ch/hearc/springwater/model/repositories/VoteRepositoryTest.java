@@ -49,32 +49,83 @@ public class VoteRepositoryTest {
 	
 	@Test
 	public void givenVote_whenPersistVote_theVoteHasRightBoisson() {
-//		Boisson boisson = new Boisson();
-//		boisson.setNom("Soda");
-//		boisson.setDescription("");
-//		boisson.setFileURL("");
-//		entityManager.persist(boisson);
-//		
-//		Utilisateur utilisateur = new Utilisateur();
-//		utilisateur.setNomUtilisateur("Jean Emarre");
-//		utilisateur.setMotDePasse(bCryptPasswordEncoder.encode("password"));
-//		entityManager.persist(utilisateur);
-//		
-//		Vote vote = new Vote();
-//		vote.setScore(SCORE);
-//		vote.setBoisson(boisson);
-//		vote.setUser(utilisateur);
-//		entityManager.persist(vote);
+		Boisson boisson = new Boisson();
+		boisson.setNom("Soda");
+		boisson.setDescription("");
+		boisson.setFileURL("");
+		entityManager.persist(boisson);
+		
+		Utilisateur utilisateur = new Utilisateur();
+		utilisateur.setNomUtilisateur("Jean Emarre");
+		utilisateur.setMotDePasse(bCryptPasswordEncoder.encode("password"));
+		entityManager.persist(utilisateur);
+		
+		Vote vote = new Vote();
+		vote.setScore(SCORE);
+		vote.setBoisson(boisson);
+		vote.setUser(utilisateur);
+		entityManager.persist(vote);
+		
+		Iterable<Vote> votes = voteRepository.findAll();
+
+		for(Vote currentVote : votes)
+		{
+			assertTrue(currentVote.getBoisson().getNom().equals(boisson.getNom()));
+		}
 	}
 	
 	@Test
 	public void givenVote_whenPersistVote_theVoteHasRightScore() {
+		Boisson boisson = new Boisson();
+		boisson.setNom("Soda");
+		boisson.setDescription("");
+		boisson.setFileURL("");
+		entityManager.persist(boisson);
 		
+		Utilisateur utilisateur = new Utilisateur();
+		utilisateur.setNomUtilisateur("Jean Emarre");
+		utilisateur.setMotDePasse(bCryptPasswordEncoder.encode("password"));
+		entityManager.persist(utilisateur);
+		
+		Vote vote = new Vote();
+		vote.setScore(SCORE);
+		vote.setBoisson(boisson);
+		vote.setUser(utilisateur);
+		entityManager.persist(vote);
+		
+		Iterable<Vote> votes = voteRepository.findAll();
+
+		for(Vote currentVote : votes)
+		{
+			assertTrue(currentVote.getScore() == SCORE);
+		}
 	}
 	
 	@Test
 	public void givenVote_whenPersistVote_theVoteHasRightUtilisateur() {
+		Boisson boisson = new Boisson();
+		boisson.setNom("Soda");
+		boisson.setDescription("");
+		boisson.setFileURL("");
+		entityManager.persist(boisson);
 		
+		Utilisateur utilisateur = new Utilisateur();
+		utilisateur.setNomUtilisateur("Jean Emarre");
+		utilisateur.setMotDePasse(bCryptPasswordEncoder.encode("password"));
+		entityManager.persist(utilisateur);
+		
+		Vote vote = new Vote();
+		vote.setScore(SCORE);
+		vote.setBoisson(boisson);
+		vote.setUser(utilisateur);
+		entityManager.persist(vote);
+		
+		Iterable<Vote> votes = voteRepository.findAll();
+
+		for(Vote currentVote : votes)
+		{
+			assertTrue(currentVote.getUser().getNomUtilisateur().equals(utilisateur.getNomUtilisateur()));
+		}
 	}
 	
 }
