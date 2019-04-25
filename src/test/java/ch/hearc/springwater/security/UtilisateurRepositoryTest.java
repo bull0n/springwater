@@ -79,7 +79,7 @@ public class UtilisateurRepositoryTest {
 		Utilisateur userSearched = userRepo.findByNomUtilisateur(NOM);
 		String password = userSearched.getMotDePasse();
 
-		//assertTrue(password.equals(bCryptPasswordEncoder.encode(MDP)));
+		assertTrue(bCryptPasswordEncoder.matches(MDP, password));
 	}
 
 	@Test
