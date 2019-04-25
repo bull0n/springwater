@@ -14,11 +14,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.context.support.BeanDefinitionDsl.Role;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import ch.hearc.springwater.models.entities.Boisson;
 import ch.hearc.springwater.models.entities.Categorie;
+import ch.hearc.springwater.models.entities.Vote;
 import ch.hearc.springwater.models.repositories.BoissonsRepository;
+import ch.hearc.springwater.security.Utilisateur;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -29,6 +33,9 @@ public class BoissonRepositoryTest {
 
 	@Autowired
 	private BoissonsRepository boissonRepository;
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Test
 	public void givenBoisson_whenPersistBoisson_theBoissonIsPersisted() {
@@ -122,9 +129,55 @@ public class BoissonRepositoryTest {
 		assertTrue(setCategories.equals(boissonRecherche.get().getCategories()));
 	}
 	
-//	@Test
-//	public void givenBoisson_whenPersistBoisson_theBoissonHasRightVotes() {
-//		//TODO: 
-//	}
+	@Test
+	public void givenBoisson_whenPersistBoisson_theBoissonHasRightVotes() {
+		final int COUNT = 2;
+		final int[] SCORE = new int[] {1,-1};
+		Utilisateur[] utilisateurs = new Utilisateur[COUNT];
+		Boisson[] boissons = new Boisson[COUNT];
+		
+		for(int i = 0;i < COUNT; i++)
+		{
+			Utilisateur utilisateur = new Utilisateur();
+			utilisateur.setNomUtilisateur("user" + i);
+			utilisateur.setMotDePasse(bCryptPasswordEncoder.encode("password"));
+			utilisateurs[i] = utilisateur;
+			
+			entityManager.persist(utilisateur);
+			entityManager.flush();
+		}
+
+		for(int i = 0;i < COUNT; i++)
+		{
+			Boisson boisson = new Boisson();
+			boisson.setNom("Drink" + i);
+			boisson.setDescription("Best drink ever for sure");
+			boisson.setFileURL("");
+			boissons[i] = boisson;
+			
+			entityManager.persist(boisson);
+			entityManager.flush();
+		}
+		
+		for(int i = 0;i < COUNT; i++)
+		{
+			Utilisateur utilisateur = utilisateurs[i];
+			Vote vote = new Vote();
+			vote.setUser(utilisateur);
+			vote.setBoisson(boissons[i]);
+			vote.setScore(SCORE[i]);
+			System.out.println(vote.getScore());
+			
+			entityManager.persist(vote);
+			entityManager.flush();
+		}
+		
+		for(int i = 0;i < COUNT;i++)
+		{
+			// PROBLEM
+			//Boisson boisson = boissons[i];
+			//assertTrue(SCORE[i] == boisson.getScore());
+		}
+	}
 	
 }
