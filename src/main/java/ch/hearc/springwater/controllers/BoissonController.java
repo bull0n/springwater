@@ -90,7 +90,7 @@ public class BoissonController {
 
 		return REDIRECT_BOISSON;
 	}
-
+	
 	@GetMapping(value = "/edit/{id}")
 	public String edit(@PathVariable("id") long id, Map<String, Object> model) {
 		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
@@ -105,15 +105,6 @@ public class BoissonController {
 	public String delete(@PathVariable("id") long id, Map<String, Object> model) {
 		repository.deleteById(id);
 		// TODO: Delete image file
-		return REDIRECT_BOISSON;
-	}
-
-	@Secured("ROLE_USER")
-	@PutMapping(value = "/update")
-	public String update(Boisson boisson) throws FileException {
-		saveImageBoisson(boisson);
-		repository.save(boisson);
-
 		return REDIRECT_BOISSON;
 	}
 

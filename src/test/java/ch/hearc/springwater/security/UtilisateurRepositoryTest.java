@@ -3,9 +3,7 @@ package ch.hearc.springwater.security;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
@@ -23,15 +21,14 @@ public class UtilisateurRepositoryTest {
 	private TestEntityManager entityManager;
 	@Autowired
 	private UtilisateurRepository userRepo;
-	@Autowired
-	private RoleRepository roleRepo;
+
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	private final String NOM = "Jean-Test";
 	private final String MDP = "password";
 	private final String ROLE = "ROLE_USER";
-	
+
 	@Test
 	public void givenUser_whenPersistUser_thenUserIsPersisted() {
 		Role roleUser = new Role();
