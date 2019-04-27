@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -40,6 +39,7 @@ public class BoissonController {
 
 	@Autowired
 	private FileService fileStorageService;
+	
 	@Autowired
 	private UtilisateurDetailServiceImpl utilisateurService;
 
@@ -90,7 +90,7 @@ public class BoissonController {
 
 		return REDIRECT_BOISSON;
 	}
-	
+
 	@GetMapping(value = "/edit/{id}")
 	public String edit(@PathVariable("id") long id, Map<String, Object> model) {
 		Boisson boisson = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
