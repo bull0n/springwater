@@ -64,8 +64,7 @@ public class SearchControllerTest {
 	@Test
 	public void SearchSimpleController_thenResponseIsCorrect() throws Exception {
 		mockMvc.perform(get("/recherche/rapide")
-				.param("boisson", "Water")
-				.param("categoriesId", "-1", "1"))
+				.param("boisson", "Water"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("boisson/see-boissons"));
 	}
@@ -73,21 +72,34 @@ public class SearchControllerTest {
 	@Test
 	public void SearchAdvancedControllerOrderBest_thenResponseIsCorrect() throws Exception {
 		//Test order best 
-		mockMvc.perform(get("/recherche/avancee").param("boisson", "Water").param("order", "0"))
+		mockMvc.perform(get("/recherche/avancee")
+				.param("boisson", "Water")
+				.param("categoriesId", "-1"))
 				.andExpect(status().isOk()).andExpect(view().name("boisson/see-boissons"));
 	}
 
 	@Test
 	public void SearchAdvancedControllerOrderAsc_thenResponseIsCorrect() throws Exception {
 		//Test order best 
-		mockMvc.perform(get("/recherche/avancee").param("boisson", "Water").param("order", "1"))
+		mockMvc.perform(get("/recherche/avancee")
+				.param("boisson", "Water")
+				.param("order", "1"))
 				.andExpect(status().isOk()).andExpect(view().name("boisson/see-boissons"));
 	}
 	
 	@Test
 	public void SearchAdvancedControllerOrderDsc_thenResponseIsCorrect() throws Exception {
 		//Test order best 
-		mockMvc.perform(get("/recherche/avancee").param("boisson", "Water").param("order", "-1"))
+		mockMvc.perform(get("/recherche/avancee")
+				.param("order", "2"))
+				.andExpect(status().isOk()).andExpect(view().name("boisson/see-boissons"));
+	}
+
+	@Test
+	public void SearchAdvancedControllerOrderInvalid_thenResponseIsCorrect() throws Exception {
+		//Test order best 
+		mockMvc.perform(get("/recherche/avancee")
+				.param("order", "sdf"))
 				.andExpect(status().isOk()).andExpect(view().name("boisson/see-boissons"));
 	}
 }

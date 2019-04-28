@@ -53,6 +53,7 @@ public class SearchController {
 		} catch (NumberFormatException e) {
 			order = 0;
 		}
+		
 		List<Long> listCategoriesId = categories.parallelStream().mapToLong(Long::parseLong).boxed()
 				.collect(Collectors.toList());
 
@@ -90,7 +91,7 @@ public class SearchController {
 		searchResults = searchResults.stream().filter(filterCategorie).collect(Collectors.toList());
 
 		model.put("research", q.equals(ALL_SEARCH)?"":q);
-		model.put("order", Integer.parseInt(orderString));
+		model.put("order", Integer.parseInt(Integer.toString(order)));
 		model.put("categoriesId", listCategoriesId);
 
 		model.put("boissons", searchResults);
