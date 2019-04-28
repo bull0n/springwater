@@ -47,6 +47,13 @@ public class VoteRepositoryTest {
 
 		assertTrue(persistedVote.getBoisson().getNom().equals(boisson.getNom()));
 	}
+	
+	@Test
+	public void givenVote_whenSetId_theVoteHasRightId() {
+		Vote vote = new Vote();
+		vote.setId(1L);
+		assertTrue(vote.getId().equals(1L));
+	}
 
 	@Test
 	public void givenVote_whenPersistVote_theVoteHasRightScore() {
