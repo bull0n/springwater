@@ -41,12 +41,16 @@ public class SearchControllerTest {
 
 	@Before
 	public void setUp() {
-		Categorie c = new Categorie();
-		c.setId(1L);
-		c.setNom("Cat1");
+		Categorie c1 = new Categorie();
+		c1.setId(1L);
+		c1.setNom("Cat 1");
+		Categorie c2 = new Categorie();
+		c2.setId(1L);
+		c2.setNom("Cat 2");
 
 		List<Categorie> listCategorie = new ArrayList<>();
-		listCategorie.add(c);
+		listCategorie.add(c1);
+		listCategorie.add(c2);
 
 		Mockito.when(categoriesRepository.findAll()).thenReturn(listCategorie);
 
@@ -57,11 +61,11 @@ public class SearchControllerTest {
 		b1.setCategories(new HashSet<>());
 		
 		Boisson b2 = new Boisson();
-		b2.setId(1L);
+		b2.setId(2L);
 		b2.setNom("Water");
 		b2.setDescription("Best drink ever");
 		Set<Categorie> categories = new HashSet<>();
-		categories.add(c);
+		categories.add(c1);
 		b2.setCategories(categories);
 		
 		List<Boisson> listBoisson = new ArrayList<>();
@@ -85,6 +89,15 @@ public class SearchControllerTest {
 		mockMvc.perform(get("/recherche/avancee")
 				.param("boisson", "Water")
 				.param("categoriesId", "-1"))
+				.andExpect(status().isOk()).andExpect(view().name("boisson/see-boissons"));
+	}
+	
+	@Test
+	public void SearchAdvancedControllerOrderNoCategorie_thenResponseIsCorrect() throws Exception {
+		//Test order best 
+		mockMvc.perform(get("/recherche/avancee")
+				.param("boisson", "Water")
+				.param("categoriesId", "-1", "1"))
 				.andExpect(status().isOk()).andExpect(view().name("boisson/see-boissons"));
 	}
 
