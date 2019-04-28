@@ -63,8 +63,6 @@ public class SearchController {
 		Comparator<Boisson> nameDSC = (b1, b2) -> b2.getNom().compareTo(b1.getNom());
 
 		switch (order) {
-		case 0: // Best match
-			break;
 		case 1: // Name ASC
 			searchResults.sort(nameASC);
 			break;
@@ -72,6 +70,7 @@ public class SearchController {
 			searchResults.sort(nameDSC);
 			break;
 		default:
+			// 0 - Best match
 			break;
 		}
 

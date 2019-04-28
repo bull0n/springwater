@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,17 +41,6 @@ public class SearchControllerTest {
 
 	@Before
 	public void setUp() {
-		Boisson b = new Boisson();
-		b.setId(1L);
-		b.setNom("Water");
-		b.setDescription("Best drink ever");
-		b.setCategories(new HashSet<>());
-
-		List<Boisson> listBoisson = new ArrayList<>();
-		listBoisson.add(b);
-
-		Mockito.when(boissonsRepository.findBoisson("Water")).thenReturn(listBoisson);
-
 		Categorie c = new Categorie();
 		c.setId(1L);
 		c.setNom("Cat1");
@@ -59,6 +49,26 @@ public class SearchControllerTest {
 		listCategorie.add(c);
 
 		Mockito.when(categoriesRepository.findAll()).thenReturn(listCategorie);
+
+		Boisson b1 = new Boisson();
+		b1.setId(1L);
+		b1.setNom("Water");
+		b1.setDescription("Best drink ever");
+		b1.setCategories(new HashSet<>());
+		
+		Boisson b2 = new Boisson();
+		b2.setId(1L);
+		b2.setNom("Water");
+		b2.setDescription("Best drink ever");
+		Set<Categorie> categories = new HashSet<>();
+		categories.add(c);
+		b2.setCategories(categories);
+		
+		List<Boisson> listBoisson = new ArrayList<>();
+		listBoisson.add(b1);
+		listBoisson.add(b2);
+		
+		Mockito.when(boissonsRepository.findBoisson("Water")).thenReturn(listBoisson);
 	}
 
 	@Test
@@ -83,7 +93,8 @@ public class SearchControllerTest {
 		//Test order best 
 		mockMvc.perform(get("/recherche/avancee")
 				.param("boisson", "Water")
-				.param("order", "1"))
+				.param("order", "1")
+				.param("categoriesId", "1"))
 				.andExpect(status().isOk()).andExpect(view().name("boisson/see-boissons"));
 	}
 	
@@ -99,6 +110,7 @@ public class SearchControllerTest {
 	public void SearchAdvancedControllerOrderInvalid_thenResponseIsCorrect() throws Exception {
 		//Test order best 
 		mockMvc.perform(get("/recherche/avancee")
+				.param("boisson", "")
 				.param("order", "sdf"))
 				.andExpect(status().isOk()).andExpect(view().name("boisson/see-boissons"));
 	}
