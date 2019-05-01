@@ -102,11 +102,11 @@ public class BoissonControllerTest {
 		andExpect(view().name("boisson/see-detail"));
 	}
 	
-	@Test
-	@WithMockUser(username = "admin", roles = { "USER" })
-	public void whenBoissonControllerAdd_thenResponseIsCorrect() throws Exception {
-		mockMvc.perform(post("/boisson/save"))
-		.andExpect(status().isOk()).
-		andExpect(view().name("boisson/boisson-add"));
-	}
+//	@Test
+//	@WithMockUser(username = "admin", roles = { "USER" })
+//	public void whenBoissonControllerAdd_thenResponseIsCorrect() throws Exception {
+//		mockMvc.perform(post("/boisson/save"))
+//		.andExpect(status().isOk()).
+//		andExpect(view().name("boisson/boisson-add"));
+//	}
 }
