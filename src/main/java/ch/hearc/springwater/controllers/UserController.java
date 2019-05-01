@@ -68,12 +68,13 @@ public class UserController
 			return SIGNUP;
 		}
 
-		userRepo.save(user);
 		Role roleUser = roleRepo.findByNom("ROLE_USER");
 
 		Set<Role> rolesUser = new HashSet<>();
 		rolesUser.add(roleUser);
 		user.setRoles(rolesUser);
+		
+		userRepo.save(user);
 
 		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
 				user.getNomUtilisateur(), user.getMotDePasse());
