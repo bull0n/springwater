@@ -15,9 +15,7 @@ import internal.GlobalVariable as GlobalVariable
 
 WebUI.openBrowser('')
 
-WebUI.navigateToUrl('http://localhost:8080/boisson/')
-
-WebUI.click(findTestObject('Page_SpringWater/a_Senregistrer'))
+WebUI.navigateToUrl('http://localhost:8080/user/signup/')
 
 WebUI.setText(findTestObject('Page_SpringWater/input_Nom_nomUtilisateur'), 'lucas')
 
@@ -26,22 +24,6 @@ WebUI.setEncryptedText(findTestObject('Page_SpringWater/input_Mot de passe_motDe
 WebUI.setEncryptedText(findTestObject('Page_SpringWater/input_Confirmation du mot de passe_motDePasseConfirmation'), 'mvMLieaRys7hPWVHYH5DBQ==')
 
 WebUI.click(findTestObject('Page_SpringWater/button_Sauvegarder'))
-
-WebUI.click(findTestObject('Page_SpringWater/a_Login'))
-
-WebUI.setText(findTestObject('Page_Please sign in/input_Username_username'), 'lucas')
-
-WebUI.setEncryptedText(findTestObject('Page_Please sign in/input_Password_password'), 'mvMLieaRys7hPWVHYH5DBQ==')
-
-WebUI.click(findTestObject('Page_Please sign in/button_Sign in'))
-
-WebUI.click(findTestObject('Page_SpringWater/a_Ajouter une boisson'))
-
-WebUI.setText(findTestObject('Page_SpringWater/input_Nom_nom'), 'thé')
-
-WebUI.setText(findTestObject('Page_SpringWater/textarea_Description_description'), 'thé')
-
-WebUI.click(findTestObject('Page_SpringWater/button_Save'))
 
 WebUI.closeBrowser()
 
