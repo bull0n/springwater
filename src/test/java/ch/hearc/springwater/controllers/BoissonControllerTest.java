@@ -2,6 +2,7 @@ package ch.hearc.springwater.controllers;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -104,7 +105,7 @@ public class BoissonControllerTest {
 	@Test
 	@WithMockUser(username = "admin", roles = { "USER" })
 	public void whenBoissonControllerAdd_thenResponseIsCorrect() throws Exception {
-		mockMvc.perform(get("/boisson/add"))
+		mockMvc.perform(post("/boisson/save"))
 		.andExpect(status().isOk()).
 		andExpect(view().name("boisson/boisson-add"));
 	}

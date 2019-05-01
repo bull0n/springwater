@@ -39,7 +39,7 @@ public class CategorieController {
 
 	@Secured("ROLE_ADMIN")
 	@GetMapping(value = "/edit/{id}")
-	public String getBoisson(@PathVariable("id") long id, Map<String, Object> model) {
+	public String editCategorie(@PathVariable("id") long id, Map<String, Object> model) {
 		Categorie categorie = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
 		model.put(CATEGORIE, categorie);
 
@@ -48,7 +48,7 @@ public class CategorieController {
 
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/remove/{id}")
-	public String deleteBuyer(@PathVariable Long id) {
+	public String DeleteCategorie(@PathVariable Long id) {
 		repository.deleteById(id);
 
 		return REDIRECT_CATEGORIE;
