@@ -9,6 +9,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import java.io.FileInputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,7 +27,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.mock.web.MockPart;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -39,7 +43,8 @@ import ch.hearc.springwater.models.repositories.CategoriesRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class BoissonControllerTest {
+public class BoissonControllerTest
+{
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -51,7 +56,8 @@ public class BoissonControllerTest {
 	CategoriesRepository categoriesRepository;
 
 	@Before
-	public void setUp() {
+	public void setUp()
+	{
 		Categorie c1 = new Categorie();
 		c1.setId(1L);
 		c1.setNom("Cat 1");
@@ -89,41 +95,45 @@ public class BoissonControllerTest {
 	}
 
 	@Test
-	public void whenBoissonController_thenResponseIsCorrect() throws Exception {
+	public void whenBoissonController_thenResponseIsCorrect() throws Exception
+	{
 		mockMvc.perform(get("/boisson/")).andExpect(status().isOk()).andExpect(view().name("boisson/see-boissons"));
 	}
 
 	@Test
-	public void whenBoissonControllerPageable_thenResponseIsCorrect() throws Exception {
-		mockMvc.perform(get("/boisson/page/{pageNum}", "1"))
-		.andExpect(status().isOk()).
-		andExpect(view().name("boisson/see-boissons"));
+	public void whenBoissonControllerPageable_thenResponseIsCorrect() throws Exception
+	{
+		mockMvc.perform(get("/boisson/page/{pageNum}", "1")).andExpect(status().isOk())
+				.andExpect(view().name("boisson/see-boissons"));
 	}
-	
+
 	@Test
-	public void whenBoissonControllerDetails_thenResponseIsCorrect() throws Exception {
-		mockMvc.perform(get("/boisson/{id}", "1"))
-		.andExpect(status().isOk()).
-		andExpect(view().name("boisson/see-detail"));
+	public void whenBoissonControllerDetails_thenResponseIsCorrect() throws Exception
+	{
+		mockMvc.perform(get("/boisson/{id}", "1")).andExpect(status().isOk())
+				.andExpect(view().name("boisson/see-detail"));
 	}
-	
+
 	@Test
 	@WithMockUser(username = "admin", roles = { "USER" })
-	public void whenBoissonControllerAdd_thenResponseIsCorrect() throws Exception {
+	public void whenBoissonControllerAdd_thenResponseIsCorrect() throws Exception
+	{
 		String nom = "B1";
 		String description = "description";
 		Boisson b = new Boisson();
-		
-		String path = "uploads/bag.png";
-		MultipartFile file = new MockMultipartFile("bag", path, "image/png", new FileInputStream(path));
-		
+
+		Path path = Paths.get("uploads/test/test.jpg").toAbsolutePath().normalize();
+		String pathStr = path.toString();
+
+		MockMultipartFile file = new MockMultipartFile("file", pathStr, "image/jpg", new FileInputStream(pathStr));
+
 		b.setFile(file);
 		b.setNom(nom);
 		b.setDescription(description);
-		
-		mockMvc.perform(multipart("/boisson/save").file((MockMultipartFile) file).param("nom", nom).param("description", description).with(csrf()))
-		.andExpect(status().isOk()).
-		andExpect(view().name("boisson/boisson-add"));
+
+		mockMvc.perform(
+				multipart("/boisson/save").file(file).param("nom", nom).param("description", description).with(csrf()))
+				.andExpect(status().is3xxRedirection());
 		Mockito.when(boissonsRepository.save(Mockito.any(Boisson.class))).thenReturn(b);
 	}
 }
