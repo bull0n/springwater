@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<form method="post" th:action="@{/boisson/save}"
+				<form method="post" th:action="@{/boisson/update}"
 					enctype="multipart/form-data" th:object="${boisson}">
 					<input type="hidden" name="_method" value="PUT" /> <input
 						type="hidden" name="id" id="id" th:value="${boisson.id}" />

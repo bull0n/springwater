@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -81,6 +82,15 @@ public class BoissonController {
 		model.put(CATEGORIES, categoriesRepository.findAll());
 
 		return "boisson/boisson-add";
+	}
+	
+	@Secured("ROLE_USER")
+	@PutMapping(value = "/update")
+	public String update(Boisson boisson) throws FileException {
+		saveImageBoisson(boisson);
+		repository.save(boisson);
+
+		return REDIRECT_BOISSON;
 	}
 
 	@Secured("ROLE_USER")
