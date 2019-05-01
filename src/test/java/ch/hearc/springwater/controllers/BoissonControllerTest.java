@@ -1,11 +1,14 @@
 package ch.hearc.springwater.controllers;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -22,9 +25,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.multipart.MultipartFile;
 
 import ch.hearc.springwater.models.entities.Boisson;
 import ch.hearc.springwater.models.entities.Categorie;
@@ -105,8 +110,20 @@ public class BoissonControllerTest {
 	@Test
 	@WithMockUser(username = "admin", roles = { "USER" })
 	public void whenBoissonControllerAdd_thenResponseIsCorrect() throws Exception {
-		mockMvc.perform(post("/boisson/save"))
+		String nom = "B1";
+		String description = "description";
+		Boisson b = new Boisson();
+		
+		String path = "uploads/bag.png";
+		MultipartFile file = new MockMultipartFile("bag", path, "image/png", new FileInputStream(path));
+		
+		b.setFile(file);
+		b.setNom(nom);
+		b.setDescription(description);
+		
+		mockMvc.perform(multipart("/boisson/save").file((MockMultipartFile) file).param("nom", nom).param("description", description).with(csrf()))
 		.andExpect(status().isOk()).
 		andExpect(view().name("boisson/boisson-add"));
+		Mockito.when(boissonsRepository.save(Mockito.any(Boisson.class))).thenReturn(b);
 	}
 }

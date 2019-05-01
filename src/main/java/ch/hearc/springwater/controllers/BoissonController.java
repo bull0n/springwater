@@ -76,9 +76,10 @@ public class BoissonController {
 
 	@Secured("ROLE_USER")
 	@GetMapping(value = "/add")
-	public String addBoissonMap(Map<String, Object> model) {
+	public String addBoisson(Map<String, Object> model) {
 		model.put(BOISSON, new Boisson());
 		model.put(CATEGORIES, categoriesRepository.findAll());
+
 		return "boisson/boisson-add";
 	}
 
