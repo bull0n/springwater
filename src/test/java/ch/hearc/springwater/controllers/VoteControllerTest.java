@@ -44,7 +44,7 @@ public class VoteControllerTest {
 
 	@MockBean
 	UtilisateurRepository utilisateursRepository;
-	
+
 	@MockBean
 	VoteRepository votesRepository;
 
@@ -54,7 +54,7 @@ public class VoteControllerTest {
 	private static final String USERNAME = "User";
 	private static final String PASSWORD = "Password";
 	private static final String ROLE = "ROLE_USER";
-	
+
 	@Before
 	public void setUp() {
 		Boisson boisson1 = new Boisson();
@@ -63,37 +63,45 @@ public class VoteControllerTest {
 		boisson1.setDescription("Best drink ever");
 		boisson1.setCategories(new HashSet<>());
 		Mockito.when(boissonsRepository.findById(boisson1.getId())).thenReturn(Optional.of(boisson1));
-		
+
 		Utilisateur user1 = new Utilisateur();
 		user1.setId(1L);
 		user1.setNomUtilisateur(USERNAME);
 		user1.setMotDePasse(bCryptPasswordEncoder.encode(PASSWORD));
 		Mockito.when(utilisateursRepository.findByNomUtilisateur(user1.getNomUtilisateur())).thenReturn(user1);
-		
+
 		Vote vote = new Vote();
 		vote.setId(1L);
 		vote.setUser(user1);
 		vote.setBoisson(boisson1);
 		vote.setScore(0);
-		
+
 		Role roleUser = new Role();
 		roleUser.setNom(ROLE);
-		
+
 		List<Vote> votes = new ArrayList<Vote>();
 		Set<Role> roles = new HashSet<Role>();
 		user1.setVotes(votes);
 		user1.setRoles(roles);
-		
+
 		Mockito.when(votesRepository.getScore(boisson1.getId())).thenReturn(vote.getScore());
 	}
-	
+
 	@Test
 	public void WhenUpVote_thenResponseIsCorrect() throws Exception {
-		mockMvc.perform(post("/vote/downvote/{id}", "1").with(user(USERNAME).roles("USER")).with(csrf()).contentType("application/json")).andExpect(status().isOk());
+		mockMvc.perform(post("/vote/downvote/{id}", "1").with(user(USERNAME).roles("USER")).with(csrf())
+				.contentType("application/json")).andExpect(status().isOk());
 	}
-	
+
 	@Test
 	public void WhenDownVote_thenResponseIsCorrect() throws Exception {
-		mockMvc.perform(post("/vote/downvote/{id}", "1").with(user(USERNAME).roles("USER")).with(csrf()).contentType("application/json")).andExpect(status().isOk());
+		mockMvc.perform(post("/vote/downvote/{id}", "1").with(user(USERNAME).roles("USER")).with(csrf())
+				.contentType("application/json")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void WhenUpVoteAndDownVote_thenResponseAreCorrects() throws Exception {
+		WhenUpVote_thenResponseIsCorrect();
+		WhenDownVote_thenResponseIsCorrect();
 	}
 }
