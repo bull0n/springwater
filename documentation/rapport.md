@@ -37,6 +37,8 @@ Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring
 
 Nous avons essayé de grouper les classes par fonctionnement dans le projet. Par exemple, nous avons groupé les controlleurs dans un package.
 
+L'architecture finale du projet est telle :
+
 - config
 - controllers
 - exceptions
