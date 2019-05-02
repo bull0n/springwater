@@ -89,7 +89,6 @@ Cette partie du document présente les bugs connus restant dans l'application
 #### Images
 
 Actuellement, lorsqu'on upload une image, elle n'est pas renommé. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom.
-<<<<<<< HEAD
 
 #### Modification d'une boisson
 
