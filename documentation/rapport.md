@@ -27,7 +27,7 @@ header-includes: |
 
 # Introduction
 
-Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring Boot. Le but de ce projet est de créer un site communautaire où les utilisateurs uploadent des images et vote pour les meilleures images. La partie test du projet à été faite en parralèlle avec le cours de Qualité Logiciel.
+Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring Boot. Le but de ce projet est de créer un site communautaire où les utilisateurs  uploadent des images et votent pour les meilleures images. La partie test du projet à été faite en parallèle avec le cours de Qualité Logiciel.
 
 # Réalisation
 
