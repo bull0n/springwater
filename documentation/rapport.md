@@ -31,11 +31,7 @@ Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring
 
 # Réalisation
 
-<<<<<<< HEAD
-Le projet a été réalisé en Spring
-=======
 Le projet a été fait en équipe de 3 avec Spring Boot. Les tâches planifiées ont bien été completées, la suite de cette partie explique les différents outils utilisés et l'état du projet.
->>>>>>> 000d24b79462a6fe88b3b8281e39b6ab5e4f0f27
 
 ## Bibliothèques
 
@@ -43,13 +39,13 @@ Nous n'avons pas utilisé de bibliothèque en plus de Spring pour le côté Back
 
 ## Repository git
 
-Pour des fins organisationelles, nous avons travaillé avec Git. Voici le lien du repository
+Pour des fins organisationelles, nous avons travaillé avec Git. Voici le lien du repository:
 
 - [https://github.com/bull0n/springwater](https://github.com/bull0n/springwater)
 
 ## Architecture du code
 
-Nous avons essayé de grouper les classes par fonctionnement dans le projet. Par exemple, nous avons groupé les controlleurs dans un package.
+Nous avons essayé de grouper les classes par fonctionnement dans le projet. Par exemple, nous avons groupé les contrôleurs dans un package.
 
 L'architecture finale du projet est telle :
 
@@ -65,7 +61,7 @@ L'architecture finale du projet est telle :
 
 ## Seed de la base de données
 
-Nous avons créer un fichier qui permet de remplir la base de données. C'est le fichier data.sql, pour lancer ce fichier il faut décommenter la ligne : 
+Nous avons créer un fichier qui permet de remplir la base de données. C'est le fichier data.sql, pour lancer ce fichier il faut décommenter la ligne :
 
 ```
 spring.datasource.initialization-mode=always
@@ -88,7 +84,7 @@ Le projet a été réalisé en Spring. Toutes les fonctionnalités du cahier des
 
 ### Fonctionnalités
 
-Le projet comporte les fonctionnalités suivantes:
+Les fonctionnalités implémentées sont les suivantes:
 
 - visualisation des boisons
 - gestion des boissons (avec image)
@@ -105,11 +101,7 @@ Cette partie du document présente les bugs connus restant dans l'application
 
 #### Images
 
-<<<<<<< HEAD
 Actuellement, lorsqu'on upload une image, elle n'est pas renommée. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom.
-=======
-Actuellement, lorsqu'on upload une image, elle n'est pas renommé. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom.
->>>>>>> 000d24b79462a6fe88b3b8281e39b6ab5e4f0f27
 
 #### Modification d'une boisson
 
