@@ -27,8 +27,12 @@ header-includes: |
 
 # Introduction
 
+
+
 # Réalisation 
 
 ## Architecture
+
+![Architecture Monolithe](monolithe.jpg) 
 
 # Conclusion
