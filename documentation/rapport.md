@@ -45,7 +45,11 @@ Pour des fins organisationelles, nous avons travaillé avec Git. Voici le lien d
 
 ## Architecture du code
 
+Cette partie du document va expliquer comment les fichiers ont été séparés.
+
+### Java
 Nous avons essayé de grouper les classes par fonctionnement dans le projet. Par exemple, nous avons groupé les contrôleurs dans un package.
+
 
 L'architecture finale du projet est telle :
 
@@ -58,6 +62,26 @@ L'architecture finale du projet est telle :
 - security
 - service
       - impl
+
+### Ressources
+
+Nous retrouvons deux types de fichiers dans les ressources, les statiques, où on trouve les fichiers JS et CSS.
+
+#### Static
+
+Nous avons séparé les fichiers javascripts et les fichiers de styles dans chaque dossier. Nous n'avons pas décidé de plus séparé car l'application ne possède pas beaucoup de ces ressources.
+
+- styles
+- script
+
+#### Templates
+
+Les templates ont été séparé par ressources et les fragments ont été placés dans un dossier.
+
+- boisson
+- categories
+- fragments
+- security
 
 ## Seed de la base de données
 
@@ -132,3 +156,5 @@ La première amélioration ergonomique serait de connecté l'utilisateur après 
 Une seconde amélioration consisterait à redimensionner l'image introduite lors de l'ajout d'une boisson. Cela permet d'avoir des tailles d'images similaires pour chaque boisson mais également de diminuer le poids.
 
 # Conclusion
+
+Pour conclure, le projet a bien rempli les fonctionnalités du cahier des charges. Le projet a été développé avec Spring. Mais quelques bugs sont encore présents.
