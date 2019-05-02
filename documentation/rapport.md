@@ -31,7 +31,17 @@ Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring
 
 # Réalisation 
 
+Le projet a été réalisé en Spring 
 
+## Bibliothèques
+
+Nous n'avons pas utilisé de bibliothèque en plus de Spring pour le côté Backend et nous avons utilisé Bootstrap et jQuery pour ce qui est frontend.
+
+## Repository git
+
+Pour des fins organisationelles, nous avons travaillé avec Git. Voici le lien du repository
+
+- [https://github.com/bull0n/springwater](https://github.com/bull0n/springwater) 
 
 ## Architecture du code
 
@@ -51,8 +61,18 @@ L'architecture finale du projet est telle :
 
 ## Architecture
 
-![Architecture Monolithe](monolithe.jpg){ width=70% }
+![Architecture Monolithe](monolithe.jpg){ width=40% }
 
 ## Etat du projet
+
+### Bugs connus restant
+
+#### Images
+
+Actuellement, lorsqu'on upload une image, elle n'est pas renommé. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom. 
+
+### Améliorations
+
+La première amélioration ergonomique serait de connecté l'utilisateur après son inscription. Pour le moment, quand un utilisateur crée un compte il reste sur le formulaire d'inscription, ce qui n'est pas intuitif du tout.
 
 # Conclusion
