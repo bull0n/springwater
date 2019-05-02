@@ -147,7 +147,7 @@ Nous avons effectué des tests unitaires, des tests de cas d'utilisation ainsi q
 
 #### Problèmes rencontrés
 
-Nous avons eu un problème lors du test du contrôleur des favoris. On effectue une requête "POST" sur une url de type "../favorite/add/{idBoisson}". Dans le contrôleur "FavoriteController" l'id de la boisson est directement utilisée et convertie en un objet "Boisson" (implicitement). Hors, lors de l'exécution unitaire correspondant, une erreur est lancée qui indique qu'il n'est pas possible de convertir la "String" en un objet "Boisson".
+Nous avons eu un problème lors du test du contrôleur des favoris. On effectue une requête "POST" sur une url de type "../favorite/add/{idBoisson}". Dans le contrôleur "FavoriteController" l'id de la boisson est directement utilisée et convertie en un objet "Boisson" (implicitement). Hors, lors de l'exécution unitaire correspondant, une erreur est lancée qui indique qu'il n'est pas possible de convertir la "String" en un objet "Boisson". Le problème est encore existant et n'a malheureusement pas pu être corrigé.
 
 ### Améliorations
 
