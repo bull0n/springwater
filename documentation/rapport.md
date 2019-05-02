@@ -1,6 +1,6 @@
 ---
 title: SpringWater
-subtitle: Rapport de test
+subtitle: Rapport
 lang: fr
 author:
 - Bulloni Lucas <lucas.bulloni@he-arc.ch>
@@ -25,18 +25,10 @@ header-includes: |
 
 \newpage
 
-# Rapport
+# Introduction
 
-Ce document va expliquer le résultat des tests et les résultats obtenus.
+# Réalisation 
 
-## Tests unitaires
+## Architecture
 
-Les testes unitaires sont exécutés lors du build Jenkins. Tous les tests unitaires doivent fonctionner pour l'application. Des tests unitaires ont été implémentés pour tous les controlleurs et les méthodes sont toutes testées également.
-
-## Tests de qualités
-
-Les tests des qualités sont passé avec un code coverage de 61% et les code smells restant sont des todo qui n'ont pas pu être implémenté. Il reste des failles de sécurité POJO, mais comme discuté en 
-
-## Tests de performance
-
-Les tests de performance ont bien été exécuté avec un temps de réponse moyen de XX s.
+# Conclusion
