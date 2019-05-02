@@ -29,8 +29,9 @@ header-includes: |
 
 Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring Boot. Le but de ce projet est de créer un site communautaire où les utilisateurs uploadent des images et vote pour les meilleures images. La partie test du projet à été faite en parralèlle avec le cours de Qualité Logiciel.
 
-# Réalisation 
+# Réalisation
 
+Le projet a été fait en équipe de 3 avec Spring Boot.
 
 ## Bibliothèques
 
@@ -57,6 +58,14 @@ L'architecture finale du projet est telle :
 - security
 - service
       - impl
+
+## Seed de la base de données
+
+Nous avons créer un fichier qui permet de remplir la base de données. C'est le fichier data.sql, pour lancer ce fichier il faut décommenter la ligne : 
+
+```
+spring.datasource.initialization-mode=always
+```
 
 
 ## Architecture
