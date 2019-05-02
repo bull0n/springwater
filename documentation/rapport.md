@@ -27,7 +27,7 @@ header-includes: |
 
 # Introduction
 
-Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring Boot. Le but de ce projet est de créer un site communautaire où les utilisateurs uploadent des images et vote pour les meilleures images. La partie test du projet à été faite en parralèlle avec le cours de Qualité Logiciel.
+Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring Boot. Le but de ce projet est de créer un site communautaire où les utilisateurs  uploadent des images et votent pour les meilleures images. La partie test du projet à été faite en parallèle avec le cours de Qualité Logiciel.
 
 # Réalisation
 
@@ -39,7 +39,7 @@ Nous n'avons pas utilisé de bibliothèque en plus de Spring pour le côté Back
 
 ## Repository git
 
-Pour des fins organisationelles, nous avons travaillé avec Git. Voici le lien du repository
+Pour des fins organisationelles, nous avons travaillé avec Git. Voici le lien du repository:
 
 - [https://github.com/bull0n/springwater](https://github.com/bull0n/springwater)
 
@@ -48,8 +48,8 @@ Pour des fins organisationelles, nous avons travaillé avec Git. Voici le lien d
 Cette partie du document va expliquer comment les fichiers ont été séparés.
 
 ### Java
+Nous avons essayé de grouper les classes par fonctionnement dans le projet. Par exemple, nous avons groupé les contrôleurs dans un package.
 
-Nous avons essayé de grouper les classes par fonctionnement dans le projet. Par exemple, nous avons groupé les controlleurs dans un package.
 
 L'architecture finale du projet est telle :
 
@@ -85,7 +85,7 @@ Les templates ont été séparé par ressources et les fragments ont été plac�
 
 ## Seed de la base de données
 
-Nous avons créer un fichier qui permet de remplir la base de données. C'est le fichier data.sql, pour lancer ce fichier il faut décommenter la ligne : 
+Nous avons créer un fichier qui permet de remplir la base de données. C'est le fichier data.sql, pour lancer ce fichier il faut décommenter la ligne :
 
 ```
 spring.datasource.initialization-mode=always
@@ -106,13 +106,26 @@ Voici les différentes parties de l'architecture de haut en bas:
 
 Le projet a été réalisé en Spring. Toutes les fonctionnalités du cahier des charges ont été remplies, mais quelques bugs ont été trouvé lors du test de l'application.
 
+### Fonctionnalités
+
+Les fonctionnalités implémentées sont les suivantes:
+
+- visualisation des boisons
+- gestion des boissons (avec image)
+- gestion des catégories
+- pagination
+- recherche d'une boisson simple ou avancée
+- système de votes
+- gestion des favoris
+- incription & authentification
+
 ### Bugs connus restant
 
 Cette partie du document présente les bugs connus restant dans l'application
 
 #### Images
 
-Actuellement, lorsqu'on upload une image, elle n'est pas renommé. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom.
+Actuellement, lorsqu'on upload une image, elle n'est pas renommée. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom.
 
 #### Modification d'une boisson
 
@@ -122,7 +135,7 @@ Lorsqu'on modifie une boisson on doit réuploadé l'image sinon elle sera ecras�
 
 La première amélioration ergonomique serait de connecté l'utilisateur après son inscription. Pour le moment, quand un utilisateur crée un compte il reste sur le formulaire d'inscription, ce qui n'est pas intuitif du tout.
 
-Une seconde amélioration consiste à redimensionner l'image introduite lors de l'ajout d'une boisson. Cela permet d'avoir des tailles d'images similaires pour chaque boisson mais également de diminuer le poids.
+Une seconde amélioration consisterait à redimensionner l'image introduite lors de l'ajout d'une boisson. Cela permet d'avoir des tailles d'images similaires pour chaque boisson mais également de diminuer le poids.
 
 # Conclusion
 
