@@ -31,11 +31,7 @@ Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring
 
 # Réalisation
 
-<<<<<<< HEAD
 Le projet a été réalisé en Spring
-
-=======
->>>>>>> ec3022d06f8bf8fbcccef22c9eead5a1ff13d8ae
 
 ## Bibliothèques
 
@@ -79,25 +75,35 @@ Voici les différentes parties de l'architecture de haut en bas:
 
 Le projet a été réalisé en Spring. Toutes les fonctionnalités du cahier des charges ont été remplies, mais quelques bugs ont été trouvé lors du test de l'application.
 
+### Fonctionnalités
+
+Le projet comporte les fonctionnalités suivantes:
+
+- visualisation des boisons
+- gestion des boissons (avec image)
+- gestion des catégories
+- pagination
+- recherche d'une boisson simple ou avancée
+- système de votes
+- gestion des favoris
+- incription & authentification
+
 ### Bugs connus restant
 
 Cette partie du document présente les bugs connus restant dans l'application
 
 #### Images
 
-Actuellement, lorsqu'on upload une image, elle n'est pas renommé. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom.
-<<<<<<< HEAD
-=======
+Actuellement, lorsqu'on upload une image, elle n'est pas renommée. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom.
 
 #### Modification d'une boisson
 
 Lorsqu'on modifie une boisson on doit réuploadé l'image sinon elle sera ecrasée.
->>>>>>> ec3022d06f8bf8fbcccef22c9eead5a1ff13d8ae
 
 ### Améliorations
 
 La première amélioration ergonomique serait de connecté l'utilisateur après son inscription. Pour le moment, quand un utilisateur crée un compte il reste sur le formulaire d'inscription, ce qui n'est pas intuitif du tout.
 
-Une seconde amélioration consiste à redimensionner l'image introduite lors de l'ajout d'une boisson. Cela permet d'avoir des tailles d'images similaires pour chaque boisson mais également de diminuer le poids.
+Une seconde amélioration consisterait à redimensionner l'image introduite lors de l'ajout d'une boisson. Cela permet d'avoir des tailles d'images similaires pour chaque boisson mais également de diminuer le poids.
 
 # Conclusion
