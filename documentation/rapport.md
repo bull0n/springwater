@@ -33,6 +33,7 @@ Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring
 
 Le projet a été réalisé en Spring 
 
+
 ## Bibliothèques
 
 Nous n'avons pas utilisé de bibliothèque en plus de Spring pour le côté Backend et nous avons utilisé Bootstrap et jQuery pour ce qui est frontend.
@@ -59,9 +60,18 @@ L'architecture finale du projet est telle :
 - service
   - impl
 
+
 ## Architecture
 
-![Architecture Monolithe](monolithe.jpg){ width=40% }
+![Architecture Monolithe](monolithe.jpg){ width=70% }
+
+L'architecture choisie pour ce projet est le monolithe car c'est la solution qui nous semblait la plus adéquate. En effet, c'est un petit projet et c'est la solution la plus simple à mettre en place.
+
+Voici les différentes parties de l'architecture de haut en bas:
+
+1. L'ordinateur rerpésente le client qui se connecte à notre application.
+2. Le bloc du milieu représente le monolithe comportant la partie frontend et backend.
+3. Le dernier bloc représente la base de données afin de persister les données.
 
 ## Etat du projet
 
@@ -76,3 +86,4 @@ Actuellement, lorsqu'on upload une image, elle n'est pas renommé. Ce qui fait q
 La première amélioration ergonomique serait de connecté l'utilisateur après son inscription. Pour le moment, quand un utilisateur crée un compte il reste sur le formulaire d'inscription, ce qui n'est pas intuitif du tout.
 
 # Conclusion
+
