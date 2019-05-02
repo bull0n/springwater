@@ -31,8 +31,6 @@ Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring
 
 # Réalisation 
 
-Le projet a été réalisé en Spring 
-
 
 ## Bibliothèques
 
@@ -54,32 +52,40 @@ L'architecture finale du projet est telle :
 - controllers
 - exceptions
 - models
-  - entities
-  - repository
+      - entities  
+      - repository
 - security
 - service
-  - impl
+      - impl
 
 
 ## Architecture
 
-![Architecture Monolithe](monolithe.jpg){ width=70% }
+![Architecture Monolithe](monolithe.jpg){ width=30% }
 
 L'architecture choisie pour ce projet est le monolithe car c'est la solution qui nous semblait la plus adéquate. En effet, c'est un petit projet et c'est la solution la plus simple à mettre en place.
 
 Voici les différentes parties de l'architecture de haut en bas:
 
 1. L'ordinateur rerpésente le client qui se connecte à notre application.
-2. Le bloc du milieu représente le monolithe comportant la partie frontend et backend.
-3. Le dernier bloc représente la base de données afin de persister les données.
+1. Le bloc du milieu représente le monolithe comportant la partie frontend et backend.
+1. Le dernier bloc représente la base de données afin de persister les données.
 
 ## Etat du projet
 
+Le projet a été réalisé en Spring. Toutes les fonctionnalités du cahier des charges ont été remplies, mais quelques bugs ont été trouvé lors du test de l'application.
+
 ### Bugs connus restant
+
+Cette partie du document présente les bugs connus restant dans l'application
 
 #### Images
 
-Actuellement, lorsqu'on upload une image, elle n'est pas renommé. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom. 
+Actuellement, lorsqu'on upload une image, elle n'est pas renommé. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom.
+
+#### Modification d'une boisson
+
+Lorsqu'on modifie une boisson on doit réuploadé l'image sinon elle sera ecrasée.
 
 ### Améliorations
 
