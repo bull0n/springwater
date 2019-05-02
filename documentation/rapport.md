@@ -31,10 +31,26 @@ Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring
 
 # Réalisation 
 
+
+
 ## Architecture du code
+
+Nous avons essayé de grouper les classes par fonctionnement dans le projet. Par exemple, nous avons groupé les controlleurs dans un package.
+
+- config
+- controllers
+- exceptions
+- models
+  - entities
+  - repository
+- security
+- service
+  - impl
 
 ## Architecture
 
 ![Architecture Monolithe](monolithe.jpg){ width=70% }
+
+## Etat du projet
 
 # Conclusion
