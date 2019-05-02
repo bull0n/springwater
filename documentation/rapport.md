@@ -107,6 +107,24 @@ Actuellement, lorsqu'on upload une image, elle n'est pas renommée. Ce qui fait 
 
 Lorsqu'on modifie une boisson on doit réuploadé l'image sinon elle sera ecrasée.
 
+### Tests
+
+Cette section donne la liste des outils utilisés pour tester notre application, mais aussi les problèmes rencontrés et qui ne sont pas réglés pour des raisons de temps.
+
+#### Outils utilisés
+
+Nous avons effectué des tests unitaires, des tests de cas d'utilisation ainsi que des tests de performances. Les outils que nous avons utilisé sont:
+
+ - JUnit
+ - Katalon
+ - Octoperf
+
+ Tous les résultats des tests sont disponibles dans le document "concept-and-testplan".
+
+#### Problèmes rencontrés
+
+Nous avons eu un problème lors du test du contrôleur des favoris. On effectue une requête "POST" sur une url de type "../favorite/add/{idBoisson}". Dans le contrôleur "FavoriteController" l'id de la boisson est directement utilisée et convertie en un objet "Boisson" (implicitement). Hors, lors de l'exécution unitaire correspondant, une erreur est lancée qui indique qu'il n'est pas possible de convertir la "String" en un objet "Boisson".
+
 ### Améliorations
 
 La première amélioration ergonomique serait de connecté l'utilisateur après son inscription. Pour le moment, quand un utilisateur crée un compte il reste sur le formulaire d'inscription, ce qui n'est pas intuitif du tout.
