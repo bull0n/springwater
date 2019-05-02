@@ -31,7 +31,7 @@ Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring
 
 # Réalisation
 
-Le projet a été fait en équipe de 3 avec Spring Boot.
+Le projet a été fait en équipe de 3 avec Spring Boot. Les tâches planifiées ont bien été completées, la suite de cette partie explique les différents outils utilisés et l'état du projet.
 
 ## Bibliothèques
 
@@ -41,7 +41,7 @@ Nous n'avons pas utilisé de bibliothèque en plus de Spring pour le côté Back
 
 Pour des fins organisationelles, nous avons travaillé avec Git. Voici le lien du repository
 
-- [https://github.com/bull0n/springwater](https://github.com/bull0n/springwater) 
+- [https://github.com/bull0n/springwater](https://github.com/bull0n/springwater)
 
 ## Architecture du code
 
@@ -66,8 +66,6 @@ Nous avons créer un fichier qui permet de remplir la base de données. C'est le
 ```
 spring.datasource.initialization-mode=always
 ```
-
-
 ## Architecture
 
 ![Architecture Monolithe](monolithe.jpg){ width=30% }
@@ -91,6 +89,7 @@ Cette partie du document présente les bugs connus restant dans l'application
 #### Images
 
 Actuellement, lorsqu'on upload une image, elle n'est pas renommé. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom.
+<<<<<<< HEAD
 
 #### Modification d'une boisson
 
@@ -100,5 +99,6 @@ Lorsqu'on modifie une boisson on doit réuploadé l'image sinon elle sera ecras�
 
 La première amélioration ergonomique serait de connecté l'utilisateur après son inscription. Pour le moment, quand un utilisateur crée un compte il reste sur le formulaire d'inscription, ce qui n'est pas intuitif du tout.
 
-# Conclusion
+Une seconde amélioration consiste à redimensionner l'image introduite lors de l'ajout d'une boisson. Cela permet d'avoir des tailles d'images similaires pour chaque boisson mais également de diminuer le poids.
 
+# Conclusion
