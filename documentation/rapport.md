@@ -29,9 +29,9 @@ header-includes: |
 
 Pour le cours de J2EE nous avons réalisé une application avec l'aide de Spring Boot. Le but de ce projet est de créer un site communautaire où les utilisateurs uploadent des images et vote pour les meilleures images. La partie test du projet à été faite en parralèlle avec le cours de Qualité Logiciel.
 
-# Réalisation 
+# Réalisation
 
-Le projet a été réalisé en Spring 
+Le projet a été réalisé en Spring
 
 
 ## Bibliothèques
@@ -42,7 +42,7 @@ Nous n'avons pas utilisé de bibliothèque en plus de Spring pour le côté Back
 
 Pour des fins organisationelles, nous avons travaillé avec Git. Voici le lien du repository
 
-- [https://github.com/bull0n/springwater](https://github.com/bull0n/springwater) 
+- [https://github.com/bull0n/springwater](https://github.com/bull0n/springwater)
 
 ## Architecture du code
 
@@ -59,7 +59,6 @@ L'architecture finale du projet est telle :
 - security
 - service
   - impl
-
 
 ## Architecture
 
@@ -79,11 +78,12 @@ Voici les différentes parties de l'architecture de haut en bas:
 
 #### Images
 
-Actuellement, lorsqu'on upload une image, elle n'est pas renommé. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom. 
+Actuellement, lorsqu'on upload une image, elle n'est pas renommé. Ce qui fait qu'on ne peut pas avoir 2 images avec le même nom.
 
 ### Améliorations
 
 La première amélioration ergonomique serait de connecté l'utilisateur après son inscription. Pour le moment, quand un utilisateur crée un compte il reste sur le formulaire d'inscription, ce qui n'est pas intuitif du tout.
 
-# Conclusion
+Une seconde amélioration consiste à redimensionner l'image introduite lors de l'ajout d'une boisson. Cela permet d'avoir des tailles d'images similaires pour chaque boisson mais également de diminuer le poids.
 
+# Conclusion
