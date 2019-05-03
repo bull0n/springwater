@@ -95,6 +95,7 @@ public class BoissonControllerTest
 	}
 
 	@Test
+	@WithMockUser(username = "admin", roles = { "USER" })
 	public void whenBoissonController_thenResponseIsCorrect() throws Exception
 	{
 		mockMvc.perform(get("/boisson/")).andExpect(status().isOk()).andExpect(view().name("boisson/see-boissons"));
