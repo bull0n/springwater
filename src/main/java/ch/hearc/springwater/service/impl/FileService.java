@@ -49,6 +49,7 @@ public class FileService {
 
 			return fileName;
 		} catch (IOException ex) {
+			ex.printStackTrace();
 			throw new FileException(NOT_FOUND + fileName);
 		}
 	}

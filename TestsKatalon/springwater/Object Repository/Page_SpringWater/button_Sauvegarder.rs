@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>button_Rechercher</name>
+   <name>button_Sauvegarder</name>
    <tag></tag>
-   <elementGuidId>53d94435-cceb-4219-a566-9c7b97574331</elementGuidId>
+   <elementGuidId>fa2ab0fd-33fa-47c1-af97-c8fbead3343e</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
@@ -38,14 +38,14 @@
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>Rechercher</value>
+      <value>Sauvegarder</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>/html[1]/body[1]/div[@class=&quot;container main-content&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;col-3 offset-md-1&quot;]/form[1]/button[@class=&quot;btn btn-primary&quot;]</value>
+      <value>/html[1]/body[1]/div[@class=&quot;container&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;col-12&quot;]/form[1]/button[@class=&quot;btn btn-primary&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
@@ -57,18 +57,18 @@
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Order'])[1]/following::button[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Confirmation du mot de passe'])[1]/following::button[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Filter by catégorie'])[1]/following::button[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Mot de passe'])[1]/following::button[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
-      <value>//div[2]/form/button</value>
+      <value>//div/div/div/form/button</value>
    </webElementXpaths>
 </WebElementEntity>
