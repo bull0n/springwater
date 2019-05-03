@@ -46,6 +46,8 @@ public class BoissonControllerTest {
 
 	@Before
 	public void setUp() {
+		//TODO: Add list for vote for admin
+		
 		Categorie c1 = new Categorie();
 		c1.setId(1L);
 		c1.setNom("Cat 1");
@@ -83,6 +85,7 @@ public class BoissonControllerTest {
 	}
 
 	@Test
+	@WithMockUser(username = "admin", roles = { "USER" })
 	public void whenBoissonController_thenResponseIsCorrect() throws Exception {
 		mockMvc.perform(get("/boisson/")).andExpect(status().isOk()).andExpect(view().name("boisson/see-boissons"));
 	}
