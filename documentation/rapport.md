@@ -90,6 +90,7 @@ Nous avons créer un fichier qui permet de remplir la base de données. C'est le
 ```
 spring.datasource.initialization-mode=always
 ```
+
 ## Architecture
 
 ![Architecture Monolithe](monolithe.jpg){ width=30% }
