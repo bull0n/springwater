@@ -30,12 +30,12 @@ header-includes: |
 ## Attentes qualitatif du projet
 
 1. Interface utilisable simplement
-1. Sécurité des comptes
+2. Sécurité des comptes
       1. Authentification
-      1. Création de compte
-1. Temps de réponse acceptable (3s.)
-1. Stockage d'image
-1. Votes et favoris utilisables
+      2. Création de compte
+3. Temps de réponse acceptable (3s.)
+4. Stockage d'image
+5. Votes et favoris utilisables
 
 
 ## Objectifs de tests
@@ -46,15 +46,15 @@ La fonctionnalité principale de notre application web est la visualisation des 
 
 **Elément secondaire** : Authentification
 
-L'application se voulant communautaire, l'authentification est aussi un aspect crucial au bon fonctionnement.
+L'application se voulant communautaire, l'authentification est également un aspect crucial au bon fonctionnement.
 
 **Couverture de tests** : 60%
 
-Les testes devront couvrir minimum 60% du code de toute l'application.
+Les testes devront couvrir au minimum 60% du code de toute l'application.
 
 ## Périmètre de test
 
-Pour ce projet, nous avons décidé de réalisé quatre types de testes.
+Pour ce projet, nous avons décidé de réaliser quatre types de tests.
 
 - tests unitaires avec Spring
 - tests de qualité avec SonarCloud
@@ -80,12 +80,12 @@ Les tests unitaires et d'intégration de repository sont exécutés lors du buil
 Voici l'ordre de tests des controlleurs :
 
 1. BoissonController
-1. UserController
-1. CategorieController
-1. SearchControlleur
-1. VoteContreoller
-1. FavorisController
-1. ImageController
+2. UserController
+3. CategorieController
+4. SearchControlleur
+5. VoteContreoller
+6. FavorisController
+7. ImageController
 
 ### Tests de qualité avec SonarCloud
 
@@ -127,15 +127,15 @@ A: risque élevé
 B: risque moyennement élevé
 C: risque faible
 
-Caractéristique               Classe de risque  Test de validation      Tests unitaires   Tests de charges
---------------                ---------------   -----------------       --------------    ---------------
-- Gestion des boissons        A                 **                      ***               *                                            
-- Visualisation des boissons  A                 **                      ***               *
-- Images                      C                                         **                                                                             
-- Notation des boissons       C                                         **                                                                  
-- Authentification            A                                                                                    
-- Création de compte          B                 *                       *                                                                      
-Ergonomie                                                                              
-- Interface simple            B                 **                                                                   
-Efficience                                                                             
-- Temps de réponse max de 3s  B                                                           **                              
+| Caractéristique | Classe de risque | Test de validation | Tests unitaires | Tests de charges |
+|-----------------|------------------|--------------------|-----------------|------------------|
+| Gestion des boissons       | A | ** | *** | *  |                                           
+| Visualisation des boissons | A | ** | *** | *  |
+| Images                     | C |    | **  |    |                                                                
+| Notation des boissons      | C |    | **  |    |
+| Authentification           | A |    |     |    |
+| Création de compte         | B | *  | *   |    |
+| **Ergonomie**              |   |    |     |    |
+| Interface simple           | B | ** |     |    |
+| **Efficience**             |   |    |     |    |
+| Temps de réponse max de 3s | B |    |     | ** |
