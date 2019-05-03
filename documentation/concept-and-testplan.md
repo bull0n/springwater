@@ -50,7 +50,7 @@ L'application se voulant communautaire, l'authentification est également un asp
 
 **Couverture de tests** : 60%
 
-Les testes devront couvrir au minimum 60% du code de toute l'application.
+Les tests devront couvrir au minimum 60% du code de toute l'application.
 
 ## Périmètre de test
 
@@ -108,18 +108,18 @@ Les tests de performances ne sont pas intégrés à la pipeline Jenkins. Il faut
 
 **Bulloni Lucas**
 
-- Ecriture de tests unitaire
+- Ecriture de tests unitaires
 - Ecriture de tests Katalon
 
 **Fleury Malik**
 
-- Ecriture de tests unitaire
+- Ecriture de tests unitaires
 - Tests de performance
 
-**Bastien Wermeille**
+**Wermeille Bastien**
 
-- Ecriture de tests unitaire
-- Corrections des tests de qualités
+- Ecriture de tests unitaires
+- Corrections des tests de qualité
 
 # Tableau de stratégie de tests
 
