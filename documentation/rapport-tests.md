@@ -1,6 +1,6 @@
 ---
 title: SpringWater
-subtitle: Rapport de test
+subtitle: Rapport-tests
 lang: fr
 author:
 - Bulloni Lucas <lucas.bulloni@he-arc.ch>
@@ -12,11 +12,11 @@ numbersections: true
 documentclass: scrartcl
 geometry: margin=2.5cm
 header-includes: |
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhead[R]{Lucas Bulloni, Malik Fleury \& Bastien Wermeille}
-\usepackage{float}
-\floatplacement{figure}{H}
+      \usepackage{fancyhdr}
+      \pagestyle{fancy}
+      \fancyhead[R]{Lucas Bulloni, Malik Fleury \& Bastien Wermeille}
+      \usepackage{float}
+      \floatplacement{figure}{H}
 ---
 
 \newpage

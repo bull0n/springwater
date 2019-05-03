@@ -1,6 +1,6 @@
 ---
 title: SpringWater
-subtitle: Plan de test
+subtitle: Concept and testplan
 lang: fr
 author:
 - Bulloni Lucas <lucas.bulloni@he-arc.ch>
@@ -18,7 +18,6 @@ header-includes: |
       \usepackage{float}
       \floatplacement{figure}{H}
 ---
-
 \newpage
 
 \tableofcontents
