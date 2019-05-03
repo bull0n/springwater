@@ -122,6 +122,23 @@ Les fonctionnalités implémentées sont les suivantes:
 - gestion des favoris
 - inscription & authentification
 
+#### Contraintes
+
+Les contraintes de bases ont été respectées:
+
+- Login (authentification)
+- Gestion des accès par rôle (au moins 3 rôles différents accédant à des fonctionnalités différentes)
+- Au moins deux formulaires de saisie avec Update sur la BD
+- Au moins deux fonctionnalités de recherche (simple + avancée)
+- Affichage paginé (pagination)
+
+Les rôles disponibles sont les suivants:
+- Guest -> affichage et recherche de boissons
+- Authentifié -> guest + ajout/modification/suppression de boisson
+- Admin -> Authentifié + ajout/modification/suppression de catégories
+
+Les utilisateurs qui s'enregistrent obtiennent uniquement les droits `Authentifié`, seul un compte admin possède les droits de gestion des catégories.
+
 ### Bugs connus
 
 Cette partie du document présente les bugs connus encore présents dans l'application. Ceux-ci n'ont pas pu être corrigés par manque de temps.
