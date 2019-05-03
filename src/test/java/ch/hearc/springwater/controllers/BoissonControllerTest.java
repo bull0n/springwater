@@ -102,6 +102,7 @@ public class BoissonControllerTest
 	}
 
 	@Test
+	@WithMockUser(username = "admin", roles = { "USER" })
 	public void whenBoissonControllerPageable_thenResponseIsCorrect() throws Exception
 	{
 		mockMvc.perform(get("/boisson/page/{pageNum}", "1")).andExpect(status().isOk())
